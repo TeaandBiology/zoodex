@@ -100,13 +100,12 @@ class _ZooDexScreenState extends State<ZooDexScreen> {
             final q = _query.trim().toLowerCase();
 
             final filtered = q.isEmpty
-                ? data
-                : data.where((e) {
-                    return e.species.commonName.toLowerCase().contains(q) ||
-                        e.species.scientificName.toLowerCase().contains(q) ||
-                        e.species.group.toLowerCase().contains(q) ||
-                        e.zooName.toLowerCase().contains(q);
-                  }).toList();
+              ? data
+              : data.where((e) {
+                return e.species.commonName.toLowerCase().contains(q) ||
+                  e.species.scientificName.toLowerCase().contains(q) ||
+                  e.zooName.toLowerCase().contains(q);
+                }).toList();
 
             return Scaffold(
               appBar: AppBar(
@@ -119,7 +118,7 @@ class _ZooDexScreenState extends State<ZooDexScreen> {
                     child: TextField(
                       decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.search),
-                        hintText: 'Search species, zoo, group…',
+                        hintText: 'Search species, zoo…',
                         border: OutlineInputBorder(),
                       ),
                       onChanged: (v) => setState(() => _query = v),
@@ -158,7 +157,7 @@ class _ZooDexScreenState extends State<ZooDexScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        '${e.species.scientificName} • ${e.species.group}',
+                                                        '${e.species.scientificName} • ${e.species.zone}',
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                       ),

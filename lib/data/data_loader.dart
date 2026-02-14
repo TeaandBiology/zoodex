@@ -144,7 +144,6 @@ class DataLoader {
           id: base.id,
           commonName: base.commonName,
           scientificName: base.scientificName,
-          group: base.group,
           zone: zone,
           description: base.description,
         ));

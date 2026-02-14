@@ -24,7 +24,6 @@ class ZooInventoryScreen extends StatefulWidget {
 class _ZooInventoryScreenState extends State<ZooInventoryScreen> {
   late final Future<ZooInventory> _invFuture;
   String _query = '';
-  String? _groupFilter;
 
   @override
   void initState() {
@@ -55,17 +54,13 @@ class _ZooInventoryScreenState extends State<ZooInventoryScreen> {
             .where((s) => SeenStore.hasAnyObservation(inv.zoo.id, s.id))
             .length;
 
-        final groups = inv.species.map((s) => s.group).toSet().toList()..sort();
-
+        
         final q = _query.trim().toLowerCase();
         final filtered = inv.species.where((s) {
-          final matchesGroup = _groupFilter == null || s.group == _groupFilter;
-          if (!matchesGroup) return false;
           if (q.isEmpty) return true;
 
           return s.commonName.toLowerCase().contains(q) ||
               s.scientificName.toLowerCase().contains(q) ||
-              s.group.toLowerCase().contains(q) ||
               s.zone.toLowerCase().contains(q);
         }).toList()
           ..sort((a, b) => a.commonName.compareTo(b.commonName));
@@ -76,35 +71,17 @@ class _ZooInventoryScreenState extends State<ZooInventoryScreen> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(12),
-                child: Row(
+                    child: Row(
                   children: [
                     Expanded(
                       child: TextField(
                         decoration: const InputDecoration(
                           prefixIcon: Icon(Icons.search),
-                          hintText: 'Search species, group, zone…',
+                          hintText: 'Search species, zone…',
                           border: OutlineInputBorder(),
                         ),
                         onChanged: (v) => setState(() => _query = v),
                       ),
-                    ),
-                    const SizedBox(width: 12),
-                    DropdownButton<String?>(
-                      value: _groupFilter,
-                      hint: const Text('Group'),
-                      onChanged: (value) => setState(() => _groupFilter = value),
-                      items: <DropdownMenuItem<String?>>[
-                        const DropdownMenuItem<String?>(
-                          value: null,
-                          child: Text('All'),
-                        ),
-                        ...groups.map(
-                          (g) => DropdownMenuItem<String?>(
-                            value: g,
-                            child: Text(g),
-                          ),
-                        ),
-                      ],
                     ),
                   ],
                 ),
@@ -124,7 +101,7 @@ class _ZooInventoryScreenState extends State<ZooInventoryScreen> {
                         return ListTile(
                           title: Text(s.commonName),
                           subtitle: Text(
-                            '${s.scientificName} • ${s.group} • ${s.zone}',
+                            '${s.scientificName} • ${s.zone}',
                           ),
                           trailing: seen
                               ? Container(

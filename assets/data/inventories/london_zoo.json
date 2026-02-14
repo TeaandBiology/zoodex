@@ -2,7 +2,1127 @@
   "zoo_id": "london_zoo",
   "last_updated": "2026-02-14",
   "items": [
-    { "species_id": "lion_panthera_leo", "zone": "Land of the Lions" },
-    { "species_id": "gorilla_gorilla_beringei", "zone": "Gorilla Kingdom" }
+    {
+      "species_id": "acropora"
+    },
+    {
+      "species_id": "alveopora"
+    },
+    {
+      "species_id": "astreopora"
+    },
+    {
+      "species_id": "caulastrea"
+    },
+    {
+      "species_id": "cerithium"
+    },
+    {
+      "species_id": "echinophyllia"
+    },
+    {
+      "species_id": "favia"
+    },
+    {
+      "species_id": "favites"
+    },
+    {
+      "species_id": "fungia"
+    },
+    {
+      "species_id": "gandanameno"
+    },
+    {
+      "species_id": "goniastrea"
+    },
+    {
+      "species_id": "hydnophora"
+    },
+    {
+      "species_id": "lobophyllia"
+    },
+    {
+      "species_id": "montipora"
+    },
+    {
+      "species_id": "nassarius"
+    },
+    {
+      "species_id": "nerita"
+    },
+    {
+      "species_id": "ophiomastix"
+    },
+    {
+      "species_id": "parides_arcas"
+    },
+    {
+      "species_id": "pavona"
+    },
+    {
+      "species_id": "pinnigorgia"
+    },
+    {
+      "species_id": "platygyra"
+    },
+    {
+      "species_id": "pocillopora"
+    },
+    {
+      "species_id": "porites"
+    },
+    {
+      "species_id": "psammocora"
+    },
+    {
+      "species_id": "acanthurus_bariene"
+    },
+    {
+      "species_id": "acanthurus_olivaceus"
+    },
+    {
+      "species_id": "amphiprion_ocellaris"
+    },
+    {
+      "species_id": "ancistrus"
+    },
+    {
+      "species_id": "chelmon_rostratus"
+    },
+    {
+      "species_id": "chrysiptera_arnazae"
+    },
+    {
+      "species_id": "cirrhilabrus_exquisitus"
+    },
+    {
+      "species_id": "ctenochaetus_strigosus"
+    },
+    {
+      "species_id": "ctenochaetus_tominiensis"
+    },
+    {
+      "species_id": "cyprinodon_alvarezi"
+    },
+    {
+      "species_id": "dawkinsia_tambraparniei"
+    },
+    {
+      "species_id": "forcipiger_flavissimus"
+    },
+    {
+      "species_id": "halichoeres_leucoxanthus"
+    },
+    {
+      "species_id": "paracanthurus_hepatus"
+    },
+    {
+      "species_id": "pseudanthias_squamipinnis"
+    },
+    {
+      "species_id": "pseudochromis_fridmani"
+    },
+    {
+      "species_id": "pterapogon_kauderni"
+    },
+    {
+      "species_id": "sargocentron_xantherythrum"
+    },
+    {
+      "species_id": "siganus_corallinus"
+    },
+    {
+      "species_id": "siganus_doliatus"
+    },
+    {
+      "species_id": "sphaeramia_nematoptera"
+    },
+    {
+      "species_id": "sphaeramia_orbicularis"
+    },
+    {
+      "species_id": "zebrasoma_desjardinii"
+    },
+    {
+      "species_id": "zebrasoma_flavescens"
+    },
+    {
+      "species_id": "zebrasoma_scopas"
+    },
+    {
+      "species_id": "zebrasoma_xanthurum"
+    },
+    {
+      "species_id": "achatina_achatina"
+    },
+    {
+      "species_id": "acropora_loripes"
+    },
+    {
+      "species_id": "acropora_millepora"
+    },
+    {
+      "species_id": "ampulex_compressa"
+    },
+    {
+      "species_id": "apis_mellifera"
+    },
+    {
+      "species_id": "archispirostreptus_gigas"
+    },
+    {
+      "species_id": "astralium_calcar"
+    },
+    {
+      "species_id": "atta_cephalotes"
+    },
+    {
+      "species_id": "attacus_atlas"
+    },
+    {
+      "species_id": "attacus_lorquini"
+    },
+    {
+      "species_id": "avicularia_avicularia"
+    },
+    {
+      "species_id": "battus_polydamas"
+    },
+    {
+      "species_id": "bertia_cambojiensis"
+    },
+    {
+      "species_id": "bombyx_mori"
+    },
+    {
+      "species_id": "brachypelma_boehmei"
+    },
+    {
+      "species_id": "brachypelma_emilia"
+    },
+    {
+      "species_id": "brachypelma_hamorii"
+    },
+    {
+      "species_id": "brachypelma_smithi"
+    },
+    {
+      "species_id": "caligo_eurilochus"
+    },
+    {
+      "species_id": "calliphora_vomitoria"
+    },
+    {
+      "species_id": "cassiopea_andromeda"
+    },
+    {
+      "species_id": "catalaphyllia_jardinei"
+    },
+    {
+      "species_id": "catonephele_numilia"
+    },
+    {
+      "species_id": "catopsilia_pomona"
+    },
+    {
+      "species_id": "caulastrea_furcata"
+    },
+    {
+      "species_id": "chrysaora_pacifica"
+    },
+    {
+      "species_id": "ctenella_chagius"
+    },
+    {
+      "species_id": "damon_medius"
+    },
+    {
+      "species_id": "davus_pentaloris"
+    },
+    {
+      "species_id": "deroplatys_desiccata"
+    },
+    {
+      "species_id": "dolomedes_plantarius"
+    },
+    {
+      "species_id": "dryadula_phaetusa"
+    },
+    {
+      "species_id": "dryas_iulia"
+    },
+    {
+      "species_id": "dryococelus_australis"
+    },
+    {
+      "species_id": "echinometra_mathaei"
+    },
+    {
+      "species_id": "echinophyllia_aspera"
+    },
+    {
+      "species_id": "echinopora_lamellosa"
+    },
+    {
+      "species_id": "engina_mendicaria"
+    },
+    {
+      "species_id": "entacmaea_quadricolor"
+    },
+    {
+      "species_id": "epibolus_pulchripes"
+    },
+    {
+      "species_id": "eratigena_duellica"
+    },
+    {
+      "species_id": "eudicella_gralli"
+    },
+    {
+      "species_id": "euphyllia_glabrescens"
+    },
+    {
+      "species_id": "extatosoma_tiaratum"
+    },
+    {
+      "species_id": "fimbriaphyllia_paraancora"
+    },
+    {
+      "species_id": "fimbriaphyllia_paradivisa"
+    },
+    {
+      "species_id": "fimbriaphyllia_yaeyamaensis"
+    },
+    {
+      "species_id": "galaxea_fascicularis"
+    },
+    {
+      "species_id": "geosesarma_hagen"
+    },
+    {
+      "species_id": "greta_oto"
+    },
+    {
+      "species_id": "gromphadorhina_oblongonota"
+    },
+    {
+      "species_id": "hadrurus_arizonensis"
+    },
+    {
+      "species_id": "haliotis_asinina"
+    },
+    {
+      "species_id": "heliconius_charithonia"
+    },
+    {
+      "species_id": "heliconius_hecale"
+    },
+    {
+      "species_id": "heliconius_melpomene"
+    },
+    {
+      "species_id": "heliconius_sara"
+    },
+    {
+      "species_id": "heliopora_coerulea"
+    },
+    {
+      "species_id": "heteropteryx_dilatata"
+    },
+    {
+      "species_id": "hirudo_medicinalis"
+    },
+    {
+      "species_id": "holothuria_atra"
+    },
+    {
+      "species_id": "hypna_clytemnestra"
+    },
+    {
+      "species_id": "hypolimnas_bolina"
+    },
+    {
+      "species_id": "idea_leuconoe"
+    },
+    {
+      "species_id": "lasiodora_parahybana"
+    },
+    {
+      "species_id": "leptoria_irregularis"
+    },
+    {
+      "species_id": "linckia_laevigata"
+    },
+    {
+      "species_id": "lithopoma_tectum"
+    },
+    {
+      "species_id": "lysmata_amboinensis"
+    },
+    {
+      "species_id": "lysmata_wurdemanni"
+    },
+    {
+      "species_id": "lytechinus_variegatus"
+    },
+    {
+      "species_id": "mastigoproctus_giganteus"
+    },
+    {
+      "species_id": "merulina_ampliata"
+    },
+    {
+      "species_id": "mespilia_globulus"
+    },
+    {
+      "species_id": "micromussa_lordhowensis"
+    },
+    {
+      "species_id": "mithraculus_sculptus"
+    },
+    {
+      "species_id": "montipora_capricornis"
+    },
+    {
+      "species_id": "montipora_confusa"
+    },
+    {
+      "species_id": "montipora_danae"
+    },
+    {
+      "species_id": "montipora_digitata"
+    },
+    {
+      "species_id": "montipora_foliosa"
+    },
+    {
+      "species_id": "montipora_hodgsoni"
+    },
+    {
+      "species_id": "montipora_setosa"
+    },
+    {
+      "species_id": "morpho_peleides"
+    },
+    {
+      "species_id": "nephila_edulis"
+    },
+    {
+      "species_id": "ommatoiulus_moreletii"
+    },
+    {
+      "species_id": "ophiocoma_paucigranulata"
+    },
+    {
+      "species_id": "ophiomastix_janualis"
+    },
+    {
+      "species_id": "pachnoda_sinuata"
+    },
+    {
+      "species_id": "pachyclavularia_violacea"
+    },
+    {
+      "species_id": "pandinus_imperator"
+    },
+    {
+      "species_id": "papilio_demoleus"
+    },
+    {
+      "species_id": "papilio_palinurus"
+    },
+    {
+      "species_id": "papilio_polytes"
+    },
+    {
+      "species_id": "papilio_rumanzovia"
+    },
+    {
+      "species_id": "papilio_thoas"
+    },
+    {
+      "species_id": "parthenos_sylvia"
+    },
+    {
+      "species_id": "partula_garrettii"
+    },
+    {
+      "species_id": "partula_hebe_bella"
+    },
+    {
+      "species_id": "partula_hyalina"
+    },
+    {
+      "species_id": "partula_mirabilis"
+    },
+    {
+      "species_id": "partula_navigatoria"
+    },
+    {
+      "species_id": "partula_rosea"
+    },
+    {
+      "species_id": "partula_suturalis_vexillum"
+    },
+    {
+      "species_id": "partula_taeniata_nucleola"
+    },
+    {
+      "species_id": "partula_taeniata_simulans"
+    },
+    {
+      "species_id": "pavona_cactus"
+    },
+    {
+      "species_id": "pavona_decussata"
+    },
+    {
+      "species_id": "periplaneta_americana"
+    },
+    {
+      "species_id": "peruphasma_schultei"
+    },
+    {
+      "species_id": "phaeophilacris_bredoides"
+    },
+    {
+      "species_id": "phidippus_regius"
+    },
+    {
+      "species_id": "pholcus_phalangioides"
+    },
+    {
+      "species_id": "phyllium_philippinicum"
+    },
+    {
+      "species_id": "phymanthus_crucifer"
+    },
+    {
+      "species_id": "platygyra_crosslandi"
+    },
+    {
+      "species_id": "platymeris_biguttata"
+    },
+    {
+      "species_id": "poecilotheria_metallica"
+    },
+    {
+      "species_id": "polposipus_herculeanus"
+    },
+    {
+      "species_id": "pomacea_canaliculata"
+    },
+    {
+      "species_id": "porites_cylindrica"
+    },
+    {
+      "species_id": "schistocerca_gregaria"
+    },
+    {
+      "species_id": "sechelleptus_seychellarum"
+    },
+    {
+      "species_id": "seriatopora_caliendrum"
+    },
+    {
+      "species_id": "seriatopora_hystrix"
+    },
+    {
+      "species_id": "siliquofera_grandis"
+    },
+    {
+      "species_id": "sinularia_dura"
+    },
+    {
+      "species_id": "siproeta_epaphus"
+    },
+    {
+      "species_id": "siproeta_stelenes"
+    },
+    {
+      "species_id": "steatoda_grossa"
+    },
+    {
+      "species_id": "stylophora_pistillata"
+    },
+    {
+      "species_id": "therea_olegrandjeani"
+    },
+    {
+      "species_id": "thermonectus_marmoratus"
+    },
+    {
+      "species_id": "tirachoidea_jianfenglingensis"
+    },
+    {
+      "species_id": "tliltocatl_albopilosus"
+    },
+    {
+      "species_id": "toxorhynchites_brevipalpis"
+    },
+    {
+      "species_id": "tridacna_derasa"
+    },
+    {
+      "species_id": "tripneustes_gratilla"
+    },
+    {
+      "species_id": "trochus_histrio"
+    },
+    {
+      "species_id": "tubipora_musica"
+    },
+    {
+      "species_id": "turbinaria_mesenterina"
+    },
+    {
+      "species_id": "turbinaria_peltata"
+    },
+    {
+      "species_id": "turbinaria_reniformis"
+    },
+    {
+      "species_id": "xestobium_rufovillosum"
+    },
+    {
+      "species_id": "alytes_cisternasii"
+    },
+    {
+      "species_id": "alytes_muletensis"
+    },
+    {
+      "species_id": "alytes_obstetricans"
+    },
+    {
+      "species_id": "andrias_davidianus"
+    },
+    {
+      "species_id": "bombina_orientalis"
+    },
+    {
+      "species_id": "dendrobates_tinctorius"
+    },
+    {
+      "species_id": "euproctus_platycephalus"
+    },
+    {
+      "species_id": "herpele_squalostoma"
+    },
+    {
+      "species_id": "laotriton_laoensis"
+    },
+    {
+      "species_id": "leptodactylus_fallax"
+    },
+    {
+      "species_id": "neurergus_kaiseri"
+    },
+    {
+      "species_id": "rhinoderma_darwinii"
+    },
+    {
+      "species_id": "telmatobius_culeus"
+    },
+    {
+      "species_id": "theloderma_bicolor"
+    },
+    {
+      "species_id": "typhlonectes_compressicaudus"
+    },
+    {
+      "species_id": "typhlonectes_natans"
+    },
+    {
+      "species_id": "xenopus_longipes"
+    },
+    {
+      "species_id": "acrantophis_dumerili"
+    },
+    {
+      "species_id": "bitis_parviocula"
+    },
+    {
+      "species_id": "chelodina_mccordi"
+    },
+    {
+      "species_id": "chelonoidis_carbonarius"
+    },
+    {
+      "species_id": "corallus_batesii"
+    },
+    {
+      "species_id": "crocodylus_mindorensis"
+    },
+    {
+      "species_id": "furcifer_pardalis"
+    },
+    {
+      "species_id": "gonyosoma_boulengeri"
+    },
+    {
+      "species_id": "leiolopisma_telfairii"
+    },
+    {
+      "species_id": "lygodactylus_williamsi"
+    },
+    {
+      "species_id": "macrochelys_temminckii"
+    },
+    {
+      "species_id": "mauremys_annamensis"
+    },
+    {
+      "species_id": "ophiophagus_hannah"
+    },
+    {
+      "species_id": "pantherophis_guttatus"
+    },
+    {
+      "species_id": "platysternon_megacephalum_megacephalum"
+    },
+    {
+      "species_id": "protobothrops_mangshanensis"
+    },
+    {
+      "species_id": "shinisaurus_crocodilurus_crocodilurus"
+    },
+    {
+      "species_id": "tracheloptychus_petersi"
+    },
+    {
+      "species_id": "varanus_cumingi"
+    },
+    {
+      "species_id": "varanus_komodoensis"
+    },
+    {
+      "species_id": "varanus_macraei"
+    },
+    {
+      "species_id": "anodorhynchus_hyacinthinus"
+    },
+    {
+      "species_id": "ara_chloropterus"
+    },
+    {
+      "species_id": "ara_glaucogularis"
+    },
+    {
+      "species_id": "arborophila_gingica"
+    },
+    {
+      "species_id": "argusianus_argus_argus"
+    },
+    {
+      "species_id": "athene_cunicularia"
+    },
+    {
+      "species_id": "bubo_bubo"
+    },
+    {
+      "species_id": "buteo_buteo"
+    },
+    {
+      "species_id": "calyptorhynchus_banksii"
+    },
+    {
+      "species_id": "chalcophaps_indica"
+    },
+    {
+      "species_id": "ciconia_abdimii"
+    },
+    {
+      "species_id": "ciconia_episcopus_episcopus"
+    },
+    {
+      "species_id": "cinnyricinclus_leucogaster"
+    },
+    {
+      "species_id": "cinnyris_coccinigastrus"
+    },
+    {
+      "species_id": "cissa_thalassina"
+    },
+    {
+      "species_id": "coracias_caudatus"
+    },
+    {
+      "species_id": "cossypha_albicapilla"
+    },
+    {
+      "species_id": "cyanoliseus_patagonus"
+    },
+    {
+      "species_id": "dendrocygna_viduata"
+    },
+    {
+      "species_id": "dromaius_novaehollandiae"
+    },
+    {
+      "species_id": "eudocimus_ruber"
+    },
+    {
+      "species_id": "euplectes_orix"
+    },
+    {
+      "species_id": "gallicolumba_crinigera"
+    },
+    {
+      "species_id": "garrulax_bicolor"
+    },
+    {
+      "species_id": "geokichla_citrina"
+    },
+    {
+      "species_id": "geokichla_citrina_melli"
+    },
+    {
+      "species_id": "geokichla_dohertyi"
+    },
+    {
+      "species_id": "geronticus_eremita"
+    },
+    {
+      "species_id": "goura_victoria"
+    },
+    {
+      "species_id": "gracula_religiosa"
+    },
+    {
+      "species_id": "gracula_religiosa_religiosa"
+    },
+    {
+      "species_id": "gyps_rueppelli"
+    },
+    {
+      "species_id": "icterus_oberi"
+    },
+    {
+      "species_id": "irena_puella"
+    },
+    {
+      "species_id": "kittacincla_malabarica"
+    },
+    {
+      "species_id": "lamprotornis_iris"
+    },
+    {
+      "species_id": "lamprotornis_purpureus"
+    },
+    {
+      "species_id": "leiothrix_argentauris"
+    },
+    {
+      "species_id": "leiothrix_lutea"
+    },
+    {
+      "species_id": "leucopsar_rothschildi"
+    },
+    {
+      "species_id": "liocichla_omeiensis"
+    },
+    {
+      "species_id": "lophodytes_cucullatus"
+    },
+    {
+      "species_id": "lophotibis_cristata"
+    },
+    {
+      "species_id": "lophotibis_cristata_urschi"
+    },
+    {
+      "species_id": "lophura_edwardsi"
+    },
+    {
+      "species_id": "lorius_domicella"
+    },
+    {
+      "species_id": "milvus_migrans"
+    },
+    {
+      "species_id": "musophaga_violacea"
+    },
+    {
+      "species_id": "nectarinia_senegalensis"
+    },
+    {
+      "species_id": "nesoenas_mayeri"
+    },
+    {
+      "species_id": "padda_oryzivora"
+    },
+    {
+      "species_id": "paroaria_dominicana"
+    },
+    {
+      "species_id": "passerina_brissonii"
+    },
+    {
+      "species_id": "pelecanus_onocrotalus"
+    },
+    {
+      "species_id": "phalcoboenus_australis"
+    },
+    {
+      "species_id": "phoenicopterus_roseus"
+    },
+    {
+      "species_id": "polyboroides_typus"
+    },
+    {
+      "species_id": "polyplectron_inopinatum"
+    },
+    {
+      "species_id": "psittacus_erithacus"
+    },
+    {
+      "species_id": "psitteuteles_goldiei"
+    },
+    {
+      "species_id": "pterorhinus_courtoisi"
+    },
+    {
+      "species_id": "ptilinopus_melanospilus"
+    },
+    {
+      "species_id": "ptilinopus_superbus"
+    },
+    {
+      "species_id": "pulsatrix_perspicillata"
+    },
+    {
+      "species_id": "pycnonotus_jocosus"
+    },
+    {
+      "species_id": "ramphocelus_bresilius"
+    },
+    {
+      "species_id": "rhabdotorrhinus_corrugatus"
+    },
+    {
+      "species_id": "rollulus_rouloul"
+    },
+    {
+      "species_id": "scissirostrum_dubium"
+    },
+    {
+      "species_id": "spheniscus_humboldti"
+    },
+    {
+      "species_id": "strix_aluco"
+    },
+    {
+      "species_id": "struthio_camelus"
+    },
+    {
+      "species_id": "tauraco_erythrolophus"
+    },
+    {
+      "species_id": "tauraco_fischeri"
+    },
+    {
+      "species_id": "threskiornis_aethiopicus"
+    },
+    {
+      "species_id": "tockus_deckeni"
+    },
+    {
+      "species_id": "trichoglossus_forsteni_mitchellii"
+    },
+    {
+      "species_id": "trochalopteron_milnei"
+    },
+    {
+      "species_id": "trogon_collaris"
+    },
+    {
+      "species_id": "vanellus_armatus"
+    },
+    {
+      "species_id": "zenaida_graysoni"
+    },
+    {
+      "species_id": "aonyx_cinereus"
+    },
+    {
+      "species_id": "babyrousa_celebensis"
+    },
+    {
+      "species_id": "callimico_goeldii"
+    },
+    {
+      "species_id": "camelus_bactrianus"
+    },
+    {
+      "species_id": "capra_hircus_west_africa_pygmy"
+    },
+    {
+      "species_id": "cephalophus_natalensis"
+    },
+    {
+      "species_id": "cercocebus_lunulatus"
+    },
+    {
+      "species_id": "cercopithecus_diana"
+    },
+    {
+      "species_id": "chaetophractus_villosus"
+    },
+    {
+      "species_id": "choeropsis_liberiensis"
+    },
+    {
+      "species_id": "choloepus_didactylus"
+    },
+    {
+      "species_id": "colobus_guereza_kikuyuensis"
+    },
+    {
+      "species_id": "daubentonia_madagascariensis"
+    },
+    {
+      "species_id": "equus_quagga_burchelli"
+    },
+    {
+      "species_id": "equus_quagga_chapmani"
+    },
+    {
+      "species_id": "galago_moholi"
+    },
+    {
+      "species_id": "galago_senegalensis"
+    },
+    {
+      "species_id": "giraffa_camelopardalis"
+    },
+    {
+      "species_id": "giraffa_camelopardalis_reticulata"
+    },
+    {
+      "species_id": "gorilla_gorilla_gorilla"
+    },
+    {
+      "species_id": "hapalemur_alaotrensis"
+    },
+    {
+      "species_id": "helogale_parvula"
+    },
+    {
+      "species_id": "helogale_parvula_undulatus"
+    },
+    {
+      "species_id": "herpestes_auropunctatus"
+    },
+    {
+      "species_id": "heterocephalus_glaber"
+    },
+    {
+      "species_id": "hypogeomys_antimena"
+    },
+    {
+      "species_id": "hystrix_africaeaustralis"
+    },
+    {
+      "species_id": "lama_glama"
+    },
+    {
+      "species_id": "lemur_catta"
+    },
+    {
+      "species_id": "leontopithecus_chrysomelas"
+    },
+    {
+      "species_id": "leontopithecus_rosalia"
+    },
+    {
+      "species_id": "loris_lydekkerianus"
+    },
+    {
+      "species_id": "madoqua_kirkii"
+    },
+    {
+      "species_id": "microcebus_murinus"
+    },
+    {
+      "species_id": "micromys_minutus"
+    },
+    {
+      "species_id": "mungotictis_decemlineata"
+    },
+    {
+      "species_id": "muntiacus_reevesi"
+    },
+    {
+      "species_id": "mustela_putorius_furo"
+    },
+    {
+      "species_id": "nasua_nasua"
+    },
+    {
+      "species_id": "nomascus_leucogenys"
+    },
+    {
+      "species_id": "notamacropus_rufogriseus"
+    },
+    {
+      "species_id": "notamacropus_rufogriseus_rufogriseus"
+    },
+    {
+      "species_id": "nycticebus_pygmaeus"
+    },
+    {
+      "species_id": "okapia_johnstoni"
+    },
+    {
+      "species_id": "panthera_leo_persica"
+    },
+    {
+      "species_id": "panthera_tigris_sumatrae"
+    },
+    {
+      "species_id": "perodicticus_potto_potto"
+    },
+    {
+      "species_id": "phacochoerus_africanus"
+    },
+    {
+      "species_id": "pithecia_pithecia"
+    },
+    {
+      "species_id": "plecturocebus_cupreus"
+    },
+    {
+      "species_id": "potamochoerus_porcus"
+    },
+    {
+      "species_id": "pteropus_rodricensis"
+    },
+    {
+      "species_id": "saimiri_boliviensis_boliviensis"
+    },
+    {
+      "species_id": "semnopithecus_entellus"
+    },
+    {
+      "species_id": "suricata_suricatta"
+    },
+    {
+      "species_id": "sus_scrofa_scrofa"
+    },
+    {
+      "species_id": "tamandua_tetradactyla"
+    },
+    {
+      "species_id": "tolypeutes_matacus"
+    },
+    {
+      "species_id": "tupaia_belangeri"
+    },
+    {
+      "species_id": "vicugna_pacos_huacaya"
+    },
+    {
+      "species_id": "vicugna_pacos_suri"
+    }
   ]
 }

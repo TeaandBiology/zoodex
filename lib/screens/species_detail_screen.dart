@@ -368,7 +368,6 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
               spacing: 8,
               runSpacing: 8,
               children: [
-                AppChip(label: s.group),
                 AppChip(label: s.zone),
               ],
             ),
