@@ -1,0 +1,8 @@
+{
+  "zoo_id": "london_zoo",
+  "last_updated": "2026-02-14",
+  "items": [
+    { "species_id": "lion_panthera_leo", "zone": "Land of the Lions" },
+    { "species_id": "gorilla_gorilla_beringei", "zone": "Gorilla Kingdom" }
+  ]
+}

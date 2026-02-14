@@ -1,0 +1,37 @@
+[
+  {
+    "id": "lion_panthera_leo",
+    "common_name": "Lion",
+    "scientific_name": "Panthera leo",
+    "group": "Mammal",
+    "description": "Large social cat native to Africa and India."
+  },
+  {
+    "id": "gorilla_gorilla_beringei",
+    "common_name": "Gorilla",
+    "scientific_name": "Gorilla beringei",
+    "group": "Mammal",
+    "description": "Large-bodied great ape living in social groups."
+  },
+  {
+    "id": "asian_elephant_elephas_maximus",
+    "common_name": "Asian Elephant",
+    "scientific_name": "Elephas maximus",
+    "group": "Mammal",
+    "description": "Large herbivorous mammal native to South and Southeast Asia."
+  },
+  {
+    "id": "komodo_dragon_varanus_komodoensis",
+    "common_name": "Komodo Dragon",
+    "scientific_name": "Varanus komodoensis",
+    "group": "Reptile",
+    "description": "The world’s largest lizard, native to a few Indonesian islands."
+  },
+  {
+    "id": "jaguar_panthera_onca",
+    "common_name": "Jaguar",
+    "scientific_name": "Panthera onca",
+    "group": "Mammal",
+    "description": "Large cat from the Americas, known for powerful build and rosette spots."
+  }
+]
