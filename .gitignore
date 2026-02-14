@@ -43,3 +43,26 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Flutter/Dart
+.dart_tool/
+.packages
+build/
+pubspec.lock
+
+# Platform ephemeral/generated
+ios/Flutter/ephemeral/
+macos/Flutter/ephemeral/
+linux/flutter/ephemeral/
+windows/flutter/ephemeral/
+
+# CocoaPods (if you ever build iOS/macOS)
+ios/Pods/
+macos/Pods/
+
+# IDE (optional)
+.vscode/
+.idea/
+*.iml
+.DS_Store
+
