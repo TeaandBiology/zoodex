@@ -128,36 +128,48 @@ class DataLoader {
         return ZooInventory(zoo: zoo, species: species);
       }
 
-      // Case 3: inventory contains items with per-zoo overrides
-      final itemsField = invMap['items'];
-      if (itemsField is List) {
-        final catalog = await loadSpeciesCatalog();
-        final species = <Species>[];
-        for (final item in itemsField) {
-          if (item is Map && item['species_id'] is String) {
-            Species? base;
-            for (final s in catalog) {
-              if (s.id == item['species_id']) {
-                base = s;
-                break;
-              }
-            }
-            if (base != null) {
-              species.add(Species(
-                id: base.id,
-                commonName: base.commonName,
-                scientificName: base.scientificName,
-                group: base.group,
-                zone: item['zone'] as String? ?? base.zone,
-                description: item['description'] as String? ?? base.description,
-                range: item['range'] as String? ?? base.range,
-                iucn: base.iucn,
-              ));
-            }
-          }
+    // Case 3: inventory contains items with per-zoo overrides
+    // { "items": [ { "species_id": "...", "zone": "..." }, ... ] }
+    final itemsField = invMap['items'];
+    if (itemsField is List) {
+      final catalog = await loadSpeciesCatalog();
+      final byId = {for (final s in catalog) s.id: s};
+
+      final species = <Species>[];
+
+      for (final item in itemsField) {
+        if (item is! Map) continue;
+        final itemMap = Map<String, dynamic>.from(item);
+
+        final id = itemMap['species_id'];
+        if (id is! String || id.isEmpty) continue;
+
+        final base = byId[id];
+        if (base == null) {
+          throw Exception('Unknown species_id "$id" in $invAsset');
         }
-        return ZooInventory(zoo: zoo, species: species);
+
+        final overrideZone = itemMap['zone'];
+        final zone = (overrideZone is String && overrideZone.trim().isNotEmpty)
+            ? overrideZone
+            : base.zone;
+
+        // Create a new Species with overridden zone
+        species.add(Species(
+          id: base.id,
+          commonName: base.commonName,
+          scientificName: base.scientificName,
+          group: base.group,
+          zone: zone,
+          description: base.description,
+        ));
       }
+
+      // Keep deterministic ordering (by common name)
+      species.sort((a, b) => a.commonName.compareTo(b.commonName));
+
+      return ZooInventory(zoo: zoo, species: species);
+    }
 
       // Case 1: inventory contains only species_ids
       final speciesIds = invMap['species_ids'];

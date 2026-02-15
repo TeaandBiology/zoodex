@@ -36,7 +36,7 @@ class _SpeciesSearchScreenState extends State<SpeciesSearchScreen> {
 
   Future<List<Species>> _loadCatalog() async {
     // Expects a list of species objects with the same keys as your pack species:
-    // id, common_name, scientific_name, group, zone, description
+    // id, common_name, scientific_name, zone, description
     final raw = await rootBundle.loadString('assets/data/species_catalog.json');
     final decoded = jsonDecode(raw);
 
@@ -184,12 +184,11 @@ class _SpeciesSearchScreenState extends State<SpeciesSearchScreen> {
         final q = _query.trim().toLowerCase();
 
         final filtered = q.isEmpty
-            ? all
-            : all.where((s) {
-                return s.commonName.toLowerCase().contains(q) ||
-                    s.scientificName.toLowerCase().contains(q) ||
-                    s.group.toLowerCase().contains(q);
-              }).toList();
+          ? all
+          : all.where((s) {
+            return s.commonName.toLowerCase().contains(q) ||
+              s.scientificName.toLowerCase().contains(q);
+            }).toList();
 
         filtered.sort((a, b) => a.commonName.compareTo(b.commonName));
 
@@ -201,10 +200,10 @@ class _SpeciesSearchScreenState extends State<SpeciesSearchScreen> {
                 padding: const EdgeInsets.all(12),
                 child: TextField(
                   decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.search),
-                    hintText: 'Search species, scientific name, group…',
-                    border: OutlineInputBorder(),
-                  ),
+                      prefixIcon: Icon(Icons.search),
+                      hintText: 'Search species, scientific name…',
+                      border: OutlineInputBorder(),
+                    ),
                   onChanged: (v) => setState(() => _query = v),
                 ),
               ),
