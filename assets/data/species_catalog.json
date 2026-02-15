@@ -27,7 +27,7 @@
     "genus": "Bombina",
     "species": "orientalis",
     "IUCN status": "LC",
-    "range": "This species is found in northeastern China (northeastern Inner Mongolia and Heilongjiang south to southern Liaoning, and in northern Jiangsu), throughout the Democratic People's Republic of Korea and the Republic of…"
+    "range": ""
   },
   {
     "id": "bombyx_mori",
@@ -59,7 +59,7 @@
     "genus": "Brachypelma",
     "species": "boehmei",
     "IUCN status": "EN",
-    "range": "Brachypelma boehmei is endemic to Mexico and can be found in a small coastal region of the Sierra Madre del Sur, east of the Balsas River Basin in western Guerrero State (Mendoza and Francke 2017, CEC 2017, INaturalist…"
+    "range": ""
   },
   {
     "id": "brachypelma_emilia",
@@ -75,7 +75,7 @@
     "genus": "Brachypelma",
     "species": "emilia",
     "IUCN status": "LC",
-    "range": "Brachypelma emilia is endemic to Mexico and occurs on the coastal plain west of the Sierra Madre Occidental, from southern Sonora State, in Sinaloa State, southwestern Nayarit State and inland to western Durango State…"
+    "range": ""
   },
   {
     "id": "brachypelma_hamorii",
@@ -91,7 +91,7 @@
     "genus": "Brachypelma",
     "species": "hamorii",
     "IUCN status": "VU",
-    "range": "Brachypelma hamorii is endemic to Mexico and occurs across much of the small Colima State, and in the north-western coast of Michoacán State, plus into fringes of southern Jalisco State (Mendoza and Francke 2017,…"
+    "range": ""
   },
   {
     "id": "brachypelma_smithi",
@@ -107,7 +107,7 @@
     "genus": "Brachypelma",
     "species": "smithi",
     "IUCN status": "NT",
-    "range": "Brachypelma smithi is endemic to Mexico and occurs along the Pacific coastal side of the Sierra Madre del Sur, east of the Balsas River Basin, to the Acapulco region in Guerrero State, being sympatric with B. verdezi…"
+    "range": ""
   },
   {
     "id": "bubo_bubo",
@@ -139,7 +139,7 @@
     "genus": "Buteo",
     "species": "buteo",
     "IUCN status": "LC",
-    "range": "Widespread species occurring across Europe to central Asia. European populations are predominately resident, however some are partially migratory travelling to southern Europe or north-west Africa in winter."
+    "range": ""
   },
   {
     "id": "caligo_eurilochus",
@@ -171,7 +171,7 @@
     "genus": "Callimico",
     "species": "goeldii",
     "IUCN status": "VU",
-    "range": "Callimico goeldii occurs in the upper Amazon from the Rio Caquetá in Colombia, south through the Peruvian Amazon and the extreme western Amazon of Brazil into the Pando region of northern Bolivia (Hernández-Camacho and…"
+    "range": ""
   },
   {
     "id": "calliphora_vomitoria",
@@ -267,7 +267,7 @@
     "genus": "Catalaphyllia",
     "species": "jardinei",
     "IUCN status": "LC",
-    "range": "This species is found in Chagos (Veron et al. 2016), Malaysia (Ditlev et al."
+    "range": ""
   },
   {
     "id": "catonephele_numilia",
@@ -347,7 +347,7 @@
     "genus": "Cephalophus",
     "species": "natalensis",
     "IUCN status": "LC",
-    "range": "The Natal Red Duiker formerly occurred widely in coastal and riverine forests and thickets, escarpments and montane forests from south-eastern Tanzania to north-eastern KwaZulu-Natal in South Africa (East 1999,…"
+    "range": ""
   },
   {
     "id": "cercocebus_lunulatus",
@@ -1402,7 +1402,7 @@
     "genus": "Macrochelys",
     "species": "temminckii",
     "IUCN status": "EN",
-    "range": "The distribution of Macrochelys temminckii is centred in the south-central and southeastern United States within river systems draining into the Gulf of Mexico, from the Apalachicola River system in Florida and Georgia…"
+    "range": ""
   },
   {
     "id": "madoqua_kirkii",
@@ -1418,7 +1418,7 @@
     "genus": "Madoqua",
     "species": "kirkii",
     "IUCN status": "LC",
-    "range": "Kirk’s Dik-dik occurs in two separate regions: East Africa, from southern Somalia to central Tanzania and in Southern Africa from northern Namibia and adjoining parts of south-western Angola (East 1999, Brotherton 2013)."
+    "range": ""
   },
   {
     "id": "mastigoproctus_giganteus",
@@ -1450,7 +1450,7 @@
     "genus": "Mauremys",
     "species": "annamensis",
     "IUCN status": "CR",
-    "range": "Mauremys annamensis is endemic to central Viet Nam, where it occurs in a narrow strip of coastal lowlands between the South China Sea to the east and the Annamite Mountains to the west. Eastward extensions of mountains…"
+    "range": ""
   },
   {
     "id": "merulina_ampliata",
@@ -1466,7 +1466,7 @@
     "genus": "Merulina",
     "species": "ampliata",
     "IUCN status": "LC",
-    "range": "This species is found in the Red Sea, southwestern and northern Indian Ocean (Mondal et al. 2019), central Indo-Pacific, north and west and south Australia, Southeast Asia, Japan, East China Sea, eastern Australia, the…"
+    "range": ""
   },
   {
     "id": "mespilia_globulus",
@@ -1498,7 +1498,7 @@
     "genus": "Microcebus",
     "species": "murinus",
     "IUCN status": "LC",
-    "range": "This species is distributed from about the Onilahy River along the entire western coast to the north as far as Ankarafantsika National Park. A disjunct population is also found in the southeast up to the littoral…"
+    "range": ""
   },
   {
     "id": "micromussa_lordhowensis",
@@ -1514,7 +1514,7 @@
     "genus": "Micromussa",
     "species": "lordhowensis",
     "IUCN status": "EN",
-    "range": "This species is distributed from the Red Sea, Gulf of Aden, southwestern and northern Indian Ocean, central Indo-Pacific, north, west and east Australia (Atkinson et al. 2008), Southeast Asia, Japan (Lien et al."
+    "range": ""
   },
   {
     "id": "micromys_minutus",
@@ -1530,7 +1530,7 @@
     "genus": "Micromys",
     "species": "minutus",
     "IUCN status": "LC",
-    "range": "The harvest mouse has a large range in the Palaearctic and Indomalayan regions, where it occurs from northern Spain and Great Britain through Europe, eastern Fennoscandia, and Russia to northern Mongolia, China, the…"
+    "range": ""
   },
   {
     "id": "milvus_migrans",
@@ -1546,7 +1546,7 @@
     "genus": "Milvus",
     "species": "migrans",
     "IUCN status": "LC",
-    "range": "Very widely distributed, breeding from Australia to Spain and Morocco, with the northern extent of migratory breeders extending to northern Russia and Mongolia. Migratory over much of the Eurasian range, predominately…"
+    "range": ""
   },
   {
     "id": "mithraculus_sculptus",
@@ -1594,7 +1594,7 @@
     "genus": "Montipora",
     "species": "capricornis",
     "IUCN status": "EN",
-    "range": "This species is found in the central Indo-Pacific, Australia, and the oceanic west Pacific. It has also been confirmed from West Malaysia and the Spratly Islands (Huang et al."
+    "range": ""
   },
   {
     "id": "montipora_confusa",
@@ -1610,7 +1610,7 @@
     "genus": "Montipora",
     "species": "confusa",
     "IUCN status": "EN",
-    "range": "This species is found in southeast Asia, the east coast of peninsular Malaysia (Akmal et al. 2019), Vietnam, South China Sea, Papua New Guinea, northeast Australia, Solomon Islands, and Fiji."
+    "range": ""
   },
   {
     "id": "montipora_danae",
@@ -1626,7 +1626,7 @@
     "genus": "Montipora",
     "species": "danae",
     "IUCN status": "EN",
-    "range": "This species is found in the Red Sea (Wilson et al. 2017), the Gulf of Aden, the southwest and northern Indian Ocean, southeast India (Kumar et al."
+    "range": ""
   },
   {
     "id": "montipora_digitata",
@@ -1642,7 +1642,7 @@
     "genus": "Montipora",
     "species": "digitata",
     "IUCN status": "EN",
-    "range": "This species is found in East Africa, Madagascar, the Seychelles, Mauritius, Chagos Archipelago, the Maldives, western India, Sri Lanka, Myanmar, Thailand, Southeast Asia, Vietnam, southern Japan, Papua New Guinea,…"
+    "range": ""
   },
   {
     "id": "montipora_foliosa",
@@ -1658,7 +1658,7 @@
     "genus": "Montipora",
     "species": "foliosa",
     "IUCN status": "EN",
-    "range": "This species is distributed from the Red Sea, the Gulf of Aden, the southwest and northern Indian Ocean (Venkataraman and Satyanarayana 2012), the Persian Gulf, the central Indo-Pacific, Australia, Southeast Asia,…"
+    "range": ""
   },
   {
     "id": "montipora_hodgsoni",
@@ -1674,7 +1674,7 @@
     "genus": "Montipora",
     "species": "hodgsoni",
     "IUCN status": "EN",
-    "range": "This species is distributed in the Philippines (Veron 2002), the central Indo-Pacific, Vietnam, Papua New Guinea and northern Great Barrier Reef (Veron et al. 2016)."
+    "range": ""
   },
   {
     "id": "montipora_setosa",
@@ -1690,7 +1690,7 @@
     "genus": "Montipora",
     "species": "setosa",
     "IUCN status": "EN",
-    "range": "This species is found in the central Indo-Pacific from the Philippines, Malaysia and Indonesia. It is very poorly known and might be more widely distributed."
+    "range": ""
   },
   {
     "id": "morpho_peleides",
@@ -1722,7 +1722,7 @@
     "genus": "Mungotictis",
     "species": "decemlineata",
     "IUCN status": "EN",
-    "range": "This species is endemic to the dry deciduous forests of the central and southern Menabe regions of western Madagascar from sea level to about 125 m asl. It is found between the Tsiribihina River in the north to south…"
+    "range": ""
   },
   {
     "id": "muntiacus_reevesi",
@@ -1738,7 +1738,7 @@
     "genus": "Muntiacus",
     "species": "reevesi",
     "IUCN status": "LC",
-    "range": "This species in endemic to China including Taiwan Island. In mainland China, this species ranges from Guangdong and Guangxi up to Gansu and Shaanxi, covering the vast subtropical region of the Zhujiang (Pearl) and…"
+    "range": ""
   },
   {
     "id": "musophaga_violacea",
@@ -1754,7 +1754,7 @@
     "genus": "Musophaga",
     "species": "violacea",
     "IUCN status": "NT",
-    "range": "Found in southern Senegal and Gambia, and Guinea, eastward to northern Nigeria and northwestern Cameroon, with its range extending south to the coast in Ivory Coast, Ghana and Togo (but not in Sierra Leone, Liberia and…"
+    "range": ""
   },
   {
     "id": "mustela_putorius_furo",
@@ -1802,7 +1802,7 @@
     "genus": "Nasua",
     "species": "nasua",
     "IUCN status": "LC",
-    "range": "Nasua nasua is broadly distributed in South America, ranging from Colombia and Venezuela in the north to Uruguay and northern Argentina in the south (Gompper and Decker 1998). The species is absent from the Llano…"
+    "range": ""
   },
   {
     "id": "nectarinia_senegalensis",
@@ -1834,7 +1834,7 @@
     "genus": "Nephila",
     "species": "edulis",
     "IUCN status": "LC",
-    "range": "The Australian Golden Orb Weaver is widely distributed in Indonesia and Australia, ranging from Java to the Cocos Island and Tasmania. In New Zealand, it occurs seasonally in the Auckland area."
+    "range": ""
   },
   {
     "id": "nerita",
@@ -1866,7 +1866,7 @@
     "genus": "Nesoenas",
     "species": "mayeri",
     "IUCN status": "VU",
-    "range": "Nesoenas mayeri survives in the Black River Gorges of south-west Mauritius and on Ile aux Aigrettes off the eastern coast. Although once common, it declined to just 10 wild individuals in 1990, and were it not for…"
+    "range": ""
   },
   {
     "id": "neurergus_kaiseri",
@@ -1882,7 +1882,7 @@
     "genus": "Neurergus",
     "species": "kaiseri",
     "IUCN status": "VU",
-    "range": "This species is endemic to the central Zagros Mountains of Iran with a circumscribed distribution area in the Lorestan and Khuzestan provinces, where it has an altitudinal range of 385-1,500 m asl. It had been known…"
+    "range": ""
   },
   {
     "id": "nomascus_leucogenys",
@@ -1898,7 +1898,7 @@
     "genus": "Nomascus",
     "species": "leucogenys",
     "IUCN status": "CR",
-    "range": "This species occurs in northwestern Viet Nam, northern Lao PDR and southwestern China. In Viet Nam, it occurs west and south of the Black River; it has been extirpated from several areas from which it was previously…"
+    "range": ""
   },
   {
     "id": "notamacropus_rufogriseus",
@@ -1914,7 +1914,7 @@
     "genus": "Notamacropus",
     "species": "rufogriseus",
     "IUCN status": "LC",
-    "range": "This species is endemic to Australia where it ranges through the south-east of the country. It is present on Tasmania, King Island, and on the Furneaux Group."
+    "range": ""
   },
   {
     "id": "notamacropus_rufogriseus_rufogriseus",
@@ -1946,7 +1946,7 @@
     "genus": "Xanthonycticebus",
     "species": "pygmaeus",
     "IUCN status": "EN",
-    "range": "This species is found in mainland Southeast Asia east of the Mekong River in Eastern Cambodia, in Viet Nam as far north as far north as the Hai Van Pass in Quang Nam Province, and historically south to the vicinity of…"
+    "range": ""
   },
   {
     "id": "okapia_johnstoni",
@@ -1962,7 +1962,7 @@
     "genus": "Okapia",
     "species": "johnstoni",
     "IUCN status": "EN",
-    "range": "Okapi distribution extends across parts of central, northern and eastern DR Congo. North and east of the Congo River, Okapi range from Maiko Forest north to the Ituri Forest, then west through the Rubi, Tele and Ebola…"
+    "range": ""
   },
   {
     "id": "ommatoiulus_moreletii",
@@ -2042,7 +2042,7 @@
     "genus": "Ophiophagus",
     "species": "hannah",
     "IUCN status": "VU",
-    "range": "The King Cobra is widely distributed in South and Southeast Asia, from Nepal (where it is found throughout the lowlands of the Therai region - Schleich and Kästle 2002) and India (from Uttarakhand in Western Himalayas…"
+    "range": ""
   },
   {
     "id": "pachnoda_sinuata",
@@ -2090,7 +2090,7 @@
     "genus": "Padda",
     "species": "oryzivora",
     "IUCN status": "EN",
-    "range": "This species is a native endemic of the islands of Java, Bali, and probably Madura, Indonesia, although it has been widely introduced, with feral populations now established in many parts of the world. It was formerly…"
+    "range": ""
   },
   {
     "id": "pandinus_imperator",
