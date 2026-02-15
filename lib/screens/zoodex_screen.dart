@@ -6,6 +6,8 @@ import '../data/seen_store.dart';
 import '../models/observation.dart';
 import '../models/species.dart';
 import '../widgets/error_view.dart';
+import '../widgets/scientific_name.dart';
+import '../widgets/iucn_badge.dart';
 import '../widgets/count_badge.dart';
 
 import 'species_detail_screen.dart';
@@ -39,39 +41,43 @@ class _ZooDexScreenState extends State<ZooDexScreen> {
   Future<List<ZooDexEntry>> _loadZooDex() async {
     final entries = <ZooDexEntry>[];
 
-    for (final p in DataLoader.knownZooPacks) {
-      final zooId = p['id']!;
-      final inv = await DataLoader.loadZooInventory(zooId);
+    final packs = await DataLoader.loadZooPacks();
+    for (final pack in packs) {
+      final zoos = (pack['zoos'] as List).cast<Map<String, String>>();
+      for (final z in zoos) {
+        final zooId = z['id']!;
+        final inv = await DataLoader.loadZooInventory(zooId);
 
-      final speciesById = {for (final s in inv.species) s.id: s};
-      final zooName = inv.zoo.name;
+        final speciesById = {for (final s in inv.species) s.id: s};
+        final zooName = inv.zoo.name;
 
-      // Get all keys then filter for this zooId
-      for (final k in SeenStore.allKeys()) {
-        final parts = k.split('::');
-        if (parts.length != 2) continue;
-        if (parts[0] != zooId) continue;
+        // Get all keys then filter for this zooId
+        for (final k in SeenStore.allKeys()) {
+          final parts = k.split('::');
+          if (parts.length != 2) continue;
+          if (parts[0] != zooId) continue;
 
-        final speciesId = parts[1];
-        final species = speciesById[speciesId];
-        if (species == null) continue;
+          final speciesId = parts[1];
+          final species = speciesById[speciesId];
+          if (species == null) continue;
 
-        final history = SeenStore.list(zooId, speciesId);
-        if (history.isEmpty) continue;
+          final history = SeenStore.list(zooId, speciesId);
+          if (history.isEmpty) continue;
 
-        final lastSeen = history
-            .map((o) => o.seenAt)
-            .reduce((a, b) => a.isAfter(b) ? a : b);
+          final lastSeen = history
+              .map((o) => o.seenAt)
+              .reduce((a, b) => a.isAfter(b) ? a : b);
 
-        entries.add(
-          ZooDexEntry(
-            zooId: zooId,
-            zooName: zooName,
-            species: species,
-            count: history.length,
-            lastSeen: lastSeen,
-          ),
-        );
+          entries.add(
+            ZooDexEntry(
+              zooId: zooId,
+              zooName: zooName,
+              species: species,
+              count: history.length,
+              lastSeen: lastSeen,
+            ),
+          );
+        }
       }
     }
 
@@ -144,6 +150,10 @@ class _ZooDexScreenState extends State<ZooDexScreen> {
                                     Expanded(
                                       child: Text(
                                         e.species.commonName,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium
+                                            ?.copyWith(fontWeight: FontWeight.bold),
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                       ),
@@ -157,10 +167,29 @@ class _ZooDexScreenState extends State<ZooDexScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        '${e.species.scientificName} • ${e.species.group}',
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          ScientificName(
+                                            name: e.species.scientificName,
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                          const SizedBox(height: 4),
+                                          Row(
+                                            children: [
+                                              IucnBadge(code: e.species.iucn, small: true),
+                                              const SizedBox(width: 8),
+                                              Expanded(
+                                                child: Text(
+                                                  e.species.group,
+                                                  maxLines: 1,
+                                                  overflow: TextOverflow.ellipsis,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
                                       ),
                                       const SizedBox(height: 6),
                                       Wrap(

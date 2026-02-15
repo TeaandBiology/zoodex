@@ -2,8 +2,8 @@
   "zoo_id": "chester_zoo",
   "last_updated": "2026-02-14",
   "items": [
-    { "species_id": "asian_elephant_elephas_maximus", "zone": "Islands" },
-    { "species_id": "komodo_dragon_varanus_komodoensis", "zone": "Islands" },
-    { "species_id": "jaguar_panthera_onca", "zone": "Jaguar Territory" }
+    { "species_id": "elephas_maximus", "zone": "Islands" },
+    { "species_id": "varanus_komodoensis", "zone": "Islands" },
+    { "species_id": "panthera_onca", "zone": "Jaguar Territory" }
   ]
 }

@@ -1,4 +1,482 @@
 [
-  { "id": "london_zoo", "name": "London Zoo" },
-  { "id": "chester_zoo", "name": "Chester Zoo" }
+  {
+    "id": "africa_alive",
+    "name": "Africa Alive!"
+  },
+  {
+    "id": "alameda_wildlife_conservation_park",
+    "name": "Alameda Wildlife Conservation Park"
+  },
+  {
+    "id": "amazon_world",
+    "name": "Amazon World"
+  },
+  {
+    "id": "amazona_zoo",
+    "name": "Amazona Zoo"
+  },
+  {
+    "id": "amazonia_strathclyde_country_park",
+    "name": "Amazonia (Strathclyde Country Park)"
+  },
+  {
+    "id": "ark_wildlife_park",
+    "name": "ARK Wildlife Park"
+  },
+  {
+    "id": "banham_zoo",
+    "name": "Banham Zoo"
+  },
+  {
+    "id": "battersea_park_childrens_zoo",
+    "name": "Battersea Park Children's Zoo"
+  },
+  {
+    "id": "baytree_owl_and_wildlife_centre",
+    "name": "Baytree Owl and Wildlife Centre"
+  },
+  {
+    "id": "beale_park",
+    "name": "Beale Park"
+  },
+  {
+    "id": "becky_falls_woodland_park",
+    "name": "Becky Falls Woodland Park"
+  },
+  {
+    "id": "belfast_zoological_gardens",
+    "name": "Belfast Zoological Gardens"
+  },
+  {
+    "id": "berkshire_college_of_agriculture",
+    "name": "Berkshire College of Agriculture"
+  },
+  {
+    "id": "birdworld",
+    "name": "Birdworld"
+  },
+  {
+    "id": "birmingham_wildlife_conservation_park",
+    "name": "Birmingham Wildlife Conservation Park"
+  },
+  {
+    "id": "blackpool_zoo_park",
+    "name": "Blackpool Zoo Park"
+  },
+  {
+    "id": "blair_drummond_safari_park",
+    "name": "Blair Drummond Safari Park"
+  },
+  {
+    "id": "blue_planet_aquarium",
+    "name": "Blue Planet Aquarium"
+  },
+  {
+    "id": "bristol_zoo_project",
+    "name": "Bristol Zoo Project"
+  },
+  {
+    "id": "calderglen_country_park_zoo",
+    "name": "Calderglen Country Park Zoo"
+  },
+  {
+    "id": "call_of_the_wild_zoo",
+    "name": "Call of the Wild Zoo"
+  },
+  {
+    "id": "camperdown_wildlife_centre",
+    "name": "Camperdown Wildlife Centre"
+  },
+  {
+    "id": "chessington_world_of_adventures",
+    "name": "Chessington World of Adventures"
+  },
+  {
+    "id": "chester_zoo",
+    "name": "Chester Zoo"
+  },
+  {
+    "id": "chew_valley_animal_park",
+    "name": "Chew Valley Animal Park"
+  },
+  {
+    "id": "colchester_zoo",
+    "name": "Colchester Zoo"
+  },
+  {
+    "id": "combe_martin_wildlife_and_dinosaur_park",
+    "name": "Combe Martin Wildlife and Dinosaur Park"
+  },
+  {
+    "id": "crocodiles_of_the_world",
+    "name": "Crocodiles of the World"
+  },
+  {
+    "id": "curraghs_wildlife_park",
+    "name": "Curraghs Wildlife Park"
+  },
+  {
+    "id": "dartmoor_zoological_park",
+    "name": "Dartmoor Zoological Park"
+  },
+  {
+    "id": "deep_sea_world",
+    "name": "Deep Sea World"
+  },
+  {
+    "id": "the_deep",
+    "name": "The Deep"
+  },
+  {
+    "id": "drayton_manor_zoo",
+    "name": "Drayton Manor Zoo"
+  },
+  {
+    "id": "drusillas_park",
+    "name": "Drusillas Park"
+  },
+  {
+    "id": "dudley_zoological_gardens",
+    "name": "Dudley Zoological Gardens"
+  },
+  {
+    "id": "eagle_heights_wildlife_foundation",
+    "name": "Eagle Heights Wildlife Foundation"
+  },
+  {
+    "id": "edinburgh_zoo",
+    "name": "Edinburgh Zoo"
+  },
+  {
+    "id": "exmoor_zoo",
+    "name": "Exmoor Zoo"
+  },
+  {
+    "id": "filey_bird_garden_and_animal_park",
+    "name": "Filey Bird Garden & Animal Park"
+  },
+  {
+    "id": "five_sisters_zoo",
+    "name": "Five Sisters Zoo"
+  },
+  {
+    "id": "flamingo_land",
+    "name": "Flamingo Land"
+  },
+  {
+    "id": "folly_farm",
+    "name": "Folly Farm"
+  },
+  {
+    "id": "gauntlet_bird_of_prey_eagle_and_vulture_park",
+    "name": "Gauntlet Bird of Prey - Eagle and Vulture Park"
+  },
+  {
+    "id": "gentleshaw_wildlife_centre",
+    "name": "Gentleshaw Wildlife Centre"
+  },
+  {
+    "id": "golders_hill_park_zoo",
+    "name": "Golders Hill Park Zoo"
+  },
+  {
+    "id": "hadlow_college",
+    "name": "Hadlow College"
+  },
+  {
+    "id": "hanwell_zoo",
+    "name": "Hanwell Zoo"
+  },
+  {
+    "id": "hawk_conservancy_trust",
+    "name": "Hawk Conservancy Trust"
+  },
+  {
+    "id": "hemsley_conservation_centre",
+    "name": "Hemsley Conservation Centre"
+  },
+  {
+    "id": "hertfordshire_zoo",
+    "name": "Hertfordshire Zoo"
+  },
+  {
+    "id": "highland_wildlife_park",
+    "name": "Highland Wildlife Park"
+  },
+  {
+    "id": "hobbledown_ltd",
+    "name": "Hobbledown Ltd"
+  },
+  {
+    "id": "howletts_wild_animal_park",
+    "name": "Howletts Wild Animal Park"
+  },
+  {
+    "id": "international_centre_for_birds_of_prey",
+    "name": "International Centre for Birds of Prey"
+  },
+  {
+    "id": "jersey_zoo",
+    "name": "Jersey Zoo"
+  },
+  {
+    "id": "kent_life",
+    "name": "Kent Life"
+  },
+  {
+    "id": "kirkleatham_owl_centre",
+    "name": "Kirkleatham Owl Centre"
+  },
+  {
+    "id": "knowsley_safari_park",
+    "name": "Knowsley Safari Park"
+  },
+  {
+    "id": "lake_district_coast_aquarium",
+    "name": "Lake District Coast Aquarium"
+  },
+  {
+    "id": "lake_district_wildlife_park",
+    "name": "Lake District Wildlife Park"
+  },
+  {
+    "id": "lakeland_wildlife_oasis",
+    "name": "Lakeland Wildlife Oasis"
+  },
+  {
+    "id": "lakes_aquarium",
+    "name": "Lakes Aquarium"
+  },
+  {
+    "id": "lincolnshire_wildlife_park",
+    "name": "Lincolnshire Wildlife Park"
+  },
+  {
+    "id": "linton_zoological_gardens",
+    "name": "Linton Zoological Gardens"
+  },
+  {
+    "id": "the_living_rainforest",
+    "name": "The Living Rainforest"
+  },
+  {
+    "id": "longleat_safari_and_adventure_park",
+    "name": "Longleat Safari and Adventure Park"
+  },
+  {
+    "id": "lotherton_wildlife_world",
+    "name": "Lotherton Wildlife World"
+  },
+  {
+    "id": "mablethorpe_seal_sanctuary_and_wildlife_centre",
+    "name": "Mablethorpe Seal Sanctuary and Wildlife Centre"
+  },
+  {
+    "id": "manor_house_wildlife_park",
+    "name": "Manor House Wildlife Park"
+  },
+  {
+    "id": "marwell_wildlife",
+    "name": "Marwell Wildlife"
+  },
+  {
+    "id": "messingham_zoo",
+    "name": "Messingham Zoo"
+  },
+  {
+    "id": "national_centre_for_birds_of_prey",
+    "name": "National Centre for Birds of Prey"
+  },
+  {
+    "id": "national_marine_aquarium",
+    "name": "National Marine Aquarium"
+  },
+  {
+    "id": "new_forest_wildlife_park",
+    "name": "New Forest Wildlife Park"
+  },
+  {
+    "id": "newquay_zoo",
+    "name": "Newquay Zoo"
+  },
+  {
+    "id": "noahs_ark_zoo_farm",
+    "name": "Noah's Ark Zoo Farm"
+  },
+  {
+    "id": "northumberland_zoo",
+    "name": "Northumberland Zoo"
+  },
+  {
+    "id": "northumberland_college_zoo",
+    "name": "Northumberland College Zoo"
+  },
+  {
+    "id": "old_macdonalds_farm_and_fun_park",
+    "name": "Old MacDonald's Farm & Fun Park"
+  },
+  {
+    "id": "paignton_zoo",
+    "name": "Paignton Zoo"
+  },
+  {
+    "id": "peak_wildlife_park",
+    "name": "Peak Wildlife Park"
+  },
+  {
+    "id": "pensthorpe",
+    "name": "Pensthorpe"
+  },
+  {
+    "id": "port_lympne_wild_animal_park",
+    "name": "Port Lympne Wild Animal Park"
+  },
+  {
+    "id": "raptor_foundation",
+    "name": "Raptor Foundation"
+  },
+  {
+    "id": "reaseheath_college",
+    "name": "Reaseheath College"
+  },
+  {
+    "id": "riverside_garden",
+    "name": "Riverside Garden"
+  },
+  {
+    "id": "sealife_adventure",
+    "name": "Sealife Adventure"
+  },
+  {
+    "id": "sea_life_london_aquarium",
+    "name": "Sea Life London Aquarium"
+  },
+  {
+    "id": "sea_life_park_weymouth",
+    "name": "Sea Life Park Weymouth"
+  },
+  {
+    "id": "shaldon_zoo",
+    "name": "Shaldon Zoo"
+  },
+  {
+    "id": "shepreth_wildlife_park",
+    "name": "Shepreth Wildlife Park"
+  },
+  {
+    "id": "skegness_aquarium",
+    "name": "Skegness Aquarium"
+  },
+  {
+    "id": "skegness_natureland_seal_sanctuary",
+    "name": "Skegness Natureland Seal Sanctuary"
+  },
+  {
+    "id": "sparsholt_college_hampshire",
+    "name": "Sparsholt College Hampshire"
+  },
+  {
+    "id": "tattershall_farm_park",
+    "name": "Tattershall Farm Park"
+  },
+  {
+    "id": "the_big_cat_sanctuary",
+    "name": "The Big Cat Sanctuary"
+  },
+  {
+    "id": "the_scottish_deer_centre",
+    "name": "The Scottish Deer Centre"
+  },
+  {
+    "id": "thrigby_hall_wildlife_gardens",
+    "name": "Thrigby Hall Wildlife Gardens"
+  },
+  {
+    "id": "tilgate_nature_centre",
+    "name": "Tilgate Nature Centre"
+  },
+  {
+    "id": "tropical_butterfly_house",
+    "name": "Tropical Butterfly House"
+  },
+  {
+    "id": "tropical_world",
+    "name": "Tropical World"
+  },
+  {
+    "id": "tropiquaria_wildlife_park",
+    "name": "Tropiquaria Wildlife Park"
+  },
+  {
+    "id": "twycross_zoo",
+    "name": "Twycross Zoo"
+  },
+  {
+    "id": "welsh_mountain_zoo_national_zoological_society_of_wales",
+    "name": "Welsh Mountain Zoo - National Zoological Society of Wales"
+  },
+  {
+    "id": "west_midlands_safari_park",
+    "name": "West Midlands Safari Park"
+  },
+  {
+    "id": "wildheart_animal_sanctuary",
+    "name": "Wildheart Animal Sanctuary"
+  },
+  {
+    "id": "wildwood_trust",
+    "name": "Wildwood Trust"
+  },
+  {
+    "id": "wingham_wildlife_park",
+    "name": "Wingham Wildlife Park"
+  },
+  {
+    "id": "woburn_safari_park",
+    "name": "Woburn Safari Park"
+  },
+  {
+    "id": "woodside_wildlife_and_falconry_park",
+    "name": "Woodside Wildlife and Falconry Park"
+  },
+  {
+    "id": "wwt_arundel",
+    "name": "WWT Arundel"
+  },
+  {
+    "id": "wwt_castle_espie",
+    "name": "WWT Castle Espie"
+  },
+  {
+    "id": "wwt_llanelli_wetland_centre",
+    "name": "WWT Llanelli Wetland Centre"
+  },
+  {
+    "id": "wwt_london_wetland_centre",
+    "name": "WWT London Wetland Centre"
+  },
+  {
+    "id": "wwt_martin_mere",
+    "name": "WWT Martin Mere"
+  },
+  {
+    "id": "wwt_slimbridge",
+    "name": "WWT Slimbridge"
+  },
+  {
+    "id": "wwt_washington",
+    "name": "WWT Washington"
+  },
+  {
+    "id": "yorkshire_wildlife_park",
+    "name": "Yorkshire Wildlife Park"
+  },
+  {
+    "id": "zsl_whipsnade_zoo",
+    "name": "ZSL Whipsnade Zoo"
+  },
+  {
+    "id": "zsl_london_zoo",
+    "name": "ZSL London Zoo"
+  }
 ]

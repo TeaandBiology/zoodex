@@ -10,6 +10,8 @@ import '../data/seen_store.dart';
 import '../models/inventory.dart';
 import '../models/species.dart';
 import '../widgets/error_view.dart';
+import '../widgets/scientific_name.dart';
+import '../widgets/iucn_badge.dart';
 
 import 'species_detail_screen.dart';
 
@@ -23,11 +25,13 @@ class SpeciesSearchScreen extends StatefulWidget {
 class _SpeciesSearchScreenState extends State<SpeciesSearchScreen> {
   late final Future<List<Species>> _catalogFuture;
   String _query = '';
+  List<Map<String, Object>>? _packs;
 
   @override
   void initState() {
     super.initState();
     _catalogFuture = _loadCatalog();
+    DataLoader.loadZooPacks().then((p) => setState(() => _packs = p));
   }
 
   Future<List<Species>> _loadCatalog() async {
@@ -54,8 +58,8 @@ class _SpeciesSearchScreenState extends State<SpeciesSearchScreen> {
     throw Exception('species_catalog.json must be a List or { "species": [...] }');
   }
 
-  Future<ZooInventory> _loadZoo(String zooId) async {
-    return DataLoader.loadZooInventory(zooId);
+  Future<ZooInventory?> _tryLoadZoo(String zooId) async {
+    return DataLoader.tryLoadZooInventory(zooId);
   }
 
   Future<({String zooId, String zooName})?> _pickZooForSpecies(Species s) async {
@@ -63,9 +67,15 @@ class _SpeciesSearchScreenState extends State<SpeciesSearchScreen> {
     // Small N => fine for now; later you’ll drive this from zoos.json.
     final zoos = <({String id, String name})>[];
 
-    for (final p in DataLoader.knownZooPacks) {
-      final inv = await _loadZoo(p['id']!);
-      zoos.add((id: inv.zoo.id, name: inv.zoo.name));
+    final packs = _packs ?? DataLoader.knownZooPacks;
+    for (final pack in packs) {
+      final zoosInPack = (pack['zoos'] as List).cast<Map<String, String>>();
+      for (final z in zoosInPack) {
+        final inv = await _tryLoadZoo(z['id']!);
+        if (inv != null) {
+          zoos.add((id: inv.zoo.id, name: inv.zoo.name));
+        }
+      }
     }
 
     if (!mounted) return null;
@@ -111,8 +121,8 @@ class _SpeciesSearchScreenState extends State<SpeciesSearchScreen> {
     if (picked == null) return;
 
     // Optional: if the zoo inventory doesn’t contain this species, warn but allow logging anyway.
-    final inv = await _loadZoo(picked.zooId);
-    final existsInZoo = inv.species.any((x) => x.id == s.id);
+    final inv = await _tryLoadZoo(picked.zooId);
+    final existsInZoo = inv?.species.any((x) => x.id == s.id) ?? false;
 
     if (!mounted) return;
 
@@ -143,10 +153,10 @@ class _SpeciesSearchScreenState extends State<SpeciesSearchScreen> {
 
     // Use the zoo’s version of the species if present (zone/description may differ),
     // otherwise fall back to catalog species.
-    final zooSpecies = inv.species.firstWhere(
-      (x) => x.id == s.id,
-      orElse: () => s,
-    );
+    final zooSpecies = inv?.species.firstWhere(
+          (x) => x.id == s.id,
+          orElse: () => s,
+        ) ?? s;
 
     Navigator.of(ctx).pushNamed(
       '/detail',
@@ -203,19 +213,49 @@ class _SpeciesSearchScreenState extends State<SpeciesSearchScreen> {
                     ? const Center(child: Text('No matches.'))
                     : ListView.separated(
                         itemCount: filtered.length,
-                             separatorBuilder: (context, index) => const Divider(height: 1),
+                        separatorBuilder: (context, index) => const Divider(height: 1),
                         itemBuilder: (context, i) {
                           final s = filtered[i];
 
                           // Lightweight “seen anywhere” indicator across zoos
-                          final seenAnywhere = DataLoader.knownZooPacks.any((p) {
-                            final zooId = p['id']!;
-                            return SeenStore.hasAnyObservation(zooId, s.id);
-                          });
+                          final packsForCheck = _packs ?? DataLoader.knownZooPacks;
+                          var seenAnywhere = false;
+                          for (final pack in packsForCheck) {
+                            final zoosInPack = (pack['zoos'] as List).cast<Map<String, String>>();
+                            for (final z in zoosInPack) {
+                              final zooId = z['id']!;
+                              if (DataLoader.inventories.containsKey(zooId)) {
+                                if (SeenStore.hasAnyObservation(zooId, s.id)) {
+                                  seenAnywhere = true;
+                                  break;
+                                }
+                              }
+                            }
+                            if (seenAnywhere) break;
+                          }
 
                           return ListTile(
-                            title: Text(s.commonName),
-                            subtitle: Text('${s.scientificName} • ${s.group}'),
+                            title: Text(
+                              s.commonName,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(fontWeight: FontWeight.bold),
+                            ),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ScientificName(name: s.scientificName),
+                                const SizedBox(height: 4),
+                                Row(
+                                  children: [
+                                    IucnBadge(code: s.iucn, small: true),
+                                    const SizedBox(width: 8),
+                                    Expanded(child: Text(s.group)),
+                                  ],
+                                ),
+                              ],
+                            ),
                             trailing: seenAnywhere
                                 ? const Icon(Icons.check_circle)
                                 : const Icon(Icons.chevron_right),

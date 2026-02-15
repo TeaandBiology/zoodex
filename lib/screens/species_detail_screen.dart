@@ -7,6 +7,8 @@ import '../models/inventory.dart';
 import '../models/observation.dart';
 import '../models/species.dart';
 import '../widgets/chip.dart';
+import '../widgets/scientific_name.dart';
+import '../widgets/iucn_badge.dart';
 
 class SpeciesDetailArgs {
   final String zooId;
@@ -93,7 +95,7 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
                   ),
                   const SizedBox(height: 8),
                   DropdownButtonFormField<String>(
-                    value: zone,
+                    initialValue: zone,
                     items: (_zones.isEmpty ? <String>[zone] : _zones)
                         .map((z) => DropdownMenuItem(value: z, child: Text(z)))
                         .toList(),
@@ -202,6 +204,20 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
     } catch (_) {
       return null;
     }
+  }
+
+  String _formatRange(String raw) {
+    var text = raw.replaceAll(RegExp(r'<br\s*/?>', caseSensitive: false), '\n');
+    text = text.replaceAll(RegExp(r'<[^>]+>'), '');
+    text = text
+        .replaceAll('&nbsp;', ' ')
+        .replaceAll('&#160;', ' ')
+        .replaceAll('&amp;', '&')
+        .replaceAll('&lt;', '<')
+        .replaceAll('&gt;', '>');
+    text = text.replaceAll(RegExp(r'[ \t]+'), ' ');
+    text = text.replaceAll(RegExp(r'\s+\n'), '\n');
+    return text.trim();
   }
 
   Future<void> _seenNow() async {
@@ -339,10 +355,14 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
   Widget build(BuildContext context) {
     final s = widget.args.species;
     final lastSeen = _history.isEmpty ? null : _history.first.seenAt;
+    final rangeText = _formatRange(s.range);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(s.commonName),
+        title: Text(
+          s.commonName,
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+        ),
         actions: [
           if (_history.isNotEmpty)
             IconButton(
@@ -357,24 +377,32 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              s.scientificName,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontStyle: FontStyle.italic,
-                  ),
+            ScientificName(
+              name: s.scientificName,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: 8),
             Wrap(
               spacing: 8,
               runSpacing: 8,
               children: [
+                IucnBadge(code: s.iucn),
                 AppChip(label: s.group),
-                AppChip(label: s.zone),
               ],
             ),
             const SizedBox(height: 16),
             Text(
               s.description.isEmpty ? 'No description yet.' : s.description,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            const SizedBox(height: 12),
+            Text(
+              'Range',
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
+            const SizedBox(height: 6),
+            Text(
+              rangeText.isEmpty ? 'No range info yet.' : rangeText,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             const SizedBox(height: 16),

@@ -5,12 +5,15 @@ import '../data/data_loader.dart';
 import '../data/seen_store.dart';
 import '../models/inventory.dart';
 import '../widgets/error_view.dart';
+import '../widgets/scientific_name.dart';
+import '../widgets/iucn_badge.dart';
 import 'species_detail_screen.dart';
 
 class ZooInventoryArgs {
   final String zooId;
+  final String zooName;
   final String assetPath;
-  const ZooInventoryArgs({required this.zooId, required this.assetPath});
+  const ZooInventoryArgs({required this.zooId, required this.zooName, required this.assetPath});
 }
 
 class ZooInventoryScreen extends StatefulWidget {
@@ -25,15 +28,29 @@ class _ZooInventoryScreenState extends State<ZooInventoryScreen> {
   late final Future<ZooInventory> _invFuture;
   String _query = '';
   String? _groupFilter;
+  bool _comingSoon = false;
 
   @override
   void initState() {
     super.initState();
-    _invFuture = DataLoader.loadZooInventory(widget.args.zooId);
+    // If this zoo isn't one of the known inventory packs, show a "Coming soon"
+    // placeholder instead of attempting to load a missing asset.
+    if (!DataLoader.inventories.containsKey(widget.args.zooId)) {
+      _comingSoon = true;
+    } else {
+      _invFuture = DataLoader.loadZooInventory(widget.args.zooId);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_comingSoon) {
+      return Scaffold(
+        appBar: AppBar(title: Text(widget.args.zooName)),
+        body: const Center(child: Text('Coming soon...')),
+      );
+    }
+
     return FutureBuilder<ZooInventory>(
       future: _invFuture,
       builder: (context, snapshot) {
@@ -122,9 +139,26 @@ class _ZooInventoryScreenState extends State<ZooInventoryScreen> {
                         final seen = obsCount > 0;
 
                         return ListTile(
-                          title: Text(s.commonName),
-                          subtitle: Text(
-                            '${s.scientificName} • ${s.group} • ${s.zone}',
+                          title: Text(
+                            s.commonName,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ScientificName(name: s.scientificName),
+                              const SizedBox(height: 4),
+                              Row(
+                                children: [
+                                  IucnBadge(code: s.iucn, small: true),
+                                  const SizedBox(width: 8),
+                                  Expanded(child: Text(s.group)),
+                                ],
+                              ),
+                            ],
                           ),
                           trailing: seen
                               ? Container(

@@ -24,5 +24,4 @@ flutter:
   assets:
     - assets/data/species_catalog.json
     - assets/data/zoos.json
-    - assets/data/inventories/london_zoo.json
-    - assets/data/inventories/chester_zoo.json
+    - assets/data/inventories/
