@@ -1,0 +1,17 @@
+# Configuration for Flutter's gen-l10n tool. Running `flutter gen-l10n` (or any
+# build, since `generate: true` is set in pubspec.yaml) reads the ARB files in
+# lib/l10n/ and generates the AppLocalizations class.
+#
+# Usage in code:
+#   import 'l10n/app_localizations.dart';
+#   AppLocalizations.of(context).someKey
+#
+# To add a language: copy app_en.arb to app_<code>.arb, translate the values,
+# and add the locale to ProfileStore.supportedLocales.
+arb-dir: lib/l10n
+template-arb-file: app_en.arb
+output-localization-file: app_localizations.dart
+output-class: AppLocalizations
+output-dir: lib/l10n
+# of(context) returns a non-null AppLocalizations, so call sites read cleanly.
+nullable-getter: false

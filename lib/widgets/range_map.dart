@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../data/reference_data.dart';
 import '../models/species.dart';
+import '../l10n/app_localizations.dart';
 import 'fallback_image.dart';
 
 /// Shows a species' geographic range map, resolved through an ordered fallback
@@ -76,7 +77,7 @@ Future<void> showFullRangeMap(BuildContext context, Species species) {
     barrierColor: Colors.black,
     builder: (context) => _FullRangeView(
       paths: RangeMap.pathsFor(species),
-      caption: '${species.commonName} — range',
+      caption: AppLocalizations.of(context).rangeMapCaption(species.commonName),
     ),
   );
 }
@@ -102,7 +103,7 @@ class _FullRangeView extends StatelessWidget {
           right: 0,
           child: SafeArea(
             child: IconButton(
-              tooltip: 'Close',
+              tooltip: AppLocalizations.of(context).commonClose,
               icon: const Icon(Icons.close, color: Colors.white),
               onPressed: () => Navigator.of(context).pop(),
             ),

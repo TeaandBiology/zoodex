@@ -111,6 +111,50 @@ def strip_html(text):
     return re.sub(r"<[^>]+>", "", text or "").strip()
 
 
+_LICENCE_BASE = {
+    "cc0": "CC0",
+    "cc-by": "CC-BY",
+    "cc-by-sa": "CC-BY-SA",
+    "cc-by-nc": "CC-BY-NC",
+    "cc-by-nc-sa": "CC-BY-NC-SA",
+    "cc-by-nd": "CC-BY-ND",
+    "cc-by-nc-nd": "CC-BY-NC-ND",
+}
+
+
+def license_label(code, version=None, raw=None):
+    """Human-readable licence such as 'CC-BY-SA 4.0'. Uses the canonical code for
+    consistent hyphenation and appends a version when one is known (passed in, or
+    parsed from a source's raw licence string). iNaturalist does not expose a
+    version, so its credits read without one."""
+    base = _LICENCE_BASE.get(code, (code or "").upper())
+    if code == "cc0" and not version and not raw:
+        version = "1.0"
+    if not version and raw:
+        m = re.search(r"(\d+\.\d+)", raw)
+        if m:
+            version = m.group(1)
+    return ("%s %s" % (base, version)).strip() if version else base
+
+
+def inat_author(attribution):
+    """Pull the photographer name out of an iNaturalist attribution string like
+    '(c) Dan Akira, some rights reserved (CC-BY-SA)'."""
+    s = strip_html(attribution or "")
+    s = re.sub(r"^\s*(\(c\)|\(C\)|©)\s*", "", s)
+    s = s.split(",")[0].strip()
+    return s or "Unknown"
+
+
+def format_credit(author, licence):
+    """Uniform credit string: 'Photo by NAME; licenced under LICENCE.'"""
+    author = ((author or "").strip().rstrip(".")) or "Unknown"
+    licence = (licence or "").strip().rstrip(".")
+    if licence:
+        return "Photo by %s; licenced under %s." % (author, licence)
+    return "Photo by %s." % author
+
+
 def get_with_retry(session, url, *, params=None, tries=4, base_sleep=2.0, timeout=60):
     last = None
     for attempt in range(tries):
@@ -160,8 +204,9 @@ def source_inat(session, sci, allowed, args):
                 if "/%s." % tok in url:
                     url = url.replace("/%s." % tok, "/%s." % args.size)
                     break
-            return Found(url, code, p.get("attribution") or "iNaturalist",
-                         "iNaturalist",
+            credit = format_credit(inat_author(p.get("attribution")),
+                                   license_label(code))
+            return Found(url, code, credit, "iNaturalist",
                          "https://www.inaturalist.org/taxa/%s" % taxon.get("id"))
     return None
 
@@ -186,7 +231,7 @@ def source_wikimedia(session, sci, allowed, args):
     except (KeyError, IndexError, TypeError):
         return None
     # 3) Commons imageinfo: a scaled url + licence/attribution
-    width = max(args.max_dim, 1) if args.max_dim else 1024
+    width = max(args.max_dim, 1) if args.max_dim else 1400
     r3 = get_with_retry(session, "https://commons.wikimedia.org/w/api.php", params={
         "action": "query", "format": "json", "titles": "File:%s" % filename,
         "prop": "imageinfo", "iiprop": "url|extmetadata", "iiurlwidth": width})
@@ -203,8 +248,7 @@ def source_wikimedia(session, sci, allowed, args):
         return None
     artist = strip_html(meta.get("Artist", {}).get("value", ""))
     short = strip_html(meta.get("LicenseShortName", {}).get("value", "")) or raw_lic
-    attribution = (", ".join(x for x in [artist, short] if x)
-                   + " (via Wikimedia Commons)").strip()
+    attribution = format_credit(artist, license_label(code, raw=short))
     return Found(info.get("thumburl") or info.get("url"), code, attribution,
                  "Wikimedia Commons", info.get("descriptionurl", ""))
 
@@ -223,8 +267,8 @@ def source_openverse(session, sci, allowed, args):
     code = canon_license(it.get("license"))
     if code not in allowed or not it.get("url"):
         return None
-    attribution = strip_html(it.get("attribution")
-                             or "%s (via Openverse)" % (it.get("creator") or "Unknown"))
+    attribution = format_credit(it.get("creator"),
+                                license_label(code, version=it.get("license_version")))
     return Found(it.get("url"), code, attribution, "Openverse",
                  it.get("foreign_landing_url", ""))
 
@@ -248,7 +292,7 @@ def source_flickr(session, sci, allowed, args):
     url = p.get("url_l") or p.get("url_c")
     if not url:
         return None
-    attribution = "%s — %s (via Flickr)" % (p.get("owner_name") or "Unknown", name)
+    attribution = format_credit(p.get("owner_name"), license_label(code, raw=name))
     page = "https://www.flickr.com/photos/%s/%s" % (p.get("owner", ""), p.get("id", ""))
     return Found(url, code, attribution, "Flickr", page)
 
@@ -311,12 +355,15 @@ def main():
                     help="Output image format (default: webp)")
     ap.add_argument("--quality", type=int, default=82,
                     help="Encoder quality 1-100 for webp/jpeg (default: 82)")
-    ap.add_argument("--size", default="medium",
+    ap.add_argument("--size", default="original",
                     choices=["small", "medium", "large", "original"],
-                    help="iNat source size to download (default: medium)")
-    ap.add_argument("--max-dim", type=int, default=800,
+                    help="iNat source size to download (default: original, so "
+                         "the source is large enough to fill the species-page "
+                         "hero without upscaling)")
+    ap.add_argument("--max-dim", type=int, default=1400,
                     help="Resize so the longest side is at most this many px "
-                         "(0 = keep source size). Default 800 keeps files small.")
+                         "(0 = keep source size). Default 1400 keeps the hero "
+                         "crop (about 1236x1200 px on a high-DPR phone) sharp.")
     ap.add_argument("--delay", type=float, default=1.0,
                     help="Seconds to wait between species (be polite)")
     ap.add_argument("--allow-noncommercial", action="store_true",

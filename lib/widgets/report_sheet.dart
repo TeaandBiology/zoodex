@@ -4,6 +4,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../data/report_store.dart';
 import '../models/report.dart';
+import '../l10n/app_localizations.dart';
 
 /// Opens the "report a problem" sheet. Saves the report locally on submit and
 /// offers to send it on to the developer via the share sheet.
@@ -18,8 +19,10 @@ Future<void> showReportSheet(
   String? speciesName,
   String? zooId,
   String? zooName,
-  String title = 'Report a problem',
+  String? title,
 }) async {
+  final resolvedTitle =
+      title ?? AppLocalizations.of(context).reportSheetReportAProblem;
   final report = await showModalBottomSheet<Report>(
     context: context,
     isScrollControlled: true,
@@ -27,7 +30,7 @@ Future<void> showReportSheet(
     builder: (ctx) => Padding(
       padding: EdgeInsets.only(bottom: MediaQuery.of(ctx).viewInsets.bottom),
       child: _ReportSheet(
-        title: title,
+        title: resolvedTitle,
         presetCategory: presetCategory ?? ReportCategory.other,
         lockCategory: lockCategory,
         speciesId: speciesId,
@@ -39,27 +42,29 @@ Future<void> showReportSheet(
   );
 
   if (report == null || !context.mounted) return;
+  final l10n = AppLocalizations.of(context);
   final messenger = ScaffoldMessenger.of(context);
   messenger.showSnackBar(
     SnackBar(
-      content: const Text('Thanks — report saved'),
+      content: Text(l10n.reportSheetThanksReportSaved),
       action: SnackBarAction(
-        label: 'Send',
-        onPressed: () => _share(messenger, report.toReadable()),
+        label: l10n.reportSheetSend,
+        onPressed: () => _share(messenger, report.toReadable(), l10n),
       ),
     ),
   );
 }
 
-Future<void> _share(ScaffoldMessengerState messenger, String text) async {
+Future<void> _share(
+    ScaffoldMessengerState messenger, String text, AppLocalizations l10n) async {
   try {
     await SharePlus.instance.share(
-      ShareParams(text: text, subject: 'ZooDex problem report'),
+      ShareParams(text: text, subject: l10n.reportSheetShareSubject),
     );
   } catch (_) {
     await Clipboard.setData(ClipboardData(text: text));
     messenger.showSnackBar(
-      const SnackBar(content: Text('Copied report to clipboard')),
+      SnackBar(content: Text(l10n.reportSheetCopiedToClipboard)),
     );
   }
 }
@@ -138,9 +143,9 @@ class _ReportSheetState extends State<_ReportSheet> {
           if (!widget.lockCategory)
             DropdownButtonFormField<ReportCategory>(
               initialValue: _category,
-              decoration: const InputDecoration(
-                labelText: 'What\'s wrong?',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context).reportSheetWhatsWrong,
+                border: const OutlineInputBorder(),
               ),
               items: [
                 for (final c in ReportCategory.values)
@@ -157,10 +162,12 @@ class _ReportSheetState extends State<_ReportSheet> {
             textCapitalization: TextCapitalization.sentences,
             onChanged: (_) => setState(() {}),
             decoration: InputDecoration(
-              labelText: isMissing ? 'Which species, and any details?' : 'Notes (optional)',
+              labelText: isMissing
+                  ? AppLocalizations.of(context).reportSheetWhichSpecies
+                  : AppLocalizations.of(context).reportSheetNotesOptional,
               hintText: isMissing
-                  ? 'e.g. "Asian small-clawed otter, in the wetlands house"'
-                  : 'Describe the problem',
+                  ? AppLocalizations.of(context).reportSheetMissingHint
+                  : AppLocalizations.of(context).reportSheetDescribeProblem,
               border: const OutlineInputBorder(),
               alignLabelWithHint: true,
             ),
@@ -172,7 +179,7 @@ class _ReportSheetState extends State<_ReportSheet> {
             children: [
               TextButton(
                 onPressed: _saving ? null : () => Navigator.of(context).pop(),
-                child: const Text('Cancel'),
+                child: Text(AppLocalizations.of(context).commonCancel),
               ),
               const SizedBox(width: 8),
               FilledButton(
@@ -180,7 +187,9 @@ class _ReportSheetState extends State<_ReportSheet> {
                         (isMissing && _note.text.trim().isEmpty))
                     ? null
                     : _submit,
-                child: Text(_saving ? 'Saving…' : 'Submit'),
+                child: Text(_saving
+                    ? AppLocalizations.of(context).reportSheetSaving
+                    : AppLocalizations.of(context).reportSheetSubmit),
               ),
             ],
           ),

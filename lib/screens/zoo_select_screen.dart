@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../data/entitlement_store.dart';
+import '../l10n/app_localizations.dart';
 import '../data/reference_data.dart';
 import '../models/entitlement.dart';
 import '../models/inventory.dart';
@@ -44,21 +45,21 @@ class _ZooSelectScreenState extends State<ZooSelectScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Zoos'),
+        title: Text(AppLocalizations.of(context).zooSelectTitle),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 8),
             child: SegmentedButton<_ZooView>(
               showSelectedIcon: false,
-              segments: const [
+              segments: [
                 ButtonSegment(
                     value: _ZooView.map,
-                    icon: Icon(Icons.map_outlined),
-                    label: Text('Map')),
+                    icon: const Icon(Icons.map_outlined),
+                    label: Text(AppLocalizations.of(context).zooSelectViewMap)),
                 ButtonSegment(
                     value: _ZooView.list,
-                    icon: Icon(Icons.list),
-                    label: Text('List')),
+                    icon: const Icon(Icons.list),
+                    label: Text(AppLocalizations.of(context).zooSelectViewList)),
               ],
               selected: {_view},
               onSelectionChanged: (s) => setState(() => _view = s.first),
@@ -127,14 +128,14 @@ class _ZooList extends StatelessWidget {
           child: TextField(
             onChanged: onQueryChanged,
             decoration: InputDecoration(
-              hintText: 'Search zoos',
+              hintText: AppLocalizations.of(context).zooSelectSearchHint,
               prefixIcon: const Icon(Icons.search),
               isDense: true,
               border: const OutlineInputBorder(),
               suffixIcon: query.isEmpty
                   ? null
                   : IconButton(
-                      tooltip: 'Clear',
+                      tooltip: AppLocalizations.of(context).zooSelectClear,
                       icon: const Icon(Icons.clear),
                       onPressed: () => onQueryChanged(''),
                     ),
@@ -144,7 +145,7 @@ class _ZooList extends StatelessWidget {
         const Divider(height: 1),
         Expanded(
           child: filtered.isEmpty
-              ? const Center(child: Text('No matching zoos'))
+              ? Center(child: Text(AppLocalizations.of(context).zooSelectNoMatches))
               : ListView.separated(
                   itemCount: filtered.length,
                   separatorBuilder: (_, _) => const Divider(height: 1),
@@ -168,12 +169,12 @@ class _PlanBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     String text;
     if (ent.isUnlimited) {
-      text = 'Unlimited — all zoos unlocked';
+      text = AppLocalizations.of(context).zooSelectPlanUnlimited;
     } else if (ent.isPremium) {
-      text = 'Premium — all ${ent.premiumCountry} zoos unlocked';
+      text = AppLocalizations.of(context).zooSelectPlanPremium(ent.premiumCountry ?? '');
     } else {
-      text = 'Free plan — ${ent.freeRemaining} of ${Entitlement.maxFree} '
-          'free unlocks remaining';
+      text = AppLocalizations.of(context)
+          .zooSelectPlanFree(ent.freeRemaining, Entitlement.maxFree);
     }
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
@@ -201,9 +202,10 @@ class _ZooTile extends StatelessWidget {
       builder: (context, snap) {
         final count = snap.hasData ? snap.data!.species.length : null;
         final subtitleParts = <String>[
-          if (count != null) '$count species',
+          if (count != null)
+            AppLocalizations.of(context).zooSelectSpeciesCount(count),
           if (zoo.country.isNotEmpty) zoo.country,
-          if (!unlocked) 'Locked',
+          if (!unlocked) AppLocalizations.of(context).zooSelectLocked,
         ];
 
         return ListTile(

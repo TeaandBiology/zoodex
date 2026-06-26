@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../l10n/app_localizations.dart';
 import '../models/species.dart';
 
 /// A "tree of life" of the observed species. Two looks, switchable with the
@@ -35,7 +36,8 @@ class _TaxonomyTreeViewState extends State<TaxonomyTreeView> {
   @override
   Widget build(BuildContext context) {
     if (widget.species.isEmpty) {
-      return const Center(child: Text('No sightings yet.'));
+      return Center(
+          child: Text(AppLocalizations.of(context).treeViewNoSightingsYet));
     }
     return Column(
       children: [
@@ -46,15 +48,15 @@ class _TaxonomyTreeViewState extends State<TaxonomyTreeView> {
             children: [
               SegmentedButton<_Mode>(
                 showSelectedIcon: false,
-                segments: const [
+                segments: [
                   ButtonSegment(
                       value: _Mode.deep,
-                      icon: Icon(Icons.hub_outlined),
-                      label: Text('Tree')),
+                      icon: const Icon(Icons.hub_outlined),
+                      label: Text(AppLocalizations.of(context).treeViewTree)),
                   ButtonSegment(
                       value: _Mode.bracket,
-                      icon: Icon(Icons.format_list_bulleted),
-                      label: Text('List')),
+                      icon: const Icon(Icons.format_list_bulleted),
+                      label: Text(AppLocalizations.of(context).treeViewList)),
                 ],
                 selected: {_mode},
                 onSelectionChanged: (s) => setState(() => _mode = s.first),
@@ -304,6 +306,7 @@ class _DeepTreeState extends State<_DeepTree> {
                   line: cs.outline,
                   text: cs.onSurface,
                   surface: cs.surface,
+                  centreLabel: AppLocalizations.of(context).treeViewLife,
                 ),
               ),
             ),
@@ -322,6 +325,7 @@ class _DeepPainter extends CustomPainter {
   final TransformationController ctrl;
   final Size viewport;
   final Color line, text, surface;
+  final String centreLabel;
 
   _DeepPainter({
     required this.root,
@@ -334,6 +338,7 @@ class _DeepPainter extends CustomPainter {
     required this.line,
     required this.text,
     required this.surface,
+    required this.centreLabel,
   }) : super(repaint: ctrl);
 
   static const double _expandPx = 70; // a clade opens when its arc exceeds this
@@ -456,7 +461,7 @@ class _DeepPainter extends CustomPainter {
           ..strokeWidth = 1);
     final tp = TextPainter(
       text: TextSpan(
-          text: 'Life',
+          text: centreLabel,
           style: TextStyle(
               fontSize: 12, color: text, fontWeight: FontWeight.w600)),
       textDirection: TextDirection.ltr,
@@ -606,7 +611,9 @@ class _BracketTreeState extends State<_BracketTree> {
             const SizedBox(width: 10),
             Expanded(
               child: Text(
-                n.depth == 0 ? 'All life' : n.label,
+                n.depth == 0
+                    ? AppLocalizations.of(context).treeViewAllLife
+                    : n.label,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: n.isLeaf

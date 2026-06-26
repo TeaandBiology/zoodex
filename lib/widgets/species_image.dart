@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../data/reference_data.dart';
 import '../models/species.dart';
+import '../l10n/app_localizations.dart';
 import 'fallback_image.dart';
 
 /// Shows a species photo, preferring a real WebP photo and otherwise falling
@@ -113,7 +114,7 @@ class _FullImageView extends StatelessWidget {
           right: 0,
           child: SafeArea(
             child: IconButton(
-              tooltip: 'Close',
+              tooltip: AppLocalizations.of(context).commonClose,
               icon: const Icon(Icons.close, color: Colors.white),
               onPressed: () => Navigator.of(context).pop(),
             ),

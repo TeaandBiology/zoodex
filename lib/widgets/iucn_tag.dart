@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_localizations.dart';
+
 /// Rarity ordering for sorting: higher = rarer (Extinct highest, Not Applicable
 /// lowest). Unknown codes sort below everything. Used by the Species tab's
 /// "IUCN status" sort, where descending shows the rarest first.
@@ -9,6 +11,37 @@ int iucnRarityRank(String code) {
     'NT': 4, 'LC': 3, 'DD': 2, 'NE': 1, 'NA': 0,
   };
   return order[code.trim().toUpperCase()] ?? -1;
+}
+
+/// The localised full name for an IUCN code (e.g. "CR" -> "Critically
+/// Endangered"). Unknown codes return the trimmed input unchanged. The codes
+/// themselves are data and stay in English.
+String iucnLabel(BuildContext context, String status) {
+  final l = AppLocalizations.of(context);
+  switch (status.trim().toUpperCase()) {
+    case 'EX':
+      return l.iucnEX;
+    case 'EW':
+      return l.iucnEW;
+    case 'CR':
+      return l.iucnCR;
+    case 'EN':
+      return l.iucnEN;
+    case 'VU':
+      return l.iucnVU;
+    case 'NT':
+      return l.iucnNT;
+    case 'LC':
+      return l.iucnLC;
+    case 'DD':
+      return l.iucnDD;
+    case 'NE':
+      return l.iucnNE;
+    case 'NA':
+      return l.iucnNA;
+    default:
+      return status.trim();
+  }
 }
 
 /// A coloured tag for a species' IUCN Red List status. It spells out the code
@@ -21,31 +54,33 @@ class IucnTag extends StatelessWidget {
   final String status;
   const IucnTag({super.key, required this.status});
 
-  // code -> (full label, tag colour, text colour) as 0xAARRGGBB
-  static const Map<String, (String, int, int)> _categories = {
-    'EX': ('Extinct', 0xFF000000, 0xFFFFFFFF),
-    'EW': ('Extinct in the Wild', 0xFF000000, 0xFFFFFFFF),
-    'CR': ('Critically Endangered', 0xFFCC3333, 0xFFFFFFFF),
-    'EN': ('Endangered', 0xFFCC6633, 0xFFFFFFFF),
-    'VU': ('Vulnerable', 0xFFCC9900, 0xFFFFFFFF),
-    'NT': ('Near Threatened', 0xFF006666, 0xFFFFFFFF),
-    'LC': ('Least Concern', 0xFF006666, 0xFFFFFFFF),
-    'DD': ('Data Deficient', 0xFF6E6E6E, 0xFFFFFFFF),
-    'NE': ('Not Evaluated', 0xFF8A8A8A, 0xFF000000),
-    'NA': ('Not Applicable', 0xFF7A7468, 0xFF000000),
+  // code -> (tag colour, text colour) as 0xAARRGGBB. The label is resolved
+  // separately via [iucnLabel] so it can be translated.
+  static const Map<String, (int, int)> _colors = {
+    'EX': (0xFF000000, 0xFFFFFFFF),
+    'EW': (0xFF000000, 0xFFFFFFFF),
+    'CR': (0xFFCC3333, 0xFFFFFFFF),
+    'EN': (0xFFCC6633, 0xFFFFFFFF),
+    'VU': (0xFFCC9900, 0xFFFFFFFF),
+    'NT': (0xFF006666, 0xFFFFFFFF),
+    'LC': (0xFF006666, 0xFFFFFFFF),
+    'DD': (0xFF6E6E6E, 0xFFFFFFFF),
+    'NE': (0xFF8A8A8A, 0xFF000000),
+    'NA': (0xFF7A7468, 0xFF000000),
   };
 
   @override
   Widget build(BuildContext context) {
     final code = status.trim().toUpperCase();
-    final info = _categories[code];
+    final colors = _colors[code];
 
     // Known category -> Wikipedia colour + the rule above; unknown -> theme chip.
-    final String label = info?.$1 ?? status.trim();
-    final Color background =
-        info != null ? Color(info.$2) : Theme.of(context).colorScheme.secondaryContainer;
-    final Color foreground = info != null
-        ? Color(info.$3)
+    final String label = iucnLabel(context, status);
+    final Color background = colors != null
+        ? Color(colors.$1)
+        : Theme.of(context).colorScheme.secondaryContainer;
+    final Color foreground = colors != null
+        ? Color(colors.$2)
         : Theme.of(context).colorScheme.onSecondaryContainer;
 
     return Container(

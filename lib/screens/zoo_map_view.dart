@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 
+import '../l10n/app_localizations.dart';
 import '../models/entitlement.dart';
 import '../models/zoo.dart';
 
@@ -179,18 +180,18 @@ class _ZooMapViewState extends State<ZooMapView> {
           ],
         ),
         if (_mappable.isEmpty)
-          const Positioned(
+          Positioned(
             top: 12,
             left: 12,
             right: 12,
-            child: _MapNotice('No zoos have map coordinates yet.'),
+            child: _MapNotice(AppLocalizations.of(context).zooMapNoCoords),
           ),
         Positioned(
           right: 12,
           bottom: 24,
           child: FloatingActionButton.small(
             heroTag: 'zooMapLocate',
-            tooltip: 'Centre on my location',
+            tooltip: AppLocalizations.of(context).zooMapCentreOnMe,
             onPressed: _locating ? null : () => _locate(recentre: true),
             child: _locating
                 ? const SizedBox(

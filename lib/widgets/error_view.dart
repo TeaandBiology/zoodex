@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_localizations.dart';
+
 /// A simple centred error message, shown when something fails to load.
 class ErrorView extends StatelessWidget {
   final Object? error;
@@ -16,11 +18,11 @@ class ErrorView extends StatelessWidget {
             Icon(Icons.error_outline,
                 size: 48, color: Theme.of(context).colorScheme.error),
             const SizedBox(height: 12),
-            Text('Something went wrong',
+            Text(AppLocalizations.of(context).errorViewSomethingWentWrong,
                 style: Theme.of(context).textTheme.titleMedium),
             const SizedBox(height: 8),
             Text(
-              error?.toString() ?? 'Unknown error',
+              error?.toString() ?? AppLocalizations.of(context).errorViewUnknownError,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodySmall,
             ),

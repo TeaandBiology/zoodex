@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import '../l10n/app_localizations.dart';
 import '../data/reference_data.dart';
 import '../data/visit_store.dart';
 import '../models/dex_entry.dart';
@@ -22,6 +23,26 @@ enum _SortField {
 
   const _SortField(this.label);
   final String label;
+}
+
+/// Localised label for a sort field (the enum's [label] stays English as a
+/// stable fallback / for any non-UI use).
+String _sortFieldLabel(BuildContext context, _SortField f) {
+  final l = AppLocalizations.of(context);
+  switch (f) {
+    case _SortField.taxonomy:
+      return l.zoodexSortTaxonomy;
+    case _SortField.firstObserved:
+      return l.zoodexSortFirstObserved;
+    case _SortField.alphaCommon:
+      return l.zoodexSortAlphaCommon;
+    case _SortField.alphaScientific:
+      return l.zoodexSortAlphaScientific;
+    case _SortField.totalSeen:
+      return l.zoodexSortTotalSeen;
+    case _SortField.iucn:
+      return l.zoodexSortIucn;
+  }
 }
 
 typedef _Row = ({Species species, DexEntry dex});
@@ -152,7 +173,7 @@ class _ZooDexScreenState extends State<ZooDexScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Filter',
+                          Text(AppLocalizations.of(sheetContext).zoodexFilter,
                               style:
                                   Theme.of(sheetContext).textTheme.titleMedium),
                           if (_groupFilter != null || _iucnFilter != null)
@@ -161,12 +182,14 @@ class _ZooDexScreenState extends State<ZooDexScreen> {
                                 _groupFilter = null;
                                 _iucnFilter = null;
                               }),
-                              child: const Text('Clear all'),
+                              child: Text(
+                                  AppLocalizations.of(sheetContext)
+                                      .zoodexClearAll),
                             ),
                         ],
                       ),
                       const SizedBox(height: 4),
-                      Text('Group',
+                      Text(AppLocalizations.of(sheetContext).zoodexGroup,
                           style: Theme.of(sheetContext).textTheme.titleSmall),
                       const SizedBox(height: 8),
                       Wrap(
@@ -174,7 +197,8 @@ class _ZooDexScreenState extends State<ZooDexScreen> {
                         runSpacing: 8,
                         children: [
                           ChoiceChip(
-                            label: const Text('All'),
+                            label: Text(
+                                AppLocalizations.of(sheetContext).commonAll),
                             selected: _groupFilter == null,
                             onSelected: (_) => apply(() => _groupFilter = null),
                           ),
@@ -189,7 +213,7 @@ class _ZooDexScreenState extends State<ZooDexScreen> {
                       ),
                       if (iucnOptions.isNotEmpty) ...[
                         const SizedBox(height: 16),
-                        Text('IUCN status',
+                        Text(AppLocalizations.of(sheetContext).zoodexIucnStatus,
                             style: Theme.of(sheetContext).textTheme.titleSmall),
                         const SizedBox(height: 8),
                         Wrap(
@@ -197,7 +221,8 @@ class _ZooDexScreenState extends State<ZooDexScreen> {
                           runSpacing: 8,
                           children: [
                             ChoiceChip(
-                              label: const Text('All'),
+                              label: Text(
+                                  AppLocalizations.of(sheetContext).commonAll),
                               selected: _iucnFilter == null,
                               onSelected: (_) =>
                                   apply(() => _iucnFilter = null),
@@ -244,15 +269,21 @@ class _ZooDexScreenState extends State<ZooDexScreen> {
                   children: [
                   Padding(
                     padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-                    child: Text('Sort by',
+                    child: Text(AppLocalizations.of(sheetContext).zoodexSortBy,
                         style: Theme.of(sheetContext).textTheme.titleMedium),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: SegmentedButton<bool>(
-                      segments: const [
-                        ButtonSegment(value: true, label: Text('Ascending')),
-                        ButtonSegment(value: false, label: Text('Descending')),
+                      segments: [
+                        ButtonSegment(
+                            value: true,
+                            label: Text(AppLocalizations.of(sheetContext)
+                                .zoodexAscending)),
+                        ButtonSegment(
+                            value: false,
+                            label: Text(AppLocalizations.of(sheetContext)
+                                .zoodexDescending)),
                       ],
                       selected: {_asc},
                       onSelectionChanged: (s) => apply(() => _asc = s.first),
@@ -261,7 +292,7 @@ class _ZooDexScreenState extends State<ZooDexScreen> {
                   const SizedBox(height: 8),
                   for (final f in _SortField.values)
                     ListTile(
-                      title: Text(f.label),
+                      title: Text(_sortFieldLabel(context, f)),
                       selected: _sort == f,
                       trailing: _sort == f
                           ? Icon(_asc
@@ -315,10 +346,10 @@ class _ZooDexScreenState extends State<ZooDexScreen> {
 
         return Scaffold(
           appBar: AppBar(
-            title: Text('Species (${rows.length})'),
+            title: Text(AppLocalizations.of(context).zoodexTitle(rows.length)),
             actions: [
               IconButton(
-                tooltip: 'List view',
+                tooltip: AppLocalizations.of(context).zoodexListView,
                 color: _view == _ViewMode.list
                     ? Theme.of(context).colorScheme.primary
                     : null,
@@ -326,7 +357,7 @@ class _ZooDexScreenState extends State<ZooDexScreen> {
                 onPressed: () => setState(() => _view = _ViewMode.list),
               ),
               IconButton(
-                tooltip: 'Grid view',
+                tooltip: AppLocalizations.of(context).zoodexGridView,
                 color: _view == _ViewMode.grid
                     ? Theme.of(context).colorScheme.primary
                     : null,
@@ -334,7 +365,7 @@ class _ZooDexScreenState extends State<ZooDexScreen> {
                 onPressed: () => setState(() => _view = _ViewMode.grid),
               ),
               IconButton(
-                tooltip: 'Tree of life',
+                tooltip: AppLocalizations.of(context).zoodexTreeOfLife,
                 color: _view == _ViewMode.tree
                     ? Theme.of(context).colorScheme.primary
                     : null,
@@ -342,7 +373,7 @@ class _ZooDexScreenState extends State<ZooDexScreen> {
                 onPressed: () => setState(() => _view = _ViewMode.tree),
               ),
               IconButton(
-                tooltip: 'Filter',
+                tooltip: AppLocalizations.of(context).zoodexFilter,
                 color: (_groupFilter != null || _iucnFilter != null)
                     ? Theme.of(context).colorScheme.primary
                     : null,
@@ -352,7 +383,7 @@ class _ZooDexScreenState extends State<ZooDexScreen> {
                 onPressed: () => _openFilterSheet(all, groupOptions),
               ),
               IconButton(
-                tooltip: 'Sort',
+                tooltip: AppLocalizations.of(context).zoodexSort,
                 icon: const Icon(Icons.sort),
                 onPressed: _openSortSheet,
               ),
@@ -366,12 +397,12 @@ class _ZooDexScreenState extends State<ZooDexScreen> {
                   controller: _searchController,
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.search),
-                    hintText: 'Search species, zoo, group…',
+                    hintText: AppLocalizations.of(context).zoodexSearchHint,
                     border: const OutlineInputBorder(),
                     suffixIcon: _query.isEmpty
                         ? null
                         : IconButton(
-                            tooltip: 'Clear',
+                            tooltip: AppLocalizations.of(context).zoodexClear,
                             icon: const Icon(Icons.clear),
                             onPressed: () => setState(() {
                               _query = '';
@@ -385,8 +416,9 @@ class _ZooDexScreenState extends State<ZooDexScreen> {
               Expanded(
                 child: rows.isEmpty
                     ? Center(
-                        child: Text(
-                            all.isEmpty ? 'No sightings yet.' : 'No matches.'))
+                        child: Text(all.isEmpty
+                            ? AppLocalizations.of(context).zoodexNoSightingsYet
+                            : AppLocalizations.of(context).zoodexNoMatches))
                     : switch (_view) {
                         _ViewMode.list => _buildList(rows),
                         _ViewMode.grid => _buildGrid(rows),
@@ -453,7 +485,8 @@ class _ZooDexScreenState extends State<ZooDexScreen> {
                     _Pill(text: _zoosLabel(e)),
                     if (e.lastSeenAt != null)
                       Text(
-                        'Last seen: ${formatLocalDate(e.lastSeenAt!)}',
+                        AppLocalizations.of(context)
+                            .zoodexLastSeen(formatLocalDate(e.lastSeenAt!)),
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                   ],

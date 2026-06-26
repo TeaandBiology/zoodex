@@ -5,6 +5,7 @@ import '../data/purchase_service.dart';
 import '../models/entitlement.dart';
 import '../models/store_product.dart';
 import '../models/zoo.dart';
+import '../l10n/app_localizations.dart';
 
 Future<void> showUnlockSheet(BuildContext context, Zoo zoo) {
   return showModalBottomSheet<void>(
@@ -59,7 +60,10 @@ class _UnlockSheetState extends State<_UnlockSheet> {
     final ok = await EntitlementStore.unlockFreeZoo(widget.zoo.id);
     if (!mounted) return;
     setState(() => _busy = false);
-    _finish(ok ? '${widget.zoo.name} unlocked' : 'No free unlocks left');
+    final l10n = AppLocalizations.of(context);
+    _finish(ok
+        ? l10n.paywallZooUnlocked(widget.zoo.name)
+        : l10n.paywallNoFreeUnlocksLeft);
   }
 
   Future<void> _buy(ProductKind kind) async {
@@ -69,12 +73,14 @@ class _UnlockSheetState extends State<_UnlockSheet> {
     if (!mounted) return;
     setState(() => _busy = false);
     if (res.success) {
-      _finish('Purchase complete');
+      _finish(AppLocalizations.of(context).paywallPurchaseComplete);
     } else if (res.cancelled) {
       // stay open
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(res.error ?? 'Purchase failed')),
+        SnackBar(
+            content: Text(
+                res.error ?? AppLocalizations.of(context).paywallPurchaseFailed)),
       );
     }
   }
@@ -84,7 +90,7 @@ class _UnlockSheetState extends State<_UnlockSheet> {
     await _svc.restore();
     if (!mounted) return;
     setState(() => _busy = false);
-    _finish('Restore requested');
+    _finish(AppLocalizations.of(context).paywallRestoreRequested);
   }
 
   @override
@@ -106,11 +112,12 @@ class _UnlockSheetState extends State<_UnlockSheet> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('Unlock ${zoo.name}',
+            Text(AppLocalizations.of(context).paywallUnlockZoo(zoo.name),
                 style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(height: 4),
             Text(
-              'The first ${Entitlement.maxFree} zoos are free.',
+              AppLocalizations.of(context)
+                  .paywallFirstZoosFree(Entitlement.maxFree),
               style: Theme.of(context).textTheme.bodySmall,
             ),
             if (!_svc.isProductionValidated) ...[
@@ -122,7 +129,7 @@ class _UnlockSheetState extends State<_UnlockSheet> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
-                  'Development mode: purchases are simulated and not validated.',
+                  AppLocalizations.of(context).paywallDevelopmentMode,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               ),
@@ -132,34 +139,36 @@ class _UnlockSheetState extends State<_UnlockSheet> {
               FilledButton.tonalIcon(
                 onPressed: _busy ? null : _useFree,
                 icon: const Icon(Icons.lock_open),
-                label: Text('Use a free unlock (${ent.freeRemaining} left)'),
+                label: Text(AppLocalizations.of(context)
+                    .paywallUseFreeUnlock(ent.freeRemaining)),
               ),
             const SizedBox(height: 8),
             _PlanTile(
               title: premiumCoversThis
-                  ? 'Premium — all $home zoos'
-                  : 'Premium (home country)',
+                  ? AppLocalizations.of(context).paywallPremiumAllZoos(home ?? '')
+                  : AppLocalizations.of(context).paywallPremiumHomeCountry,
               price: _priceFor(ProductKind.premiumCountry),
               subtitle: !homeSet
-                  ? 'Set your home country in Settings to enable.'
+                  ? AppLocalizations.of(context).paywallSetHomeCountryToEnable
                   : (premiumCoversThis
-                      ? 'Unlocks every zoo in $home.'
-                      : 'Covers $home zoos — this zoo is in ${zoo.country}. Choose Unlimited.'),
+                      ? AppLocalizations.of(context).paywallUnlocksEveryZooIn(home ?? '')
+                      : AppLocalizations.of(context)
+                          .paywallCoversZoosChooseUnlimited(home ?? '', zoo.country)),
               enabled: !_busy && premiumCoversThis,
               onTap: () => _buy(ProductKind.premiumCountry),
             ),
             const SizedBox(height: 8),
             _PlanTile(
-              title: 'Unlimited — every zoo, worldwide',
+              title: AppLocalizations.of(context).paywallUnlimitedWorldwide,
               price: _priceFor(ProductKind.unlimited),
-              subtitle: 'One-time purchase, all zoos everywhere.',
+              subtitle: AppLocalizations.of(context).paywallUnlimitedSubtitle,
               enabled: !_busy && !ent.isUnlimited,
               onTap: () => _buy(ProductKind.unlimited),
             ),
             const SizedBox(height: 8),
             TextButton(
               onPressed: _busy ? null : _restore,
-              child: const Text('Restore purchases'),
+              child: Text(AppLocalizations.of(context).paywallRestorePurchases),
             ),
             if (_busy) const Padding(
               padding: EdgeInsets.only(top: 8),

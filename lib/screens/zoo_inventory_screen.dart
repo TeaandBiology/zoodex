@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import '../data/reference_data.dart';
 import '../data/visit_store.dart';
+import '../l10n/app_localizations.dart';
 import '../models/inventory.dart';
 import '../models/report.dart';
 import '../models/species.dart';
@@ -50,7 +51,9 @@ class _ZooInventoryScreenState extends State<ZooInventoryScreen> {
         }
         final inv = snapshot.data;
         if (inv == null) {
-          return const Scaffold(body: Center(child: Text('No data.')));
+          return Scaffold(
+              body: Center(
+                  child: Text(AppLocalizations.of(context).zooInventoryNoData)));
         }
 
         final total = inv.species.length;
@@ -80,12 +83,13 @@ class _ZooInventoryScreenState extends State<ZooInventoryScreen> {
               valueListenable: VisitStore.listenable(),
               builder: (context, _, __) {
                 final seen = VisitStore.seenSpeciesCountAtZoo(inv.zoo.id);
-                return Text('${inv.zoo.name} ($seen/$total)');
+                return Text(AppLocalizations.of(context)
+                    .zooInventoryTitle(inv.zoo.name, seen, total));
               },
             ),
             actions: [
               IconButton(
-                tooltip: 'Zoo info',
+                tooltip: AppLocalizations.of(context).zooInventoryZooInfo,
                 icon: const Icon(Icons.info_outline),
                 onPressed: () => Navigator.of(context).push(
                   MaterialPageRoute(
@@ -94,12 +98,13 @@ class _ZooInventoryScreenState extends State<ZooInventoryScreen> {
                 ),
               ),
               PopupMenuButton<String>(
-                tooltip: 'More',
+                tooltip: AppLocalizations.of(context).zooInventoryMore,
                 onSelected: (choice) {
                   if (choice == 'missing') {
                     showReportSheet(
                       context,
-                      title: 'Report a missing species',
+                      title:
+                          AppLocalizations.of(context).zooInventoryReportMissing,
                       presetCategory: ReportCategory.missingSpecies,
                       lockCategory: true,
                       zooId: inv.zoo.id,
@@ -113,14 +118,16 @@ class _ZooInventoryScreenState extends State<ZooInventoryScreen> {
                     );
                   }
                 },
-                itemBuilder: (_) => const [
+                itemBuilder: (_) => [
                   PopupMenuItem(
                     value: 'missing',
-                    child: Text('Report a missing species'),
+                    child: Text(
+                        AppLocalizations.of(context).zooInventoryReportMissing),
                   ),
                   PopupMenuItem(
                     value: 'problem',
-                    child: Text('Report a problem'),
+                    child: Text(
+                        AppLocalizations.of(context).zooInventoryReportProblem),
                   ),
                 ],
               ),
@@ -135,10 +142,11 @@ class _ZooInventoryScreenState extends State<ZooInventoryScreen> {
                   children: [
                     Expanded(
                       child: TextField(
-                        decoration: const InputDecoration(
-                          prefixIcon: Icon(Icons.search),
-                          hintText: 'Search species, group, zone…',
-                          border: OutlineInputBorder(),
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.search),
+                          hintText:
+                              AppLocalizations.of(context).zooInventorySearchHint,
+                          border: const OutlineInputBorder(),
                         ),
                         onChanged: (v) => setState(() => _query = v),
                       ),
@@ -146,12 +154,12 @@ class _ZooInventoryScreenState extends State<ZooInventoryScreen> {
                     const SizedBox(width: 12),
                     DropdownButton<String?>(
                       value: _groupFilter,
-                      hint: const Text('Group'),
+                      hint: Text(AppLocalizations.of(context).zooInventoryGroup),
                       onChanged: (value) => setState(() => _groupFilter = value),
                       items: <DropdownMenuItem<String?>>[
-                        const DropdownMenuItem<String?>(
+                        DropdownMenuItem<String?>(
                           value: null,
-                          child: Text('All'),
+                          child: Text(AppLocalizations.of(context).commonAll),
                         ),
                         ...groups.map(
                           (g) => DropdownMenuItem<String?>(

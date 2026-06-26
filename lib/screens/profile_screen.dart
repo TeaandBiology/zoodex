@@ -14,13 +14,15 @@ import '../util/country_names.dart';
 import '../util/csv_export.dart';
 import '../util/date_format.dart';
 import '../widgets/app_avatar.dart';
+import '../l10n/app_localizations.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   void _comingSoon(BuildContext context, String what) {
     ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text('$what is coming soon')));
+        .showSnackBar(SnackBar(
+            content: Text(AppLocalizations.of(context).profileComingSoon(what))));
   }
 
   static String _csvCell(String s) => '"${s.replaceAll('"', '""')}"';
@@ -71,7 +73,7 @@ class ProfileScreen extends StatelessWidget {
     final csv = _buildCsv();
     if (csv == null) {
       messenger.showSnackBar(
-          const SnackBar(content: Text('No data to export yet.')));
+          SnackBar(content: Text(AppLocalizations.of(context).profileNoDataToExport)));
       return;
     }
     final filename = 'zoodex_export_${dateKey(DateTime.now())}.csv';
@@ -79,8 +81,8 @@ class ProfileScreen extends StatelessWidget {
       await exportCsvFile(csv, filename);
     } catch (_) {
       await Clipboard.setData(ClipboardData(text: csv));
-      messenger.showSnackBar(const SnackBar(
-        content: Text('Sharing unavailable here — data copied to clipboard.'),
+      messenger.showSnackBar(SnackBar(
+        content: Text(AppLocalizations.of(context).profileSharingUnavailable),
       ));
     }
   }
@@ -96,7 +98,7 @@ class ProfileScreen extends StatelessWidget {
     final ok = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Set home country'),
+        title: Text(AppLocalizations.of(context).profileSetHomeCountry),
         content: StatefulBuilder(
           builder: (context, setS) => DropdownButton<String>(
             value: selected,
@@ -111,11 +113,11 @@ class ProfileScreen extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(AppLocalizations.of(context).commonCancel),
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Set'),
+            child: Text(AppLocalizations.of(context).profileSet),
           ),
         ],
       ),
@@ -128,19 +130,19 @@ class ProfileScreen extends StatelessWidget {
     await showDialog<void>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Add a friend'),
+        title: Text(AppLocalizations.of(context).profileAddFriend),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Enter a friend code to send a request.'),
+            Text(AppLocalizations.of(context).profileEnterFriendCode),
             const SizedBox(height: 12),
             TextField(
               controller: controller,
               textCapitalization: TextCapitalization.characters,
-              decoration: const InputDecoration(
-                labelText: 'Friend code',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context).profileFriendCode,
+                border: const OutlineInputBorder(),
               ),
             ),
           ],
@@ -148,14 +150,14 @@ class ProfileScreen extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: Text(AppLocalizations.of(context).commonCancel),
           ),
           FilledButton(
             onPressed: () {
               Navigator.pop(context);
-              _comingSoon(context, 'Friends');
+              _comingSoon(context, AppLocalizations.of(context).profileFriends);
             },
-            child: const Text('Add'),
+            child: Text(AppLocalizations.of(context).profileAdd),
           ),
         ],
       ),
@@ -178,9 +180,10 @@ class ProfileScreen extends StatelessWidget {
             scrolledUnderElevation: 0,
             actions: [
               IconButton(
-                tooltip: 'Edit profile',
+                tooltip: AppLocalizations.of(context).profileEditProfile,
                 icon: const Icon(Icons.edit_outlined),
-                onPressed: () => _comingSoon(context, 'Profile editing'),
+                onPressed: () => _comingSoon(
+                    context, AppLocalizations.of(context).profileProfileEditing),
               ),
             ],
           ),
@@ -229,14 +232,16 @@ class ProfileScreen extends StatelessWidget {
                                 ?.copyWith(
                                     color:
                                         Theme.of(context).colorScheme.outline);
-                            final joined = 'Joined ${monthYear(profile.joinedAt)}';
+                            final joined = AppLocalizations.of(context)
+                                .profileJoined(monthYear(profile.joinedAt));
                             if (home != null && home.isNotEmpty) {
                               return Text('$joined  ·  ${countryShort(home)}',
                                   style: muted, textAlign: TextAlign.right);
                             }
                             return GestureDetector(
                               onTap: () => _setCountry(context),
-                              child: Text('$joined  ·  Set country',
+                              child: Text(
+                                  '$joined  ·  ${AppLocalizations.of(context).profileSetCountry}',
                                   style: muted, textAlign: TextAlign.right),
                             );
                           },
@@ -255,7 +260,7 @@ class ProfileScreen extends StatelessWidget {
                       child: FilledButton.icon(
                         onPressed: () => _addFriends(context),
                         icon: const Icon(Icons.person_add_alt),
-                        label: const Text('Add friends'),
+                        label: Text(AppLocalizations.of(context).profileAddFriends),
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -266,14 +271,14 @@ class ProfileScreen extends StatelessWidget {
                       child: OutlinedButton.icon(
                         onPressed: () => _exportData(context),
                         icon: const Icon(Icons.download_outlined),
-                        label: const Text('Export data (CSV)'),
+                        label: Text(AppLocalizations.of(context).profileExportData),
                       ),
                     ),
                     const SizedBox(height: 24),
 
                     // Overview (this is what other people see)
                     Text(
-                      'Overview',
+                      AppLocalizations.of(context).profileOverview,
                       style: Theme.of(context)
                           .textTheme
                           .titleMedium
@@ -285,7 +290,7 @@ class ProfileScreen extends StatelessWidget {
 
                     // Achievements
                     Text(
-                      'Achievements',
+                      AppLocalizations.of(context).profileAchievements,
                       style: Theme.of(context)
                           .textTheme
                           .titleMedium
@@ -332,7 +337,7 @@ class _LocalZooTile extends StatelessWidget {
             if (profile.localZooId.isNotEmpty)
               TextButton(
                 onPressed: () => Navigator.pop(context, ''),
-                child: const Text('Clear local zoo'),
+                child: Text(AppLocalizations.of(context).profileClearLocalZoo),
               ),
           ],
         ),
@@ -357,13 +362,13 @@ class _LocalZooTile extends StatelessWidget {
             : null;
         final subtitle = current?.name ??
             (visitedIds.isEmpty
-                ? 'Visit a zoo to set your local zoo'
-                : 'Not set — tap to choose');
+                ? AppLocalizations.of(context).profileVisitToSetLocalZoo
+                : AppLocalizations.of(context).profileLocalZooNotSet);
         return Card(
           margin: EdgeInsets.zero,
           child: ListTile(
             leading: const Icon(Icons.home_outlined),
-            title: const Text('Local zoo'),
+            title: Text(AppLocalizations.of(context).profileLocalZoo),
             subtitle: Text(subtitle),
             trailing: visitedIds.isEmpty ? null : const Icon(Icons.chevron_right),
             onTap: visitedIds.isEmpty ? null : () => _pick(context, visitedIds),
@@ -390,10 +395,11 @@ class _OverviewGrid extends StatelessWidget {
         final sightings =
             dex.fold<int>(0, (sum, e) => sum + e.visitsSeenCount);
 
+        final l10n = AppLocalizations.of(context);
         final stats = <(String, String)>[
-          ('Species seen', '$speciesSeen'),
-          ('Zoos visited', '$zoosVisited'),
-          ('Sightings', '$sightings'),
+          (l10n.profileSpeciesSeen, '$speciesSeen'),
+          (l10n.profileZoosVisited, '$zoosVisited'),
+          (l10n.profileSightings, '$sightings'),
         ];
 
         return Row(
@@ -455,8 +461,7 @@ class _AchievementsSection extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Earn awards for milestones like species seen and zoos visited. '
-            'Only verified sightings will count. Coming soon.',
+            AppLocalizations.of(context).profileAchievementsPlaceholder,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Theme.of(context).colorScheme.outline,
                 ),

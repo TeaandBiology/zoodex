@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_localizations.dart';
 import '../data/reference_data.dart';
 import '../data/verification_service.dart';
 import '../data/visit_store.dart';
@@ -180,10 +181,15 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
       _saving = false;
     });
 
-    final what = outcome == Outcome.seen ? 'Seen' : 'No-show';
+    final l10n = AppLocalizations.of(context);
+    final what =
+        outcome == Outcome.seen ? l10n.speciesDetailSeen : l10n.speciesDetailNoShow;
     final verified = result.status == VerificationStatus.verified;
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('$what saved${verified ? ' · verified ✓' : ''}')),
+      SnackBar(
+          content: Text(verified
+              ? l10n.speciesDetailSavedVerified(what)
+              : l10n.speciesDetailSaved(what))),
     );
   }
 
@@ -215,7 +221,9 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
       _saving = false;
     });
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Logged for ${formatLocalDate(when)}')),
+      SnackBar(
+          content: Text(AppLocalizations.of(context)
+              .speciesDetailLoggedFor(formatLocalDate(when)))),
     );
   }
 
@@ -226,25 +234,25 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
     final result = await showDialog<String>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Add a Personal Note'),
+        title: Text(AppLocalizations.of(context).speciesDetailAddPersonalNote),
         content: TextField(
           controller: controller,
           autofocus: true,
           minLines: 2,
           maxLines: 5,
-          decoration: const InputDecoration(
-            hintText: 'Private — only you can see this',
-            border: OutlineInputBorder(),
+          decoration: InputDecoration(
+            hintText: AppLocalizations.of(context).speciesDetailNotePrivateHint,
+            border: const OutlineInputBorder(),
           ),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: Text(AppLocalizations.of(context).commonCancel),
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, controller.text),
-            child: const Text('Save'),
+            child: Text(AppLocalizations.of(context).commonSave),
           ),
         ],
       ),
@@ -262,25 +270,25 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
     final result = await showDialog<String>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Personal Note'),
+        title: Text(AppLocalizations.of(context).speciesDetailPersonalNote),
         content: TextField(
           controller: controller,
           autofocus: true,
           minLines: 2,
           maxLines: 5,
-          decoration: const InputDecoration(
-            hintText: 'Private — only you can see this',
-            border: OutlineInputBorder(),
+          decoration: InputDecoration(
+            hintText: AppLocalizations.of(context).speciesDetailNotePrivateHint,
+            border: const OutlineInputBorder(),
           ),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: Text(AppLocalizations.of(context).commonCancel),
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, controller.text),
-            child: const Text('Save'),
+            child: Text(AppLocalizations.of(context).commonSave),
           ),
         ],
       ),
@@ -297,23 +305,28 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
   /// Confirm before removing a single observation record (used on both the
   /// per-zoo logging page and the read-only Species-tab page).
   Future<void> _confirmDelete(({Visit visit, SpeciesLog log}) entry) async {
-    final what = entry.log.outcome == Outcome.seen ? 'sighting' : 'no-show';
+    final l10n = AppLocalizations.of(context);
+    final what = entry.log.outcome == Outcome.seen
+        ? l10n.speciesDetailRecordSighting
+        : l10n.speciesDetailRecordNoShow;
     final ok = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Remove this record?'),
+        title: Text(AppLocalizations.of(context).speciesDetailRemoveRecordTitle),
         content: Text(
-          'Delete the $what from ${formatLocalDate(entry.visit.date)}'
-          ' at ${_zooNameFor(entry.visit)}?',
+          AppLocalizations.of(context).speciesDetailDeleteRecordBody(
+              what,
+              formatLocalDate(entry.visit.date),
+              _zooNameFor(entry.visit)),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(AppLocalizations.of(context).commonCancel),
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Remove'),
+            child: Text(AppLocalizations.of(context).speciesDetailRemove),
           ),
         ],
       ),
@@ -330,9 +343,9 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text('Removed'),
+        content: Text(AppLocalizations.of(context).speciesDetailRemoved),
         action: SnackBarAction(
-          label: 'Undo',
+          label: AppLocalizations.of(context).speciesDetailUndo,
           onPressed: () async {
             await VisitStore.logSpecies(
               entry.visit.zooId,
@@ -353,18 +366,18 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
     final ok = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Clear all records?'),
-        content: const Text(
-          'This removes every seen/no-show record for this species.',
+        title: Text(AppLocalizations.of(context).speciesDetailClearAllTitle),
+        content: Text(
+          AppLocalizations.of(context).speciesDetailClearAllBody,
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(AppLocalizations.of(context).commonCancel),
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Clear'),
+            child: Text(AppLocalizations.of(context).speciesDetailClear),
           ),
         ],
       ),
@@ -394,7 +407,9 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
   Widget _selector(BuildContext context) {
     final muted = Theme.of(context).colorScheme.outline;
     final allBreeds = _children.isNotEmpty && _children.every((c) => c.isBreed);
-    final heading = allBreeds ? 'Breeds' : 'Subspecies';
+    final heading = allBreeds
+        ? AppLocalizations.of(context).speciesDetailBreeds
+        : AppLocalizations.of(context).speciesDetailSubspecies;
     final seenCount = _children.where((c) => VisitStore.seenEver(c.id)).length;
 
     return Column(
@@ -404,7 +419,9 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(heading, style: Theme.of(context).textTheme.titleSmall),
-            Text('$seenCount of ${_children.length} collected',
+            Text(
+                AppLocalizations.of(context)
+                    .speciesDetailCollectedCount(seenCount, _children.length),
                 style: Theme.of(context)
                     .textTheme
                     .bodySmall
@@ -417,7 +434,7 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
           runSpacing: 8,
           children: [
             ChoiceChip(
-              label: const Text('All'),
+              label: Text(AppLocalizations.of(context).commonAll),
               selected: _selectedChild == null,
               onSelected: (_) => _selectChild(null),
             ),
@@ -469,7 +486,7 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
             shape: const CircleBorder(),
             clipBehavior: Clip.antiAlias,
             child: IconButton(
-              tooltip: 'View full image',
+              tooltip: AppLocalizations.of(context).speciesDetailViewFullImage,
               icon: const Icon(Icons.zoom_in, color: Colors.white),
               onPressed: () {
                 final credit = ReferenceData.instance.imageCreditFor(s);
@@ -537,15 +554,20 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
     final shown = _interactive ? _history : seen;
 
     // Count line wording depends on whether we're at species or subspecies level.
+    final l10n = AppLocalizations.of(context);
     final String countLine;
     if (_selectedChild == null && hasSelector) {
       countLine = seen.isEmpty
-          ? 'None seen yet'
-          : 'Seen ${seen.length} time(s) across subspecies • Last: ${formatLocalDate(lastSeen!)}';
+          ? l10n.speciesDetailNoneSeenYet
+          : l10n.speciesDetailSeenAcrossSubspecies(
+              seen.length, formatLocalDate(lastSeen!));
     } else {
       countLine = seen.isEmpty
-          ? (_selectedChild != null ? 'Not seen yet' : 'No sightings yet')
-          : 'Seen ${seen.length} time(s) • Last: ${formatLocalDate(lastSeen!)}';
+          ? (_selectedChild != null
+              ? l10n.speciesDetailNotSeenYet
+              : l10n.speciesDetailNoSightingsYet)
+          : l10n.speciesDetailSeenTimes(
+              seen.length, formatLocalDate(lastSeen!));
     }
 
     return Scaffold(
@@ -571,12 +593,12 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
           // species' whole history), not on the per-zoo logging page.
           if (!_interactive && _history.isNotEmpty)
             IconButton(
-              tooltip: 'Clear all records',
+              tooltip: AppLocalizations.of(context).speciesDetailClearAllRecords,
               onPressed: _saving ? null : _clearAll,
               icon: const Icon(Icons.delete_forever),
             ),
           PopupMenuButton<ReportCategory?>(
-            tooltip: 'Report a problem',
+            tooltip: AppLocalizations.of(context).speciesDetailReportProblem,
             icon: const Icon(Icons.flag_outlined),
             onSelected: (cat) => showReportSheet(
               context,
@@ -584,22 +606,26 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
               speciesId: s.id,
               speciesName: s.commonName,
             ),
-            itemBuilder: (_) => const [
+            itemBuilder: (_) => [
               PopupMenuItem(
                 value: ReportCategory.speciesImage,
-                child: Text('Wrong or missing photo'),
+                child: Text(
+                    AppLocalizations.of(context).speciesDetailReportWrongPhoto),
               ),
               PopupMenuItem(
                 value: ReportCategory.factual,
-                child: Text('Factual error'),
+                child: Text(
+                    AppLocalizations.of(context).speciesDetailReportFactualError),
               ),
               PopupMenuItem(
                 value: ReportCategory.taxonomy,
-                child: Text('Wrong taxonomy / IUCN'),
+                child: Text(
+                    AppLocalizations.of(context).speciesDetailReportWrongTaxonomy),
               ),
               PopupMenuItem(
                 value: null,
-                child: Text('Report a problem…'),
+                child: Text(
+                    AppLocalizations.of(context).speciesDetailReportProblemMenu),
               ),
             ],
           ),
@@ -622,7 +648,9 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
                       ? s.zooDescription.trim()
                       : s.description.trim();
                   return Text(
-                    top.isEmpty ? 'No description yet.' : top,
+                    top.isEmpty
+                        ? AppLocalizations.of(context).speciesDetailNoDescription
+                        : top,
                     style: Theme.of(context).textTheme.bodyLarge,
                   );
                 }),
@@ -640,7 +668,8 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
                         child: FilledButton.icon(
                           onPressed: _saving ? null : () => _log(Outcome.seen),
                           icon: const Icon(Icons.check),
-                          label: const Text('Seen Now'),
+                          label: Text(
+                              AppLocalizations.of(context).speciesDetailSeenNow),
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -648,7 +677,8 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
                         child: OutlinedButton.icon(
                           onPressed: _saving ? null : () => _log(Outcome.noShow),
                           icon: const Icon(Icons.visibility_off_outlined),
-                          label: const Text('No-show'),
+                          label: Text(
+                              AppLocalizations.of(context).speciesDetailNoShow),
                         ),
                       ),
                       const SizedBox(width: 8),
@@ -656,13 +686,15 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
                       // won't add one. Filled when a note is attached.
                       if (_notesController.text.trim().isNotEmpty)
                         IconButton.filled(
-                          tooltip: 'Edit personal note',
+                          tooltip: AppLocalizations.of(context)
+                              .speciesDetailEditPersonalNote,
                           icon: const Icon(Icons.edit_note),
                           onPressed: _saving ? null : _editNote,
                         )
                       else
                         IconButton.filledTonal(
-                          tooltip: 'Add a personal note',
+                          tooltip: AppLocalizations.of(context)
+                              .speciesDetailAddPersonalNoteTooltip,
                           icon: const Icon(Icons.edit_note),
                           onPressed: _saving ? null : _editNote,
                         ),
@@ -709,7 +741,8 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
                     child: TextButton.icon(
                       onPressed: _saving ? null : _logPast,
                       icon: const Icon(Icons.edit_calendar),
-                      label: const Text('Log a past sighting'),
+                      label: Text(
+                          AppLocalizations.of(context).speciesDetailLogPastSighting),
                     ),
                   ),
                   if (_saving) const LinearProgressIndicator(),
@@ -717,9 +750,11 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
                 ],
 
                 if (shown.isEmpty)
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 24),
-                    child: Center(child: Text('No sightings yet.')),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 24),
+                    child: Center(
+                        child: Text(AppLocalizations.of(context)
+                            .speciesDetailNoSightingsYetPeriod)),
                   )
                 else
                   for (int i = 0; i < shown.length; i++) ...[
@@ -734,7 +769,8 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
                 // Long, detailed write-up — Species-tab page only.
                 if (!_interactive && s.longDescription.trim().isNotEmpty) ...[
                   const SizedBox(height: 16),
-                  Text('About', style: Theme.of(context).textTheme.titleSmall),
+                  Text(AppLocalizations.of(context).speciesDetailAbout,
+                      style: Theme.of(context).textTheme.titleSmall),
                   const SizedBox(height: 6),
                   Text(s.longDescription.trim(),
                       style: Theme.of(context).textTheme.bodyMedium),
@@ -759,7 +795,8 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Range', style: Theme.of(context).textTheme.titleSmall),
+        Text(AppLocalizations.of(context).speciesDetailRange,
+            style: Theme.of(context).textTheme.titleSmall),
         const SizedBox(height: 8),
         GestureDetector(
           onTap: () => showFullRangeMap(context, s),
@@ -774,7 +811,7 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
           ),
         ),
         const SizedBox(height: 4),
-        Text('Tap to enlarge',
+        Text(AppLocalizations.of(context).speciesDetailTapToEnlarge,
             style:
                 Theme.of(context).textTheme.bodySmall?.copyWith(color: muted)),
       ],
@@ -794,10 +831,13 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Taxonomy', style: Theme.of(context).textTheme.titleSmall),
+        Text(AppLocalizations.of(context).speciesDetailTaxonomy,
+            style: Theme.of(context).textTheme.titleSmall),
         const SizedBox(height: 4),
         Text(
-          parts.isEmpty ? 'Not recorded' : parts.join(' › '),
+          parts.isEmpty
+              ? AppLocalizations.of(context).speciesDetailNotRecorded
+              : parts.join(' › '),
           style: Theme.of(context).textTheme.bodySmall?.copyWith(color: muted),
         ),
       ],
@@ -810,9 +850,11 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
     final credit = ReferenceData.instance.imageCreditFor(s);
     final text = credit.isNotEmpty
         ? credit
-        : (s.imageCredit.isNotEmpty ? s.imageCredit : 'Not available');
+        : (s.imageCredit.isNotEmpty
+            ? s.imageCredit
+            : AppLocalizations.of(context).speciesDetailNotAvailable);
     return Text(
-      'Copyright Information: $text',
+      AppLocalizations.of(context).speciesDetailCopyrightInfo(text),
       style: Theme.of(context).textTheme.bodySmall?.copyWith(
             color: Theme.of(context).colorScheme.outline,
             fontSize: 11,
@@ -833,10 +875,11 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
     final zooLabel = (zone != null && zone.isNotEmpty)
         ? '${_zooNameFor(e.visit)} - $zone'
         : _zooNameFor(e.visit);
+    final l10n = AppLocalizations.of(context);
     final lines = <String>[
       if (subName != null && subName != _pageSpecies.commonName) subName,
       zooLabel,
-      if (verified) 'Verified ✓',
+      if (verified) l10n.speciesDetailVerified,
       if (e.log.note != null && e.log.note!.isNotEmpty) e.log.note!,
     ];
     return ListTile(
@@ -848,7 +891,8 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
             : Theme.of(context).colorScheme.outline,
       ),
       title: Text(
-        '${formatLocalDate(e.visit.date)} • ${isSeen ? 'Seen' : 'No-show'}',
+        l10n.speciesDetailSightingTitle(formatLocalDate(e.visit.date),
+            isSeen ? l10n.speciesDetailSeen : l10n.speciesDetailNoShow),
       ),
       subtitle: lines.isEmpty ? null : Text(lines.join('\n')),
       isThreeLine: lines.length > 1,
@@ -857,14 +901,14 @@ class _SpeciesDetailScreenState extends State<SpeciesDetailScreen> {
         children: [
           IconButton(
             tooltip: (e.log.note?.isNotEmpty ?? false)
-                ? 'Edit note'
-                : 'Add a note',
+                ? l10n.speciesDetailEditNote
+                : l10n.speciesDetailAddNote,
             icon: const Icon(Icons.edit),
             visualDensity: VisualDensity.compact,
             onPressed: () => _editLogNote(e),
           ),
           IconButton(
-            tooltip: 'Remove this record',
+            tooltip: l10n.speciesDetailRemoveThisRecord,
             icon: const Icon(Icons.close),
             visualDensity: VisualDensity.compact,
             onPressed: () => _confirmDelete(e),

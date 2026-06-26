@@ -246,15 +246,23 @@ class Species {
     return 'Other';
   }
 
-  Species copyWith({String? zone, String? zooDescription}) => Species(
+  Species copyWith({
+    String? zone,
+    String? zooDescription,
+    String? commonName,
+    String? description,
+    String? longDescription,
+    String? group,
+  }) =>
+      Species(
         id: id,
         slug: slug,
-        commonName: commonName,
+        commonName: commonName ?? this.commonName,
         scientificName: scientificName,
-        group: group,
+        group: group ?? this.group,
         zone: zone ?? this.zone,
-        description: description,
-        longDescription: longDescription,
+        description: description ?? this.description,
+        longDescription: longDescription ?? this.longDescription,
         zooDescription: zooDescription ?? this.zooDescription,
         iucnStatus: iucnStatus,
         rank: rank,
@@ -264,6 +272,25 @@ class Species {
         imageCredit: imageCredit,
         taxonomy: taxonomy,
       );
+
+  /// Return a copy with translatable fields overridden from a per-locale overlay
+  /// entry (see assets/data/i18n/<locale>/species.json). Only non-empty values
+  /// override; anything missing keeps the English text, so a partial translation
+  /// falls back field by field. Scientific name is never translated.
+  Species localized(Map<String, dynamic>? tr) {
+    if (tr == null || tr.isEmpty) return this;
+    String? pick(String key) {
+      final v = tr[key];
+      return (v is String && v.trim().isNotEmpty) ? v.trim() : null;
+    }
+
+    return copyWith(
+      commonName: pick('common_name'),
+      description: pick('description'),
+      longDescription: pick('long_description'),
+      group: pick('group'),
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         'id': id,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemNavigator;
 
+import '../l10n/app_localizations.dart';
 import 'zoo_select_screen.dart';
 import 'zoo_inventory_screen.dart' show ZooInventoryScreen, ZooInventoryArgs;
 import 'species_detail_screen.dart' show SpeciesDetailScreen, SpeciesDetailArgs;
@@ -128,11 +129,20 @@ class _HomeShellState extends State<HomeShell> {
               setState(() => _index = i);
             }
           },
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Zoos'),
-            BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/icons/species_icon.png')),label: 'Species',),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-            BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+          items: [
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.map),
+                label: AppLocalizations.of(context).homeShellZoos),
+            BottomNavigationBarItem(
+              icon: const ImageIcon(AssetImage('assets/icons/species_icon.png')),
+              label: AppLocalizations.of(context).homeShellSpecies,
+            ),
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.person),
+                label: AppLocalizations.of(context).homeShellProfile),
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.settings),
+                label: AppLocalizations.of(context).commonSettings),
           ],
         ),
       ),

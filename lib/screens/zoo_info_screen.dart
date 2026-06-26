@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_localizations.dart';
 import '../models/zoo.dart';
 import '../widgets/zoo_image.dart';
 
@@ -50,19 +51,20 @@ class ZooInfoScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                header('About'),
-                placeholder('A short description of ${zoo.name} will go here.'),
+                header(AppLocalizations.of(context).zooInfoAbout),
+                placeholder(
+                    AppLocalizations.of(context).zooInfoAboutPlaceholder(zoo.name)),
                 const SizedBox(height: 24),
 
-                header('Opening times'),
-                placeholder('Opening times coming soon.'),
+                header(AppLocalizations.of(context).zooInfoOpeningTimes),
+                placeholder(AppLocalizations.of(context).zooInfoOpeningTimesSoon),
                 const SizedBox(height: 24),
 
-                header('Website'),
-                placeholder('Not added yet.'),
+                header(AppLocalizations.of(context).zooInfoWebsite),
+                placeholder(AppLocalizations.of(context).zooInfoWebsiteNotAdded),
                 const SizedBox(height: 24),
 
-                header('Social media'),
+                header(AppLocalizations.of(context).zooInfoSocialMedia),
                 Wrap(
                   spacing: 8,
                   runSpacing: 8,
@@ -75,14 +77,16 @@ class ZooInfoScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 6),
-                Text('Links coming soon.',
+                Text(AppLocalizations.of(context).zooInfoLinksSoon,
                     style: TextStyle(color: muted, fontSize: 12)),
                 const SizedBox(height: 24),
 
-                header('Details'),
-                if (zoo.country.isNotEmpty) detail('Country', zoo.country),
+                header(AppLocalizations.of(context).zooInfoDetails),
+                if (zoo.country.isNotEmpty)
+                  detail(AppLocalizations.of(context).zooInfoCountry, zoo.country),
                 if (zoo.lastUpdated.isNotEmpty)
-                  detail('Info updated', zoo.lastUpdated),
+                  detail(AppLocalizations.of(context).zooInfoUpdated,
+                      zoo.lastUpdated),
               ],
             ),
           ),

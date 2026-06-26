@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_localizations.dart';
 import '../data/entitlement_store.dart';
 import '../data/profile_store.dart';
 import '../data/reference_data.dart';
@@ -12,6 +13,16 @@ import '../widgets/app_avatar.dart';
 /// flips [ProfileStore.onboardingComplete]. A permanent user id was already
 /// minted by [ProfileStore.init], so this can upgrade to a real account later
 /// with no login screen (see DESIGN §8).
+/// Language display names shown in their own language (autonyms). These are
+/// intentionally NOT localized — each language is always shown in itself.
+const Map<String, String> _languageAutonyms = <String, String>{
+  'en': 'English',
+  'fr': 'Français',
+  'de': 'Deutsch',
+  'es': 'Español',
+  'cy': 'Cymraeg',
+};
+
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
@@ -28,6 +39,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   String _avatarId = defaultAvatarId;
   String? _country;
   String? _zooId;
+  late Locale _locale;
 
   late final List<String> _countryOptions;
 
@@ -41,6 +53,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       if (z.country.isNotEmpty) set.add(z.country);
     }
     _countryOptions = set.toList()..sort();
+    // Seed the language picker from the locale ProfileStore already resolved
+    // (saved choice or device default), matched against supportedLocales.
+    final activeCode = ProfileStore.locale.value.languageCode;
+    _locale = ProfileStore.supportedLocales.firstWhere(
+      (l) => l.languageCode == activeCode,
+      orElse: () => ProfileStore.supportedLocales.first,
+    );
     final cc = WidgetsBinding.instance.platformDispatcher.locale.countryCode;
     _country = (cc != null && _countryOptions.contains(cc))
         ? cc
@@ -141,13 +160,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   if (_step > 0)
                     TextButton(
                       onPressed: _saving ? null : () => setState(() => _step--),
-                      child: const Text('Back'),
+                      child: Text(AppLocalizations.of(context).commonBack),
                     ),
                   const Spacer(),
                   if (_step == _steps - 1 && _zooId == null)
                     TextButton(
                       onPressed: _saving ? null : _finish,
-                      child: const Text('Skip'),
+                      child: Text(AppLocalizations.of(context).commonSkip),
                     ),
                   FilledButton(
                     onPressed: (_canContinue && !_saving) ? _next : null,
@@ -156,7 +175,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             width: 18,
                             height: 18,
                             child: CircularProgressIndicator(strokeWidth: 2))
-                        : Text(isLast ? 'Start exploring' : 'Continue'),
+                        : Text(isLast
+                            ? AppLocalizations.of(context).onboardingStartExploring
+                            : AppLocalizations.of(context).onboardingContinue),
                   ),
                 ],
               ),
@@ -190,12 +211,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Icon(Icons.pets,
                 size: 64, color: Theme.of(context).colorScheme.primary),
             const SizedBox(height: 16),
-            Text('Welcome to ZooDex',
+            Text(AppLocalizations.of(context).onboardingWelcomeTitle,
                 style: Theme.of(context).textTheme.headlineMedium),
             const SizedBox(height: 10),
             Text(
-              'Track the animals you spot at the zoos you visit — your own living '
-              'Pokédex of real wildlife. Let’s set you up.',
+              AppLocalizations.of(context).onboardingWelcomeBody,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
@@ -204,15 +224,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _heading('What should we call you?',
-                'Your display name — shown on your profile. You can change it later.'),
+            _heading(AppLocalizations.of(context).onboardingNameTitle,
+                AppLocalizations.of(context).onboardingNameSubtitle),
             TextField(
               controller: _name,
               autofocus: true,
               textCapitalization: TextCapitalization.words,
-              decoration: const InputDecoration(
-                labelText: 'Name',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context).onboardingNameLabel,
+                border: const OutlineInputBorder(),
               ),
               onChanged: (_) => setState(() {}),
             ),
@@ -222,17 +242,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _heading('Pick a handle',
-                'Your @username. It’s saved for now and becomes your unique handle '
-                    'when accounts go live — so it may need tweaking if it’s taken.'),
+            _heading(AppLocalizations.of(context).onboardingUsernameTitle,
+                AppLocalizations.of(context).onboardingUsernameSubtitle),
             TextField(
               controller: _username,
               autofocus: true,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 prefixText: '@',
-                labelText: 'Username',
-                border: OutlineInputBorder(),
-                helperText: 'Lowercase letters, numbers and underscores.',
+                labelText:
+                    AppLocalizations.of(context).onboardingUsernameLabel,
+                border: const OutlineInputBorder(),
+                helperText:
+                    AppLocalizations.of(context).onboardingUsernameHelper,
               ),
               onChanged: (_) => setState(() {}),
             ),
@@ -242,7 +263,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _heading('Choose an avatar', 'Picks a look for your profile.'),
+            _heading(AppLocalizations.of(context).onboardingAvatarTitle,
+                AppLocalizations.of(context).onboardingAvatarSubtitle),
             Wrap(
               spacing: 16,
               runSpacing: 16,
@@ -261,16 +283,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _heading('Where are you based?',
-                'Your home country. A Premium unlock covers every zoo here. This is '
-                    'set once and can’t be changed later. (Language options come later.)'),
+            _heading(
+                AppLocalizations.of(context).onboardingCountryTitle,
+                AppLocalizations.of(context).onboardingCountrySubtitle),
             if (_countryOptions.isEmpty)
-              const Text('No zoo countries available yet.')
+              Text(AppLocalizations.of(context).onboardingNoCountries)
             else
               InputDecorator(
-                decoration: const InputDecoration(
-                  labelText: 'Home country',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  labelText:
+                      AppLocalizations.of(context).onboardingHomeCountryLabel,
+                  border: const OutlineInputBorder(),
                 ),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
@@ -284,15 +307,42 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                 ),
               ),
+            const SizedBox(height: 16),
+            InputDecorator(
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context).onboardingLanguageLabel,
+                border: const OutlineInputBorder(),
+              ),
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton<Locale>(
+                  isExpanded: true,
+                  value: _locale,
+                  items: [
+                    for (final l in ProfileStore.supportedLocales)
+                      DropdownMenuItem(
+                        value: l,
+                        child: Text(_languageAutonyms[l.languageCode] ??
+                            l.languageCode),
+                      ),
+                  ],
+                  onChanged: (v) {
+                    if (v == null) return;
+                    setState(() => _locale = v);
+                    // Apply live so the rest of onboarding is in the chosen
+                    // language; setLocale also persists the choice.
+                    ProfileStore.setLocale(v);
+                  },
+                ),
+              ),
+            ),
           ],
         );
       default:
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _heading('Pick your first zoo',
-                'Your first three zoos are free — choose one to start (or skip and '
-                    'pick later).'),
+            _heading(AppLocalizations.of(context).onboardingZooTitle,
+                AppLocalizations.of(context).onboardingZooSubtitle),
             for (final z in ReferenceData.instance.zoos) _zooTile(z),
           ],
         );

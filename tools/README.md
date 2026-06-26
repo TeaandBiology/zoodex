@@ -29,12 +29,20 @@ python tools/fetch_species_images.py --contact "you@example.com"
 # include Flickr as a last resort:
 python tools/fetch_species_images.py --contact "you@example.com" \
     --sources inat,wikimedia,openverse,flickr --flickr-key YOURKEY
+
+# re-fetch in place at the current resolution, replacing existing files:
+python tools/fetch_species_images.py --contact "you@example.com" --overwrite
 ```
+
+By default the script resumes and skips any species that already has an image.
+Pass `--overwrite` to re-download and replace existing files, which is how to
+refresh older photos saved at the previous 800px size to the current 1400px.
 
 No API key is needed for iNaturalist, Wikimedia, or Openverse. By default the
 script reads `assets/data/species_catalog.json`, writes WebP into `images/`
-(resized to 800px, quality 82), resumes (skips existing files), and writes two
-reports into `tools/reports/`:
+(downloads the original source and resizes the longest side to 1400px at quality
+82, so the species-page hero crop stays sharp on high-DPR phones), resumes (skips
+existing files), and writes two reports into `tools/reports/`:
 
 - `image_credits.csv`: per-species source, licence, and attribution. CC-BY and
   CC-BY-SA photos require visible credit, so this feeds the in-app image credits.
@@ -90,6 +98,37 @@ before release.
 
 Subspecies: P181 occasionally has a subspecies-specific map; usually it does not,
 and the subspecies falls back to the parent species range automatically.
+
+## fetch_translations.py
+
+Seeds the per-language catalogue overlays at `assets/data/i18n/<locale>/species.json`
+with translated common names (and optional short descriptions), so the catalogue
+can be translated without typing each name by hand. For each species it resolves
+the Wikidata entity by scientific name (property P225, the same link the image
+fetcher uses), reads the multilingual label as the common name, and optionally
+takes the first sentence or two of the matching Wikipedia article as a
+description.
+
+```bash
+pip install requests
+# run from the project root:
+python tools/fetch_translations.py --contact "you@example.com"
+
+# names only, specific languages:
+python tools/fetch_translations.py --contact "you@example.com" \
+    --langs fr,de --no-descriptions
+
+# re-fetch and overwrite; quick test on 20 species:
+python tools/fetch_translations.py --contact "you@example.com" \
+    --overwrite --sample 20
+```
+
+It resumes by default (a species already present in a language file is skipped
+unless `--overwrite`), and prints per-language coverage plus any species with no
+Wikidata match. The result is a SEED for review, not a final translation: machine
+labels and article snippets should be checked, and Welsh (cy) coverage on
+Wikidata is thin, so it will be sparse and fall back to English in the app. No
+API key is needed. See `docs/LOCALISATION.md` for how the overlays are consumed.
 
 ## What ships, and what does not
 

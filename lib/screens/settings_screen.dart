@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../l10n/app_localizations.dart';
 import '../data/entitlement_store.dart';
 import '../data/profile_store.dart';
 import '../data/report_store.dart';
@@ -12,6 +13,16 @@ import '../data/settings_store.dart';
 import '../models/entitlement.dart';
 import '../util/country_names.dart';
 import '../widgets/report_sheet.dart';
+
+/// Language display names shown in their own language (autonyms). These are
+/// intentionally NOT localized — each language is always shown in itself.
+const Map<String, String> _languageAutonyms = <String, String>{
+  'en': 'English',
+  'fr': 'Français',
+  'de': 'Deutsch',
+  'es': 'Español',
+  'cy': 'Cymraeg',
+};
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -35,15 +46,39 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Settings')),
+      appBar: AppBar(title: Text(AppLocalizations.of(context).commonSettings)),
       body: ListView(
         children: [
           ValueListenableBuilder<bool>(
             valueListenable: SettingsStore.nightMode,
             builder: (context, v, _) => SwitchListTile(
-              title: const Text('Night Mode'),
+              title: Text(AppLocalizations.of(context).settingsNightMode),
               value: v,
               onChanged: (nv) => SettingsStore.nightMode.value = nv,
+            ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.language),
+            title: Text(AppLocalizations.of(context).settingsLanguage),
+            trailing: ValueListenableBuilder<Locale>(
+              valueListenable: ProfileStore.locale,
+              builder: (context, current, _) => DropdownButton<Locale>(
+                value: ProfileStore.supportedLocales.firstWhere(
+                  (l) => l.languageCode == current.languageCode,
+                  orElse: () => ProfileStore.supportedLocales.first,
+                ),
+                items: [
+                  for (final l in ProfileStore.supportedLocales)
+                    DropdownMenuItem(
+                      value: l,
+                      child: Text(_languageAutonyms[l.languageCode] ??
+                          l.languageCode),
+                    ),
+                ],
+                onChanged: (v) {
+                  if (v != null) ProfileStore.setLocale(v);
+                },
+              ),
             ),
           ),
           const Divider(),
@@ -55,8 +90,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
               if (home != null && home.isNotEmpty) {
                 return ListTile(
                   leading: const Icon(Icons.public),
-                  title: const Text('Home country'),
-                  subtitle: Text('${countryName(home)} (set once — premium applies here)'),
+                  title: Text(AppLocalizations.of(context).settingsHomeCountry),
+                  subtitle: Text(AppLocalizations.of(context)
+                      .settingsHomeCountrySetSubtitle(countryName(home))),
                 );
               }
               final options = _countryOptions;
@@ -68,7 +104,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   children: [
                     const Icon(Icons.public),
                     const SizedBox(width: 16),
-                    const Expanded(child: Text('Set home country')),
+                    Expanded(
+                        child: Text(AppLocalizations.of(context)
+                            .settingsSetHomeCountry)),
                     DropdownButton<String>(
                       value: value,
                       items: options
@@ -86,7 +124,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               if (!mounted) return;
                               setState(() {});
                             },
-                      child: const Text('Set'),
+                      child: Text(AppLocalizations.of(context).settingsSet),
                     ),
                   ],
                 ),
@@ -101,69 +139,76 @@ class _SettingsScreenState extends State<SettingsScreen> {
             builder: (context, ent, _) {
               final String plan;
               if (ent.isUnlimited) {
-                plan = 'Unlimited — every zoo';
+                plan = AppLocalizations.of(context).settingsPlanUnlimited;
               } else if (ent.isPremium) {
-                plan = 'Premium — all ${ent.premiumCountry} zoos';
+                plan = AppLocalizations.of(context)
+                    .settingsPlanPremium(ent.premiumCountry ?? '');
               } else {
-                plan =
-                    'Free — ${ent.freeZooIds.length}/${Entitlement.maxFree} unlocks used';
+                plan = AppLocalizations.of(context).settingsPlanFree(
+                    ent.freeZooIds.length, Entitlement.maxFree);
               }
               return ListTile(
                 leading: const Icon(Icons.workspace_premium_outlined),
-                title: const Text('Plan'),
+                title: Text(AppLocalizations.of(context).settingsPlan),
                 subtitle: Text(plan),
               );
             },
           ),
           ListTile(
             leading: const Icon(Icons.restore),
-            title: const Text('Restore purchases'),
+            title: Text(AppLocalizations.of(context).settingsRestorePurchases),
             onTap: () async {
               await PurchaseService.instance.restore();
               if (!mounted) return;
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Restore requested')),
+                SnackBar(
+                    content: Text(
+                        AppLocalizations.of(context).settingsRestoreRequested)),
               );
             },
           ),
 
           const Divider(),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(16, 8, 16, 0),
-            child: Text('Feedback'),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+            child: Text(AppLocalizations.of(context).settingsFeedback),
           ),
           ListTile(
             leading: const Icon(Icons.flag_outlined),
-            title: const Text('Report a problem'),
-            subtitle: const Text('Wrong image, factual error, missing species…'),
+            title: Text(AppLocalizations.of(context).settingsReportProblem),
+            subtitle:
+                Text(AppLocalizations.of(context).settingsReportProblemSubtitle),
             onTap: () => showReportSheet(context),
           ),
 
           // Development tools (only when not using a validated store)
           if (!PurchaseService.instance.isProductionValidated) ...[
             const Divider(),
-            const Padding(
-              padding: EdgeInsets.fromLTRB(16, 8, 16, 0),
-              child: Text('Developer'),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+              child: Text(AppLocalizations.of(context).settingsDeveloper),
             ),
             ListTile(
               leading: const Icon(Icons.bug_report_outlined),
-              title: const Text('Reset entitlements (dev)'),
-              subtitle: const Text('Clears plan and free unlocks'),
+              title:
+                  Text(AppLocalizations.of(context).settingsResetEntitlements),
+              subtitle: Text(AppLocalizations.of(context)
+                  .settingsResetEntitlementsSubtitle),
               onTap: () async {
                 await EntitlementStore.resetToFree();
                 if (!mounted) return;
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Entitlements reset')),
+                  SnackBar(
+                      content: Text(AppLocalizations.of(context)
+                          .settingsEntitlementsReset)),
                 );
               },
             ),
             ListTile(
               leading: const Icon(Icons.restart_alt),
-              title: const Text('Reset onboarding (dev)'),
-              subtitle: const Text(
-                  'Re-shows the first-run flow; also clears home country + free '
-                  'unlocks so the flow takes effect again (keeps your user id)'),
+              title: Text(AppLocalizations.of(context).settingsResetOnboarding),
+              subtitle: Text(AppLocalizations.of(context)
+                  .settingsResetOnboardingSubtitle),
               onTap: () async {
                 await EntitlementStore.resetToFree();
                 await EntitlementStore.devClearHomeCountry();
@@ -173,26 +218,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             ListTile(
               leading: const Icon(Icons.playlist_add_check),
-              title: const Text('Add all species (dev)'),
-              subtitle: const Text(
-                  'Marks every catalogue species seen so the Species tab is fully populated'),
+              title: Text(AppLocalizations.of(context).settingsAddAllSpecies),
+              subtitle: Text(
+                  AppLocalizations.of(context).settingsAddAllSpeciesSubtitle),
               onTap: () async {
                 final n = await VisitStore.devAddAllSpecies();
                 if (!mounted) return;
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Added $n species to the Dex')),
+                  SnackBar(
+                      content: Text(AppLocalizations.of(context)
+                          .settingsAddedSpecies(n))),
                 );
               },
             ),
             ListTile(
               leading: const Icon(Icons.playlist_remove),
-              title: const Text('Remove dev species'),
-              subtitle: const Text('Removes only the "add all species" sightings'),
+              title: Text(AppLocalizations.of(context).settingsRemoveDevSpecies),
+              subtitle: Text(AppLocalizations.of(context)
+                  .settingsRemoveDevSpeciesSubtitle),
               onTap: () async {
                 await VisitStore.devRemoveAllSpecies();
                 if (!mounted) return;
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Dev species removed')),
+                  SnackBar(
+                      content: Text(AppLocalizations.of(context)
+                          .settingsDevSpeciesRemoved)),
                 );
               },
             ),
@@ -207,18 +257,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ? null
                       : Theme.of(context).colorScheme.error,
                 ),
-                title: const Text('Check catalogue data'),
+                title: Text(
+                    AppLocalizations.of(context).settingsCheckCatalogueData),
                 subtitle: Text(warnings.isEmpty
-                    ? 'No problems found'
-                    : '${warnings.length} problem(s) found — tap for details'),
+                    ? AppLocalizations.of(context).settingsNoProblemsFound
+                    : AppLocalizations.of(context)
+                        .settingsProblemsFound(warnings.length)),
                 onTap: () => showDialog<void>(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: const Text('Catalogue data'),
+                    title: Text(
+                        AppLocalizations.of(context).settingsCatalogueData),
                     content: warnings.isEmpty
-                        ? const Text(
-                            'No problems found. Every subspecies/breed points '
-                            'at a species that exists in the catalogue.')
+                        ? Text(AppLocalizations.of(context)
+                            .settingsCatalogueDataNoProblems)
                         : SizedBox(
                             width: double.maxFinite,
                             child: ListView(
@@ -236,7 +288,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     actions: [
                       TextButton(
                         onPressed: () => Navigator.pop(context),
-                        child: const Text('Close'),
+                        child: Text(AppLocalizations.of(context).commonClose),
                       ),
                     ],
                   ),
@@ -247,34 +299,40 @@ class _SettingsScreenState extends State<SettingsScreen> {
               valueListenable: ReportStore.listenable(),
               builder: (context, _, __) => ListTile(
                 leading: const Icon(Icons.outbox_outlined),
-                title: Text('Export reports (${ReportStore.count})'),
-                subtitle: const Text('Share all collected problem reports'),
+                title: Text(AppLocalizations.of(context)
+                    .settingsExportReports(ReportStore.count)),
+                subtitle: Text(
+                    AppLocalizations.of(context).settingsExportReportsSubtitle),
                 onTap: ReportStore.count == 0
                     ? null
                     : () async {
                         final text = ReportStore.exportText();
+                        final l10n = AppLocalizations.of(context);
                         final messenger = ScaffoldMessenger.of(context);
                         try {
                           await SharePlus.instance.share(
                             ShareParams(
-                                text: text, subject: 'ZooDex problem reports'),
+                                text: text,
+                                subject: l10n.settingsReportsShareSubject),
                           );
                         } catch (_) {
                           await Clipboard.setData(ClipboardData(text: text));
-                          messenger.showSnackBar(const SnackBar(
-                              content: Text('Copied reports to clipboard')));
+                          messenger.showSnackBar(SnackBar(
+                              content: Text(l10n.settingsCopiedReports)));
                         }
                       },
               ),
             ),
             ListTile(
               leading: const Icon(Icons.delete_sweep_outlined),
-              title: const Text('Clear reports'),
+              title: Text(AppLocalizations.of(context).settingsClearReports),
               onTap: () async {
                 await ReportStore.clear();
                 if (!mounted) return;
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Reports cleared')),
+                  SnackBar(
+                      content: Text(AppLocalizations.of(context)
+                          .settingsReportsCleared)),
                 );
               },
             ),

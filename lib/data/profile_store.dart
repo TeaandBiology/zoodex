@@ -1,8 +1,10 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart' show Locale, WidgetsBinding;
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../models/profile.dart';
 import '../util/uuid.dart';
+import 'reference_data.dart';
 
 /// Reactive, persisted local profile. On first launch a permanent [Profile.userId]
 /// (UUID) is generated and frozen — the seed for a future anonymous/linked
@@ -14,6 +16,24 @@ class ProfileStore {
   static const String boxName = 'profile';
   static const String _key = 'profile';
   static const String _onboardedKey = 'onboardingComplete';
+  static const String _localeKey = 'localeCode';
+
+  /// The languages the app offers. Single source of truth: MaterialApp's
+  /// supportedLocales, the Settings/onboarding pickers, and the catalogue
+  /// overlays all key off this list. Add a locale here when its ARB and overlay
+  /// files exist.
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('en'),
+    Locale('fr'),
+    Locale('de'),
+    Locale('es'),
+    Locale('cy'),
+  ];
+
+  /// Active UI + content language. Drives MaterialApp.locale; changes here
+  /// rebuild the whole app. Persisted across launches.
+  static final ValueNotifier<Locale> locale =
+      ValueNotifier<Locale>(const Locale('en'));
 
   static final ValueNotifier<Profile> current = ValueNotifier<Profile>(
     Profile.initial(DateTime.fromMillisecondsSinceEpoch(0)),
@@ -42,6 +62,31 @@ class ProfileStore {
       await _box.put(_key, created.toMap());
     }
     onboardingComplete.value = _box.get(_onboardedKey, defaultValue: false) as bool;
+
+    // Locale: a saved choice wins; otherwise default to the device language if it
+    // is one we support, else English. ReferenceData is told the language by
+    // main() after this, so the catalogue loads in the right language too.
+    final supportedCodes = supportedLocales.map((l) => l.languageCode).toSet();
+    final saved = _box.get(_localeKey);
+    final String code;
+    if (saved is String && supportedCodes.contains(saved)) {
+      code = saved;
+    } else {
+      final device =
+          WidgetsBinding.instance.platformDispatcher.locale.languageCode;
+      code = supportedCodes.contains(device) ? device : 'en';
+    }
+    locale.value = Locale(code);
+  }
+
+  /// Change the active language: swap the catalogue overlay first (so the new
+  /// strings are ready), then flip the notifier to rebuild the UI, then persist.
+  static Future<void> setLocale(Locale value) async {
+    final code = value.languageCode;
+    if (!supportedLocales.any((l) => l.languageCode == code)) return;
+    await ReferenceData.instance.applyLocale(code);
+    locale.value = Locale(code);
+    await _box.put(_localeKey, code);
   }
 
   static Future<void> save(Profile profile) async {

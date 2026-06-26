@@ -33,6 +33,7 @@ class ReferenceData {
   static const String _focusAsset = 'assets/data/image_focus.json';
 
   String _inventoryAsset(String zooId) => 'assets/data/inventories/$zooId.json';
+  String _overlayAsset(String code) => 'assets/data/i18n/$code/species.json';
 
   bool _initialised = false;
   List<Zoo> _zoos = const [];
@@ -46,6 +47,16 @@ class ReferenceData {
   Map<String, List<Species>> _childrenByParent = const {};
   final Map<String, ZooInventory> _inventoryCache = {};
 
+  /// Active content language, and the untranslated catalogue plus the active
+  /// overlay it is built from. The English catalogue is the canonical source;
+  /// [_overlay] maps slug -> translated fields for [_localeCode].
+  String _localeCode = 'en';
+  List<Species> _catalogEn = const [];
+  Map<String, Map<String, dynamic>> _overlay = const {};
+
+  /// The active content language code (e.g. 'fr'). Defaults to 'en'.
+  String get localeCode => _localeCode;
+
   bool get isInitialised => _initialised;
 
   /// All zoos, sorted by name. Valid after [init].
@@ -56,11 +67,50 @@ class ReferenceData {
   Future<void> init() async {
     if (_initialised) return;
     _aliases = await _loadAliases();
+    _catalogEn = await _loadCatalog();
+    _overlay = await _loadOverlay(_localeCode);
+    _rebuildIndex();
+    for (final w in _dataWarnings) {
+      debugPrint('[ReferenceData] data warning - $w');
+    }
 
-    final catalog = await _loadCatalog();
+    _imageCredits = await _loadImageCredits();
+    _imageFocus = await _loadImageFocus();
+
+    _zoos = await _loadZoos();
+    _initialised = true;
+    debugPrint(
+      '[ReferenceData] ready: ${_zoos.length} zoos, ${_byId.length} species '
+      '(${_bySlug.length} slugs), ${_aliases.length} aliases, locale $_localeCode',
+    );
+  }
+
+  /// Switch the active content language: reload the per-locale catalogue overlay
+  /// and rebuild the species index so common names and descriptions resolve in
+  /// [code] (English fallback per field). Inventory caches are dropped so they
+  /// rebuild in the new language. Cheap enough to call on a language change.
+  Future<void> applyLocale(String code) async {
+    final norm = code.trim().isEmpty ? 'en' : code.trim();
+    if (!_initialised) {
+      _localeCode = norm;
+      await init();
+      return;
+    }
+    if (norm == _localeCode) return;
+    _localeCode = norm;
+    _overlay = await _loadOverlay(norm);
+    _rebuildIndex();
+    _inventoryCache.clear();
+  }
+
+  /// Build the id/slug/rollup indexes from the English catalogue with the active
+  /// locale overlay applied. Pure and re-runnable, so a language switch just
+  /// calls it again.
+  void _rebuildIndex() {
     final byId = <String, Species>{};
     final bySlug = <String, Species>{};
-    for (final s in catalog) {
+    for (final base in _catalogEn) {
+      final s = base.localized(_overlay[base.slug]);
       byId[s.id] = s;
       if (s.slug.isNotEmpty && !bySlug.containsKey(s.slug)) bySlug[s.slug] = s;
     }
@@ -72,7 +122,7 @@ class ReferenceData {
     final parentByChild = <String, String>{};
     final childrenByParent = <String, List<Species>>{};
     final warnings = <String>[];
-    for (final s in catalog) {
+    for (final s in byId.values) {
       if (s.parentId.isEmpty) continue;
       final pid = resolveId(s.parentId);
       if (!byId.containsKey(pid)) {
@@ -91,19 +141,16 @@ class ReferenceData {
 
     // Automatic linking by naming convention: a species with a three-word
     // (trinomial) scientific name is a subspecies; if a species with the matching
-    // two-word (binomial) name exists, treat it as the parent. This means adding
-    // a "Giraffe" (Giraffa camelopardalis) species automatically groups every
-    // "Giraffa camelopardalis <x>" under it — no parent_id needed. Subspecies
-    // whose parent species isn't in the catalogue stay standalone (we never
-    // invent a generic parent).
+    // two-word (binomial) name exists, treat it as the parent. Scientific names
+    // are never translated, so this grouping is locale-independent.
     final binomialToId = <String, String>{};
-    for (final s in catalog) {
+    for (final s in byId.values) {
       final parts = s.scientificName.trim().split(RegExp(r'\s+'));
       if (parts.length == 2) {
         binomialToId.putIfAbsent(parts.join(' ').toLowerCase(), () => s.id);
       }
     }
-    for (final s in catalog) {
+    for (final s in byId.values) {
       if (s.parentId.isNotEmpty) continue; // explicit link already handled
       if (parentByChild.containsKey(s.id)) continue;
       final parts = s.scientificName.trim().split(RegExp(r'\s+'));
@@ -121,19 +168,6 @@ class ReferenceData {
     _parentByChild = parentByChild;
     _childrenByParent = childrenByParent;
     _dataWarnings = warnings;
-    for (final w in warnings) {
-      debugPrint('[ReferenceData] data warning — $w');
-    }
-
-    _imageCredits = await _loadImageCredits();
-    _imageFocus = await _loadImageFocus();
-
-    _zoos = await _loadZoos();
-    _initialised = true;
-    debugPrint(
-      '[ReferenceData] ready: ${_zoos.length} zoos, ${_byId.length} species '
-      '(${_bySlug.length} slugs), ${_aliases.length} aliases',
-    );
   }
 
   /// Resolve any reference (opaque id, aliased old id, or slug) to a canonical
@@ -248,6 +282,28 @@ class ReferenceData {
       return out;
     } catch (e) {
       debugPrint('[ReferenceData] aliases skipped: $e');
+      return const {};
+    }
+  }
+
+  /// Per-locale catalogue overlay: slug -> translated fields (common_name,
+  /// description, long_description, group). English is the base catalogue, so
+  /// 'en' has no overlay. Accepts either `{ "species": { slug: {...} } }` or a
+  /// flat `{ slug: {...} }`. Missing or unreadable files just mean no overrides.
+  Future<Map<String, Map<String, dynamic>>> _loadOverlay(String code) async {
+    if (code == 'en') return const {};
+    try {
+      final decoded = await _decode(_overlayAsset(code));
+      final raw = (decoded is Map && decoded['species'] is Map)
+          ? decoded['species'] as Map
+          : (decoded is Map ? decoded : const {});
+      final out = <String, Map<String, dynamic>>{};
+      raw.forEach((k, v) {
+        if (k is String && v is Map) out[k] = Map<String, dynamic>.from(v);
+      });
+      return out;
+    } catch (e) {
+      debugPrint('[ReferenceData] overlay "$code" skipped: $e');
       return const {};
     }
   }

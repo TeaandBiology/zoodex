@@ -61,8 +61,8 @@
       0.5578
     ],
     "amphiprion_ocellaris": [
-      0.6005,
-      0.7341
+      0.5724,
+      0.6743
     ],
     "anas_capensis": [
       0.4762,
@@ -92,13 +92,61 @@
       0.4101,
       0.5699
     ],
-    "aplonis_panayensis": [
-      0.4233,
-      0.4669
-    ],
     "choeropsis_liberiensis": [
       0.5,
       0.3238
+    ],
+    "lycaon_pictus": [
+      0.6996,
+      0.3031
+    ],
+    "gyps_africanus": [
+      0.2807,
+      0.6512
+    ],
+    "hapalemur_alaotrensis": [
+      0.463,
+      0.6215
+    ],
+    "periplaneta_americana": [
+      0.5132,
+      0.4333
+    ],
+    "phrynoidis_asper": [
+      0.5579,
+      0.5414
+    ],
+    "varanus_macraei": [
+      0.6215,
+      0.5335
+    ],
+    "pipile_cumanensis": [
+      0.4322,
+      0.5091
+    ],
+    "gorilla_gorilla_gorilla": [
+      0.4715,
+      0.5329
+    ],
+    "gorilla_gorilla": [
+      0.7127,
+      0.332
+    ],
+    "orycteropus_afer": [
+      0.5219,
+      0.4952
+    ],
+    "syncerus_caffer": [
+      0.0965,
+      0.6023
+    ],
+    "vultur_gryphus": [
+      0.489,
+      0.4804
+    ],
+    "oxyura_vittata": [
+      0.5373,
+      0.3129
     ]
   }
 }

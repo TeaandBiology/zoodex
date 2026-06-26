@@ -1,5 +1,5 @@
 name: zoodex
-description: "ZooDex — track which species you've seen at each zoo you visit."
+description: "ZooDex - track which species you've seen at each zoo you visit."
 publish_to: none
 version: 1.0.0+1
 
@@ -9,6 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations: # UI string translation (gen-l10n / ARB files)
+    sdk: flutter
+  intl: ^0.20.2 # locale-aware formatting; version is pinned by flutter_localizations
   cupertino_icons: ^1.0.8
   hive: ^2.2.3 # lightweight on-device key/value storage
   hive_flutter: ^1.1.0
@@ -25,12 +28,20 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true # generate AppLocalizations from lib/l10n/*.arb (see l10n.yaml)
   # Whole folders are declared as assets, so dropping a new zoos.json or a new
   # inventory file into them ships it without editing this file. (Sub-folders
   # aren't included automatically, which is why inventories/ is listed too.)
   assets:
     - assets/data/
     - assets/data/inventories/
+    # Per-language catalogue overlays (translated common names, descriptions).
+    # Sub-folders are not auto-included, so each locale is listed explicitly.
+    - assets/data/i18n/en/
+    - assets/data/i18n/fr/
+    - assets/data/i18n/de/
+    - assets/data/i18n/es/
+    - assets/data/i18n/cy/
     - assets/icons/
     - assets/range/
     - images/
