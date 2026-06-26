@@ -26,3 +26,11 @@ windows/
 # Developer tooling outputs (not part of the app)
 tools/reports/
 tools/__pycache__/
+tools/.range_cache/
+
+# Archives (build/delivery zips, not source)
+*.zip
+*.tar.gz
+*.tgz
+*.7z
+*.rar

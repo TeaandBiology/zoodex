@@ -1,107 +1,41 @@
-# Catalogue data review
+# Catalogue data conventions and known issues
 
-Run against the build with London, Chester, and the new Welsh Mountain Zoo.
-Result: every inventory reference now resolves, taxonomy has no non-intentional
-gaps, and every species has a valid IUCN code. Catalogue size: **754 species**.
+This document records the data conventions the catalogue follows and the issues that remain open. The catalogue currently holds about 791 entries.
 
-## Fixed automatically
+## Conventions
 
-**22 species were referenced by Welsh Mountain Zoo but missing from the
-catalogue.** 21 were added with full taxonomy + IUCN; 1 (`ailurus_fulgens`) was
-aliased to the existing nominate entry instead of duplicated (see below).
+Every species has an opaque id and a readable slug. The id is stable; the slug is for authoring and display.
 
-Added: Yellow-banded Poison Dart Frog, Przewalski's Horse, Fallow Deer,
-California Sea Lion, Red Squirrel, Brown Bear, European Pine Marten, Laughing
-Kookaburra, Yellow-crowned Amazon, Galah, Kalij Pheasant, White-tailed Eagle,
-Andean Condor, Chilean Flamingo, Red-faced Spider Monkey, Margay, Madagascar
-Tree Boa, Madagascar Iguana, Spider Tortoise, Plain Tiger, Turkey Vulture.
+Merges and renames are handled through `aliases.json`. When an entry is merged or renamed, its old id and old slug alias forward to the canonical id, so inventory references and stored sightings keep resolving without edits to the data that points at them.
 
-**Taxonomy corrected (16 reptiles):** the order name (Squamata / Testudines /
-Crocodylia) was sitting in the `class` field with `order` left blank. Set
-`class` → `Reptilia` and `order` → the original value. Affected e.g.
-`ophiophagus_hannah`, `macrochelys_temminckii`, `crocodylus_mindorensis`,
-`pantherophis_guttatus`.
+Genus-level entries, which carry a blank species epithet, are acceptable for invertebrates that zoos cannot identify to species (corals, some snails, some fish). They are not acceptable for vertebrates: a vertebrate entry should identify to a real species.
 
-**Other taxonomy filled:** `cerithium` order → Caenogastropoda; `diadema` had a
-fully blank taxonomy → filled (Echinodermata / Echinoidea / Diadematoida /
-Diadematidae / Diadema).
+## Resolved
 
-**IUCN fixed:** `pan_troglodytes` had an invalid `EN/CR` → set to `EN`.
+The two known duplicate species have been merged:
 
-## ⚠ Verify these IUCN statuses against the current Red List
+- Java Sparrow: `Lonchura oryzivora` was merged into the canonical `Padda oryzivora`, common name "Java Sparrow".
+- Mindanao Bleeding-Heart Dove: `Gallicolumba criniger` was merged into `Gallicolumba crinigera`.
 
-Statuses for the new species were filled from general knowledge; IUCN categories
-change, so double-check the non-LC ones before relying on them:
-Przewalski's Horse (EN), Red Panda alias (EN), Andean Condor (VU), Chilean
-Flamingo (NT), Red-faced Spider Monkey (VU), Margay (NT), Spider Tortoise (CR).
-Plain Tiger butterfly was set LC but invertebrate assessments are sparse — it may
-be better recorded as NE.
+In both cases the removed slugs and ids alias forward to the canonical entry.
 
-## ⚠ Redundant entries to review (left as-is — your call)
+A number of items from the original catalogue review have also been addressed: encoding problems, missing inventory references, reptile taxonomy gaps (order names sitting in the `class` field), and redundant nominate duplicates.
 
-These weren't changed because merging affects inventory references and any user
-data; decide which to keep.
+## Known issue to resolve
 
-**Same species under two names (synonyms):**
-- `lonchura_oryzivora` ↔ `padda_oryzivora` — both are the Java Sparrow. Keep one.
+Six vertebrate entries currently identify only to genus and should be replaced with real species:
 
-**Nominate subspecies that duplicates its own binomial species entry:**
-- `argusianus_argus_argus` / `argusianus_argus`
-- `geokichla_citrina_melli` / `geokichla_citrina`
-- `gracula_religiosa_religiosa` / `gracula_religiosa`
-- `helogale_parvula_undulatus` / `helogale_parvula`
-- `lophotibis_cristata_urschi` / `lophotibis_cristata`
-- `notamacropus_rufogriseus_rufogriseus` / `notamacropus_rufogriseus`
-- `shinisaurus_crocodilurus_crocodilurus` / `shinisaurus_crocodilurus`
-- `giraffa_camelopardalis_camelopardalis` / `giraffa_camelopardalis` (plus the
-  distinct `giraffa_camelopardalis_reticulata`)
+- Flamingo / Phoenicopterus
+- Bristlenose Catfish / Ancistrus
+- Tetra / Hyphessobrycon
+- Tetra / Moenkhausia
+- Hillstream Loach / Physoschistura
+- Torpedo Cichlid / Rhamphochromis
 
-For each, keep either the binomial *or* the nominate trinomial, and point the
-other at it via `aliases.json` (the same trick used for `ailurus_fulgens`).
+They are listed in `tools/reports/vertebrate_genus_only.md`.
 
-**Generic genus-level entries overlapping specific species** (lower priority —
-fine if you deliberately label a display "Montipora sp."): `montipora` (6 species
-also present), `phoenicopterus` (3 flamingos present), `pavona`, `melanotaenia_sp`,
-`hyphessobrycon`, `caulastrea`, `platygyra`, `porites`, `moenkhausia`,
-`echinophyllia`, `ophiomastix`, `babyrousa_sp`.
+## Remaining backlog
 
-## Intentional (not problems)
-
-- **31 genus-level entries** carry a blank species epithet on purpose (corals and
-  a few fish/inverts identified only to genus, e.g. `favia`, `montipora`,
-  `ancistrus`). These are valid; the empty `species` field is expected.
-- **~50 subspecies entries** with no binomial sibling (e.g. `panthera_leo_persica`
-  Asiatic Lion, `panthera_tigris_sumatrae` Sumatran Tiger) are legitimate —
-  zoos track these deliberately. Left untouched.
-
-## Subspecies rollup — Tiger (first group)
-
-`panthera_tigris` (Tiger) was added as a parent species, and the existing
-`panthera_tigris_sumatrae` was converted into a child via `parent_id` +
-`rank: "subspecies"`. Right now Sumatran is the *only* tiger subspecies in the
-catalogue, so the Tiger page shows just the one subspecies chip.
-
-Chips are derived from the catalogue at load: adding another tiger subspecies
-entry with `parent_id: panthera_tigris` makes its chip appear automatically (and
-it shows greyed until you've logged it) — no code change needed. A species with
-no subspecies entries just shows the normal species page.
-
-## Automatic subspecies grouping (by naming convention)
-
-Subspecies now group under their species automatically at load: any entry with a
-three-word (trinomial) scientific name is linked to the entry whose two-word
-(binomial) name matches — no `parent_id` needed. Adding a species like
-`Giraffe` (Giraffa camelopardalis) instantly groups every `Giraffa camelopardalis
-<x>` under it.
-
-Grouped today: Giraffe (Nubian, Reticulated), Plains Zebra (Burchell's,
-Chapman's), Forsten's Lorikeet (Scarlet-Breasted, Mitchell's), Tiger (Sumatran),
-Great Argus, Domestic Goat. `Plains Zebra` (NT) and `Forsten's Lorikeet` parents
-were added — verify the lorikeet's species-level IUCN.
-
-**Deliberately NOT auto-created:** ~46 single-subspecies entries (e.g. Asiatic
-Lion, Western Lowland Gorilla, Red Panda) have no binomial parent in the
-catalogue, so they stay standalone. We don't invent a generic parent because the
-derived name is usually wrong or absurd ("Red Panda" → "Panda", "Black-Headed
-Spider Monkey" → "Monkey"). To group any of these, add the parent species entry
-(e.g. `Lion` / Panthera leo) and the subspecies link themselves.
+- Most species descriptions are still empty. This is a content task, not a bug.
+- The fine-grained "group" vocabulary mixes broad and narrow buckets and could be normalised.
+- Some IUCN statuses were entered from general knowledge and should be confirmed against the current Red List, particularly for the parent species added during the subspecies work.

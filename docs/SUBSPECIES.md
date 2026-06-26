@@ -1,110 +1,79 @@
-# Handling subspecies
+# Subspecies and breeds
 
-## The problem
+ZooDex uses a two-level model for animals that zoos track below the species level. This document describes how that model works, how the loader builds it, and how to add new subspecies or breeds.
 
-The catalogue currently mixes two approaches with no rule:
+## The two-level model
 
-- Some animals are split into **subspecies entries** — `panthera_tigris_sumatrae`
-  (Sumatran Tiger), `panthera_leo_persica` (Asiatic Lion), several zebras and
-  giraffes — each a separate top-level "species" in the Dex.
-- Others are single **binomial species** — `panthera_pardus` (Leopard).
-- Until this pass there were also **redundant nominate duplicates** (e.g.
-  `notamacropus_rufogriseus` *and* `notamacropus_rufogriseus_rufogriseus`),
-  now removed.
-
-So today a user who sees a Sumatran Tiger and a Siberian Tiger gets two unrelated
-Dex rows and no "Tiger" concept; totals are fragmented; and the split is
-inconsistent across the catalogue. We need one model.
-
-## Options
-
-**A. Full split (status quo-ish).** Every subspecies is its own Dex entry.
-Simplest data model, but the Species tab fills with near-duplicates, there's no
-roll-up ("how many tigers have I seen?"), and it only works where someone
-bothered to split.
-
-**B. Species only.** Collapse everything to the binomial. One "Tiger" row.
-Clean, but throws away the exact thing zoo-goers care about — *which* tiger —
-and the per-subspecies range/þreat differences.
-
-**C. Two-level: parent species + child subspecies (your proposal).** The Dex
-shows the parent ("Tiger"). Its page has a subspecies selector ("All",
-"Sumatran", "Siberian"…) with per-subspecies description, range map, IUCN, and
-the zoos where each was seen, plus an aggregate total. Zoo inventories reference
-the **subspecies** (the actual viewable animal — "Sumatran Tiger at London").
-Richest and matches how zoos label enclosures, but needs schema + UI work.
-
-**D. Hybrid (C, made migration-friendly).** Keep entries flat, but give a
-subspecies an optional `parent_id` pointing at a parent species entry. Where
-`parent_id` is set, the Dex groups children under the parent; where it isn't,
-the entry shows as-is. This is option C with a gentle, non-breaking rollout —
-you can convert one genus at a time.
-
-## Recommendation: D → C
-
-Adopt the two-level model, rolled out via an optional `parent_id` link so
-nothing breaks on day one. Concretely:
-
-### Schema (additive, backwards-compatible)
-
-Add two optional fields to a catalogue entry; the loader defaults them, so old
-data keeps working:
+A parent species is a normal catalogue entry of rank `species`. Below it sit child entries of rank `subspecies` or `breed`. A child carries a `parent_id` pointing at its parent species. The `parent_id` is authored as a slug and resolved to an opaque id when the catalogue loads, so authors work with readable names while the runtime works with stable ids.
 
 ```jsonc
 {
-  "id": "sp_…", "slug": "panthera_tigris_sumatrae",
+  "slug": "panthera_tigris_sumatrae",
   "common_name": "Sumatran Tiger",
   "scientific_name": "Panthera tigris sumatrae",
-  "rank": "subspecies",          // NEW: "species" (default) | "subspecies"
-  "parent_id": "sp_<tiger>",     // NEW: set on subspecies -> parent species id
-  …
+  "rank": "subspecies",
+  "parent_id": "panthera_tigris"
 }
 ```
 
-The parent ("Tiger", `Panthera tigris`, `rank: "species"`) is a normal entry.
-Identity stays opaque-id based; `aliases.json` keeps resolving old refs. A zoo
-inventory keeps referencing whatever it displays — usually the subspecies.
+The parent ("Tiger", `Panthera tigris`, rank `species`) is an ordinary entry. Identity stays opaque-id based, and `aliases.json` keeps resolving old references.
 
-### Dex aggregation
+## Rollup
 
-`buildDex()` groups sightings by `parent_id ?? speciesId`. A `DexEntry` for a
-parent gains a per-subspecies breakdown (which children, how many, where). A
-sighting always stores the **most specific** id the zoo offered (the subspecies);
-the roll-up is derived, so no data is lost and "unspecified Tiger" is just a
-sighting whose id is the parent itself.
+The Species tab shows one card per parent species; children never appear as their own cards. An entry with no children renders as a normal species card.
 
-### UX
+The species page for a parent shows a chip selector of its children: an "All" chip plus one chip per subspecies or breed. Each chip carries its own seen state, so a child shows greyed until it has been logged. Selecting a chip switches the description, range map, IUCN status, and "seen at" list to that child; "All" shows the aggregate.
 
-- **Species tab:** one row per parent ("Tiger"); subspecies never appear as
-  their own rows. Animals with no subspecies are unchanged.
-- **Species page:** if children exist, a selector at the top — `All ·
-  Sumatran · Siberian · …` — switches the description / range map / IUCN /
-  "seen at" list. `All` shows the aggregate and which subspecies you've logged.
-- **Logging:** at a zoo you log the subspecies on display. If a zoo only says
-  "Tiger", you log the parent (an "unspecified" child).
+A sighting always stores the most specific id the zoo offered (the subspecies or breed). The rollup to the parent is derived, so no data is lost. A zoo that lists only "Tiger" produces a sighting against the parent id itself.
 
-## Migration plan
+## Two grouping mechanisms in the loader
 
-1. **Schema groundwork (non-breaking):** add `rank` + `parent_id` to the
-   `Species` model + loader, defaulted. No UI change yet. *(I can do this now.)*
-2. **Data:** pick the genera zoos track at subspecies level (tigers, lions,
-   giraffes, zebras, leopards, gorillas, orangutans…). Ensure each has a parent
-   species entry and set `parent_id` on the children. Decide parent common-name
-   conventions.
-3. **Dex roll-up:** group by `parent_id ?? id`; extend `DexEntry`.
-4. **UI:** subspecies selector on the species page; Species tab shows parents.
-5. **Range maps / per-subspecies images:** new asset type; ties into
-   `IMAGES_ONDEMAND.md`. Defer until after the above.
+Grouping is built in `lib/data/reference_data.dart` by two mechanisms:
 
-## Decisions needed from you
+1. **Explicit `parent_id`.** A child names its parent species by slug. This is the authoritative link and works regardless of naming.
 
-- **Scope:** model *every* animal that has multiple subspecies, or only those
-  where zoos actually differ (lighter)?
-- **Parent naming:** "Tiger" vs "Tiger (Panthera tigris)" in the Species tab.
-- **Parent seeability:** confirm the parent is a grouping you reach *through* a
-  subspecies (recommended), with a generic "unspecified" child for zoos that
-  don't specify.
-- **Range maps:** in scope now, or a later pass?
+2. **Automatic linking by naming convention.** Any entry whose scientific name is a trinomial (three words) is linked under the entry whose binomial (two words) matches, provided that binomial species exists in the catalogue. No `parent_id` is needed when the binomial parent exists. For example, adding `Giraffe` (Giraffa camelopardalis) automatically groups every `Giraffa camelopardalis <x>` entry under it.
 
-Say the word and I'll start with step 1 (the schema groundwork), which is safe
-and unlocks the rest incrementally.
+The two mechanisms coexist: use auto-linking where a binomial parent is present, and explicit `parent_id` everywhere else.
+
+## Breeds and domestic animals
+
+Domestic species carry `domestic: true` and rank `species`. Their breeds carry rank `breed`, `domestic: true`, and a `parent_id` pointing at the domestic species.
+
+Implemented:
+
+- Alpaca (Vicugna pacos), with the Huacaya and Suri breeds.
+- Domestic Pig (Sus domesticus), with the Mangalitsa breed.
+- Domestic Goat (Capra hircus), with the West African Pygmy Goat breed.
+- Ferret, a standalone domestic species with no breeds.
+
+The species page heading reads "Breeds" when all children are breeds, and "Subspecies" otherwise.
+
+## Catalogue changes made for this model
+
+About 40 parent species were added so that single standalone subspecies roll up to a species. Examples:
+
+- Asiatic Lion under Lion.
+- Western Lowland Gorilla under Western Gorilla.
+- Eastern Black Rhinoceros under Black Rhinoceros.
+
+A few genus names were updated to current taxonomy while their parents were added:
+
+- Elaphe taeniura to Orthriophis taeniurus.
+- Garrulax ocellatus to Ianthocincla ocellata.
+- Rucervus eldii to Panolia eldii.
+
+The Scottish Wildcat was folded into a single Felis silvestris (European Wildcat) entry. The contested Laudakia/Stellagama genus move was left as Laudakia.
+
+## Adding a new subspecies or breed
+
+There are two ways to attach a child to a parent:
+
+- Set `parent_id` (the slug of the parent species) and the appropriate `rank` (`subspecies` or `breed`). This is required for breeds and for any subspecies whose binomial parent is not in the catalogue.
+- For a subspecies, rely on trinomial-to-binomial auto-linking when the binomial parent already exists. No `parent_id` is needed.
+
+A typo in a scientific name silently breaks auto-linking, because the trinomial no longer matches any binomial. Explicit `parent_id` is therefore more robust, and is preferred where correctness matters.
+
+## Range maps
+
+Range maps follow the same parent fallback as the rest of the model: a subspecies with no range map of its own falls back to the parent species range. See docs/RANGE_MAPS.md for details.
