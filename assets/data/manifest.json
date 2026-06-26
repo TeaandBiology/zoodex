@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "content_version": 8,
+  "datasets": {
+    "species_catalog": {
+      "version": 8,
+      "path": "assets/data/species_catalog.json",
+      "sha256": "44cb9828103acdf6a8e17980388c6008fdba04230ddee0debe662088ff24848b"
+    },
+    "zoos": {
+      "version": 2,
+      "path": "assets/data/zoos.json",
+      "sha256": "94484851c9466afe18312d3ea43c62a13bf13ef80bcd4e97aa4155a894f44a98"
+    },
+    "avatars": {
+      "version": 1,
+      "path": "assets/data/avatars.json",
+      "sha256": "a70a05e37cca7b9e17323039fd40f35cd7b094fe2219d9d90475ed4ce23817cc"
+    },
+    "aliases": {
+      "version": 5,
+      "path": "assets/data/aliases.json",
+      "sha256": "4c696bfbea3f063dd7bfa45ae554add19f67348c99d764fc8ff98cabdf8cef6b"
+    },
+    "inventories": {
+      "version": 2,
+      "index": [
+        {
+          "zoo_id": "london_zoo",
+          "version": 9,
+          "path": "assets/data/inventories/london_zoo.json",
+          "sha256": "0d0bdb0415b27d1dc4175c51c045bfe7b5c7f5c6fc3a236fad2ebafefae7fff2"
+        },
+        {
+          "zoo_id": "chester_zoo",
+          "version": 5,
+          "path": "assets/data/inventories/chester_zoo.json",
+          "sha256": "e4b8b7f8e626031d14beecdf81468df38b2b0a5c58299df081e5eace4170e243"
+        }
+      ]
+    }
+  }
+}

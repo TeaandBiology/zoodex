@@ -1,0 +1,39 @@
+[
+  {
+    "id": "london_zoo",
+    "name": "London Zoo",
+    "location": {
+      "lat": 51.53524155822344,
+      "lng": -0.15455745314748814
+    },
+    "radius_m": 500,
+    "coords_set": true,
+    "country": "GB",
+    "last_updated": "2026-02-15"
+  },
+  {
+    "id": "chester_zoo",
+    "name": "Chester Zoo",
+    "location": {
+      "lat": 53.225518,
+      "lng": -2.883958
+    },
+    "radius_m": 900,
+    "coords_set": true,
+    "country": "GB",
+    "last_updated": "2026-02-15"
+  },
+  {
+    "id": "welsh_mountain_zoo",
+    "name": "Welsh Mountain Zoo",
+    "location": {
+      "lat": 53.294329,
+      "lng": -3.747246
+    },
+    "radius_m": 350,
+    "coords_set": true,
+    "country": "GB",
+    "last_updated": "2026-02-15"
+  }
+
+]

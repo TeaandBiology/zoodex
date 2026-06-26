@@ -1,0 +1,1781 @@
+{
+ "schema_version": 1,
+ "zoo_id": "chester_zoo",
+ "version": 7,
+ "last_updated": "2026-06-24",
+ "items": [
+  {
+   "species_id": "dendrolagus_goodfellowi",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "thylogale_brunii",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "macroscelides_proboscideus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "orycteropus_afer",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "procavia_capensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "elephas_maximus",
+   "zone": "Unknown",
+   "description": "Our Asian elephant herd lives in the Asian forest habitat near the south side of the zoo — check the daily board for the keeper talk at 3pm. [Placeholder zoo description — replace with your own.]"
+  },
+  {
+   "species_id": "choloepus_didactylus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "myrmecophaga_tridactyla",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "tamandua_tetradactyla",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "eulemur_coronatus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "eulemur_macaco",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "eulemur_rubriventer",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "hapalemur_alaotrensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "lemur_catta",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "varecia_rubra",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "varecia_variegata_subcincta",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "propithecus_coquereli",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "daubentonia_madagascariensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "callimico_goeldii",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "cebuella_pygmaea_niveiventris",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "leontopithecus_chrysomelas",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "leontopithecus_rosalia",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "saguinus_bicolor",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "saguinus_imperator_subgrisescens",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "saguinus_oedipus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "sapajus_xanthosternos",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "plecturocebus_cupreus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "ateles_fusciceps_rufiventris",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "cercopithecus_roloway",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "macaca_nigra",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "macaca_silenus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "mandrillus_sphinx",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "hylobates_lar",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "hylobates_moloch",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pan_troglodytes",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pongo_pygmaeus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pongo_abelii",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "callosciurus_prevostii_rafflesii",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "tamiops_swinhoei",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "paraxerus_cepapi",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "hypogeomys_antimena",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "acomys_cilicicus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "acomys_spinosissimus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "arvicanthis_neumanni",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "lemniscomys_barbarus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "mus_minutoides",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "phloeomys_pallidus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "thallomys_paedulcus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "heterocephalus_glaber",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "hystrix_africaeaustralis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "hydrochoerus_hydrochaeris",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "dasyprocta_azarae",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pteropus_rodricensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "carollia_perspicillata",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "acinonyx_jubatus_soemmeringii",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "felis_silvestris_grampia",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "panthera_leo_persica",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "panthera_onca",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "panthera_tigris_sumatrae",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "panthera_uncia",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "arctictis_binturong_whitei",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "cryptoprocta_ferox",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "galidictis_grandidieri",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "mungotictis_decemlineata",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "cynictis_pencillata",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "helogale_parvula",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "suricata_suricatta",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "lycaon_pictus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "otocyon_megalotis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "speothos_venaticus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "helarctos_malayanus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "tremarctos_ornatus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "aonyx_cinereus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pteronura_brasiliensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "ailurus_fulgens_fulgens",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "equus_grevyi",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "equus_hemionus_onager",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "tapirus_indicus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "tapirus_terrestris",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "diceros_bicornis_michaeli",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "rhinoceros_unicornis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "babyrousa_sp",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "phacochoerus_africanus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "potamochoerus_porcus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "sus_cebifrons",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "camelus_bactrianus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "tragulus_nigricans",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pudu_puda",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "rucervus_eldii_thamin",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "rusa_alfredi",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "giraffa_camelopardalis_camelopardalis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "okapia_johnstoni",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "damaliscus_pygargus_phillipsi",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "madoqua_kirkii",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "bos_javanicus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "bubalus_depressicornis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "syncerus_caffer_nanus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "tragelaphus_eurycerus_isaaci",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "capra_hircus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "cephalophus_natalensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "hippotragus_equinus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "typhlonectes_natans",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "ambystoma_dumerilii",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "calotriton_arnoldi",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "phrynoidis_asper",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "rentapia_flavomaculata",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "dendrobates_azureus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "phyllobates_terribilis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "oophaga_histrionica",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "oophaga_pumilio",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "ranitomeya_imitator",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "ranitomeya_amazonica",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "excidobates_mysteriosus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "boana_picturata",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "heterixalus_alboguttatus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "leptodactylus_fallax",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "telmatobius_culeus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "mantella_aurantiaca",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pipa_parva",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "sylvirana_maosonensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pyxicephalus_adspersus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "staurois_parvus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "nyctixalus_pictus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "rhacophorus_feae",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "theloderma_bicolor",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "mannophryne_trinitatis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "agalychnis_dacnicolor",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "struthio_camelus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "eudromia_elegans",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "casuarius_casuarius",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "crax_blumenbachii",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pipile_cumanensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "acryllium_vulturinum",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "arborophila_gingica",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "rollulus_rouloul",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "tragopan_satyra",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "tragopan_caboti",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "lophophorus_impejanus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "gallus_gallus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "lophura_edwardsi",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "lophura_erythrophthalma",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "polyplectron_chalcurum",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "polyplectron_inopinatum",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "polyplectron_malacense",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "polyplectron_napoleonis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "argusianus_argus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pavo_cristatus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "dendrocygna_autumnalis_autumnalis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "dendrocygna_viduata",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "thalassornis_leuconotus_leuconotus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "amazonetta_brasiliensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "anas_capensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "anas_erythrorhyncha",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "aythya_baeri",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "aythya_fuligula",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "aythya_nyroca",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "callonetta_leucophrys",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "marmaronetta_angustirostris",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "neochen_jubata",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "oxyura_leucocephala",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "oxyura_maccoa",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "oxyura_vittata",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "tadorna_ferruginea",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "spatula_hottentota",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "spatula_platalea",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "spatula_puna",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "asarcornis_scutulata",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "phoenicopterus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "phoenicopterus_roseus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "phoenicopterus_ruber",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "aplopelia_larvata",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "caloenas_nicobarica_nicobarica",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "chalcophaps_indica",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "ducula_bicolor",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "gallicolumba_criniger",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "gallicolumba_luzonica",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "gallicolumba_rufigula",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "geopelia_cuneata",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "goura_victoria",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "otidiphaps_aruensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "ptilinopus_melanospilus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "ptilinopus_porphyrea",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "ptilinopus_superbus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "treron_vernans",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "treron_waalia",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "zenaida_graysoni",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "nesoenas_mayeri",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "tauraco_schalowi",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "tauraco_fischeri",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "tauraco_leucolophus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "eurypyga_helias",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "porphyrio_porphyrio",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "balearica_pavonina_pavonina",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "balearica_regulorum_gibbericeps",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "spheniscus_humboldti",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "eudocimus_ruber",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "plegadis_ridgwayi",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "geronticus_eremita",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "scopus_umbretta",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "himantopus_himantopus_mexicanus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "vanellus_armatus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "bubo_lacteus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "otus_megalotis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "ptilopsis_leucotis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pulsatrix_perspicillata",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "strix_leptogrammica",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "aegypius_monachus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "gyps_africanus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "necrosyrtes_monachus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "trigonoceps_occipitalis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "sagittarius_serpentarius",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "urocolius_macrourus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "trogon_collaris",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "buceros_rhinoceros_silvestris",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "buceros_bicornis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "penelopides_panini_panini",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "rhabdotorrhinus_corrugatus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "coracias_caudatus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "megalaima_oorti",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "trichoglossus_forsteni_forsteni",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "trichoglossus_forsteni_mitchellii",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "trichoglossus_johnstoniae",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "lorius_domicella",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "psittacula_derbiana",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "loriculus_galgulus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "agapornis_nigrigenis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "anodorhynchus_hyacinthinus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "ara_ambiguus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "ara_glaucogularis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pyrrhura_griseipectus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "amazona_vinacea",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "amazona_lilacina",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "cacatua_haematuropygia",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "oriolus_chinensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "cissa_thalassina",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "cyanopica_cyanus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "spizixos_semitorques",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pycnonotus_jocosus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "irena_puella",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "garrulax_bicolor",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "garrulax_leucolophus_diardi",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pterorhinus_courtoisi",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "aplonis_panayensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "cinnyricinclus_leucogaster",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "lamprotornis_iris",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "lamprotornis_purpureus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "lamprotornis_regius",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "leucopsar_rothschildi",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "mino_dumontii",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "onychognathus_morio",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "scissirostrum_dubium",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "sturnus_pagodarum",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "kittacincla_malabarica",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "copsychus_saularis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "cossypha_niveicapilla",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "garrulax_ocellatus_artemisiae",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "euplectes_afer",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "foudia_madagascariensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "ploceus_cucullatus_cucullatus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "estrilda_astrild",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "amandava_amandava",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "amandava_subflava",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "erythrura_tricolor",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "lonchura_maja",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "lonchura_oryzivora",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "coccothraustes_affinis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "icterus_oberi",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "gubernatrix_cristata",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "ramphocelus_bresilius",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "ramphocelus_passerinii",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "geokichla_citrina",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "geokichla_dohertyi",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "turdus_boulboul",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "leiothrix_argentauris",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "leiothrix_lutea",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "liocichla_omeiensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "trochalopteron_milnei",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "erpetoichthys_calabaricus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "gnathonemus_petersii",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "echidna_nebulosa",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "gymnomuraena_zebra",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "crossocheilus_oblongus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "danio_margaritatus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "garra_barreimiae",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "garra_flavatra",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "puntius_titteya",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "rasbora_trilineata",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "tanichthys_albonubes",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "dawkinsia_assimilis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "dawkinsia_filamentosa",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "dawkinsia_tambraparniei",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "dawkinsia_rohani",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "dawkinsia_denisonii",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pethia_padamya",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pethia_bandula",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "desmopuntius_pentazona",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "desmopuntius_rhomboocellatus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "puntigrus_tetrazona",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "enteromius_hulstaerti",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "opsarius_pulchellus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "opsarius_ardens",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "botia_kubotai",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "chromobotia_macracanthus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "acantopsis_choirorhynchos",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "ambastaia_sidthimunki",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "physoschistura",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "gastromyzon_borneensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "distichodus_noboli",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "distichodus_teugelsi",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "hyphessobrycon",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "hyphessobrycon_wadai",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "hyphessobrycon_hexastichos",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "moenkhausia",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "moenkhausia_pittieri",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "nematobrycon_palmeri",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "paracheirodon_axelrodi",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pygocentrus_nattereri",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "kryptopterus_macrocephalus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pareutropius_debauwi",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "synodontis_flavitaeniatus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "synodontis_njassae",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "synodontis_petricola",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "synodontis_polli",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "platydoras_armatulus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "bunocephalus_coracoideus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "corydoras_sterbai",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "corydoras_duplicareus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "baryancistrus_demantoides",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "farlowella_vittata",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "hemiancistrus_dolichopterus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "sturisomatichthys_aureus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "antennarius_maculatus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "lepadogaster_lepadogaster",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "glossolepis_pseudoincisus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "melanotaenia_sp",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "melanotaenia_lacustris",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "melanotaenia_parkinsoni",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "epiplatys_bifasciatus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "nothobranchius_sainthousei",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pachypanchax_sakaramyi",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "fundulus_bermudae",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "alloophorus_robustus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "allotoca_zacapuensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "allotoca_diazi",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "ameca_splendens",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "characodon_audax",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "skiffia_francesae",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "xenotoca_doadrioi",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "zoogoneticus_tequila",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "oryzias_woworae",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "gasterosteus_aculeatus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "spinachia_spinachia",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "entelurus_aequoreus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "hippocampus_abdominalis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "dendrochirus_brachypterus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "taurulus_bubalis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "serranus_tortugarum",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pseudanthias_squamipinnis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "gramma_loreto",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pterapogon_kauderni",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "parupeneus_barberinoides",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "centropyge_tibicen",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "amphiprion_frenatus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "amphiprion_ocellaris",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "chrysiptera_hemicyanea",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "ctenolabrus_rupestris",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "gomphosus_caeruleus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "macropharyngodon_meleagris",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "lipophrys_pholis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "hypseleotris_compressa",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "gobiodon_okinawae",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "siganus_vulpinus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "zebrasoma_flavescens",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "parosphromenus_paludicola",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "trichogaster_leerii",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "betta_patoti",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "lethrinops_chilingali",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "oreochromis_squamipinnis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "paretroplus_maculatus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "paretroplus_menarambo",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pelvicachromis_sacrimontis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "rhamphochromis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "astrochelys_radiata",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "astrochelys_yniphora",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "malacochersus_tornieri",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "manouria_emys",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "testudo_graeca",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "batagur_borneoensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "cuora_trifasciata",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "cuora_zhoui",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "geoemyda_spengleri",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "siebenrockiella_leytensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "erymnochelys_madagascariensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "sphenodon_punctatus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "acanthosaura_nataliae",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "bronchocela_cristatella",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "hydrosaurus_celebensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "hypsilurus_magnus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "laudakia_vulgaris_brachydactyla",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "uromastyx_aegyptia_leptitni",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "uromastyx_geyri",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "uromastyx_nigriventris",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "calumma_parsonii",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "furcifer_oustaleti",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "anolis_grahami",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "laemanctus_longipes",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "oplurus_cuvieri_cuvieri",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "gekko_gecko",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "lygodactylus_williamsi",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "pachydactylus_rangei",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "paroedura_ibityensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "phelsuma_laticauda",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "phelsuma_grandis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "phelsuma_pronki",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "stenodactylus_doriae",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "teratoscincus_keyserlingii",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "uroplatus_henkeli",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "smaug_mossambicus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "zonosaurus_laticaudatus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "zonosaurus_maxima",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "lacerta_agilis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "lamprolepis_smaragdina",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "plestiodon_longirostris",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "eutropis_multifasciata",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "dracaena_guianensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "celestus_warreni",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "varanus_komodoensis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "varanus_macraei",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "varanus_melinus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "shinisaurus_crocodilurus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "malayopython_reticulatus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "simalia_boeleni",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "corallus_batesii",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "elaphe_taeniura_friesei",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "alsophis_rijgersmaei",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "naja_pallida",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "trimeresurus_insularis",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "bitis_parviocula",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "bitis_rhinoceros",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "vipera_berus",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "erpeton_tentaculatum",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "tomistoma_schlegelii",
+   "zone": "Unknown"
+  },
+  {
+   "species_id": "caiman_crocodilus",
+   "zone": "Unknown"
+  }
+ ]
+}

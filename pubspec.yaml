@@ -1,0 +1,37 @@
+name: zoodex
+description: "ZooDex — track which species you've seen at each zoo you visit."
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  hive: ^2.2.3 # lightweight on-device key/value storage
+  hive_flutter: ^1.1.0
+  geolocator: ^13.0.1 # GPS, used to confirm a visitor is at the zoo + centre the map
+  flutter_map: ^8.3.0 # OpenStreetMap-based map view in the Zoos tab (no API key)
+  latlong2: ^0.9.1 # LatLng type used by flutter_map
+  share_plus: ^13.1.0 # native share sheet for exporting data (mobile/desktop)
+  path_provider: ^2.1.0 # temp dir to write the export file before sharing
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  # Whole folders are declared as assets, so dropping a new zoos.json or a new
+  # inventory file into them ships it without editing this file. (Sub-folders
+  # aren't included automatically, which is why inventories/ is listed too.)
+  assets:
+    - assets/data/
+    - assets/data/inventories/
+    - assets/icons/
+    - assets/range/
+    - images/
+

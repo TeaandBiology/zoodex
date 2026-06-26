@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "avatars": [
+    {
+      "id": "avatar_red_panda",
+      "asset": "assets/avatars/red_panda.png",
+      "tags": [
+        "mammal"
+      ]
+    },
+    {
+      "id": "avatar_axolotl",
+      "asset": "assets/avatars/axolotl.png",
+      "tags": [
+        "amphibian"
+      ]
+    },
+    {
+      "id": "avatar_penguin",
+      "asset": "assets/avatars/penguin.png",
+      "tags": [
+        "bird"
+      ]
+    },
+    {
+      "id": "avatar_tortoise",
+      "asset": "assets/avatars/tortoise.png",
+      "tags": [
+        "reptile"
+      ]
+    }
+  ]
+}

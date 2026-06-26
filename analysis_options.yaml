@@ -1,0 +1,6 @@
+# Enables the recommended set of lints for Flutter apps. Run `flutter analyze`.
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    # Add or silence individual lint rules here if you want to.

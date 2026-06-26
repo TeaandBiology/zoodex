@@ -1,0 +1,26 @@
+{
+ "aliases": {
+  "asian_elephant_elephas_maximus": "sp_026c0d215062",
+  "komodo_dragon_varanus_komodoensis": "sp_9d1dd38b5ee0",
+  "sp_462f0df82640": "sp_9d1dd38b5ee0",
+  "geokichla_citrina_melli": "sp_0124de3f3f31",
+  "sp_a081c4ac4734": "sp_0124de3f3f31",
+  "gracula_religiosa_religiosa": "sp_c73de5ec3583",
+  "sp_f5eeff838b9d": "sp_c73de5ec3583",
+  "helogale_parvula_undulatus": "sp_5690df2e4048",
+  "sp_ceda09bd5e72": "sp_5690df2e4048",
+  "lophotibis_cristata_urschi": "sp_be6734304e70",
+  "sp_4d1276a9548b": "sp_be6734304e70",
+  "notamacropus_rufogriseus_rufogriseus": "sp_4d180c5ce7c5",
+  "sp_a0b24fafe58f": "sp_4d180c5ce7c5",
+  "shinisaurus_crocodilurus_crocodilurus": "sp_f0befc1c21ac",
+  "sp_be738416d2ce": "sp_f0befc1c21ac",
+  "uromastyx_aegyptia_leptitni": "sp_fceffdf30e4f",
+  "felis_silvestris_grampia": "sp_289967552a77",
+  "sus_scrofa_scrofa": "sp_a6d30a688635",
+  "gallicolumba_criniger": "sp_e4d8bbd47f4b",
+  "sp_19a266dc5967": "sp_e4d8bbd47f4b",
+  "lonchura_oryzivora": "sp_de01bf010847",
+  "sp_bae27d5c436f": "sp_de01bf010847"
+ }
+}

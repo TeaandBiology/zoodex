@@ -1,0 +1,28 @@
+# Dart / Flutter
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+pubspec.lock        # apps may commit this; left ignored here for simplicity
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+
+# Generated platform folders (regenerated with `flutter create .`)
+# Remove these lines if you commit the platform folders.
+android/
+ios/
+web/
+macos/
+linux/
+windows/
+
+# Developer tooling outputs (not part of the app)
+tools/reports/
+tools/__pycache__/

@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "zoo_id": "welsh_mountain_zoo",
+  "version": 1,
+  "last_updated": "2026-06-24",
+  "items": [
+    {
+      "species_id": "hydrochoerus_hydrochaeris",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "dendrobates_leucomelas",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "notamacropus_rufogriseus",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "dasyprocta_azarae",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "capra_hircus",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "equus_ferus_przewalskii",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "dama_dama",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "zalophus_californianus",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "sciurus_vulgaris",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "ursus_arctos",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "martes_martes",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "suricata_suricatta",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "aonyx_cinereus",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "ailurus_fulgens",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "dromaius_novaehollandiae",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "dacelo_novaeguineae",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "amazona_ochrocephala",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "eolophus_roseicapilla",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "phalcoboenus_australis",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "lophura_leucomelanos",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "haliaeetus_albicilla",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "spheniscus_humboldti",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "vultur_gryphus",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "phoenicopterus_chilensis",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "callimico_goeldii",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "lemur_catta",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "saguinus_oedipus",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "ateles_paniscus",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "pan_troglodytes",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "hylobates_lar",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "panthera_uncia",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "leopardus_wiedii",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "panthera_tigris_sumatrae",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "sanzinia_madagascariensis",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "zonosaurus_laticaudatus",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "chalarodon_madagascariensis",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "pyxis_arachnoides",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "morpho_peleides",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "danaus_chrysippus",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "papilio_rumanzovia",
+      "zone": "Unknown"
+    },
+    {
+      "species_id": "cathartes_aura",
+      "zone": "Unknown"
+    }
+  ]
+}

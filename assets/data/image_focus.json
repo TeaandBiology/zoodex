@@ -1,0 +1,104 @@
+{
+  "focus": {
+    "acanthosaura_nataliae": [
+      0.3069,
+      0.3407
+    ],
+    "acanthurus_bariene": [
+      0.8942,
+      0.5684
+    ],
+    "acanthurus_olivaceus": [
+      0.5688,
+      0.7314
+    ],
+    "acantopsis_choirorhynchos": [
+      0.6508,
+      0.6349
+    ],
+    "achatina_achatina": [
+      0.1561,
+      0.6772
+    ],
+    "acomys_cilicicus": [
+      0.3836,
+      0.5252
+    ],
+    "acrantophis_dumerili": [
+      0.5265,
+      0.5021
+    ],
+    "acryllium_vulturinum": [
+      0.5423,
+      0.2915
+    ],
+    "aegypius_monachus": [
+      0.4762,
+      0.4268
+    ],
+    "agalychnis_dacnicolor": [
+      0.5,
+      0.4484
+    ],
+    "agapornis_nigrigenis": [
+      0.4286,
+      0.5
+    ],
+    "alytes_muletensis": [
+      0.3942,
+      0.5458
+    ],
+    "amandava_subflava": [
+      0.4921,
+      0.5261
+    ],
+    "amazonetta_brasiliensis": [
+      0.455,
+      0.5389
+    ],
+    "amphiprion_frenatus": [
+      0.5582,
+      0.5578
+    ],
+    "amphiprion_ocellaris": [
+      0.6005,
+      0.7341
+    ],
+    "anas_capensis": [
+      0.4762,
+      0.5212
+    ],
+    "anas_erythrorhyncha": [
+      0.6931,
+      0.5336
+    ],
+    "anodorhynchus_hyacinthinus": [
+      0.3148,
+      0.5795
+    ],
+    "anolis_grahami": [
+      0.6905,
+      0.5777
+    ],
+    "antennarius_maculatus": [
+      0.5741,
+      0.559
+    ],
+    "aonyx_cinereus": [
+      0.3915,
+      0.5476
+    ],
+    "archispirostreptus_gigas": [
+      0.4101,
+      0.5699
+    ],
+    "aplonis_panayensis": [
+      0.4233,
+      0.4669
+    ],
+    "choeropsis_liberiensis": [
+      0.5,
+      0.3238
+    ]
+  }
+}
